@@ -45,6 +45,7 @@ logo - create online
 spring AOP for history tables
 upload images - date + order or purchase id - direct functionality on mobile app. on desktop, upload separately
 purchase order status - ordered, delivered + delivery date
+override equals and hashcode with appropriate attributes
 
 MODELS
 
