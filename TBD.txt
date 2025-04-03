@@ -1,0 +1,298 @@
+TECH STACK
+
+log4j
+swagger
+spring cloud
+jwt
+react
+nextjs
+react router
+react form
+reduxtoolkit
+html5
+css3
+javascript
+typescript
+tailwind
+daisyui
+spring security - roles and permissions in DB
+junit
+mockito
+springboot
+data jpa
+docker
+netlify
+aws or gcp
+react native
+google font
+jasper report - https://www.baeldung.com/spring-jasper
+spring aop
+sql, hql, criteria, jpql
+
+TODO
+
+
+bulk CUD products
+bulk CUD suppliers
+pagination
+carousel
+reminder toasters/sms/email/whatsapp - product about to be expired, low quantity products - show supplier details, 
+reports - export as excel, pdf
+export all tables as excel - useful if want to modify some values in bulk
+reports - bar chart, pie chart, line chart - toggle for various charts
+shortcuts
+logo - create online
+spring AOP for history tables
+upload images - date + order or purchase id - direct functionality on mobile app. on desktop, upload separately
+purchase order status - ordered, delivered + delivery date
+
+MODELS
+
+Branches/Franchise
+
+Long id
+String name
+Address address
+ContactDetails primaryContactDetails
+
+
+Backup
+
+Long id
+LocalDateTime createdTimestamp
+String name
+
+
+
+Employee/Users
+
+Long id
+String firstName
+String middleName
+String lastName
+ContactDetails primaryContactDetails
+List<Address> addresses
+String password
+Payroll payroll
+LocalDate dateOfBirth
+LocalDateTime createdTimestamp
+LocalDateTime modifiedTimestamp
+String userName
+
+
+Product/Inventory/Supplies
+
+Long id
+String name
+LocalDate manufactureDate
+LocalDate expiryDate
+String batchNumber
+String company
+Double cost
+Double discount
+Double purchaseRate
+Double saleRate
+ProductType type
+QuantityOfProduct quantityOfProduct
+
+
+QuantityOfProduct
+
+Long id
+Double numberOfPackets
+Double quantityPerPacket
+
+
+Medicine extends Product
+
+String genericName
+Shelf shelf
+
+
+NonMedicine extends Product
+
+
+
+
+
+ProductType/Category
+
+Long id
+String name
+
+
+EnumCategory
+
+sachet, liquid, tablet, other
+
+
+Shelf
+
+Long id
+String shelfName - A to Z, AA to ZZ, AAA to ZZZ
+
+
+Order/Receipt/Bill/Sale/Invoice
+
+Long id
+Employee cashier
+LocalDateTime createdTimestamp
+LocalDateTime modifiedTimestamp
+Double total
+List<Medicine> medicines
+double paid
+double change
+LocalDateTime payDateTime
+Customer customer
+PaymentMethod paymentMethod
+QuantityOfProduct quantityOfProduct
+Offer offer
+
+
+Purchase
+
+Long id
+List<Product> products
+LocalDateTime purchaseDate
+Supplier/Distributor/Vendor supplier
+QuantityOfProduct quantityOfProduct
+
+
+PaymentMethod
+
+Cash
+Upi
+NetBanking
+
+
+Roles
+
+Cashier
+Pharmacist
+Manager
+Helper
+Admin
+
+Permissions
+
+ADD_EMPLOYEE
+UPDATE_EMPLOYEE
+DELETE_EMPLOYEE
+ADD_SUPPLIER
+UPDATE_SUPPLIER
+DELETE_SUPPLIER
+ADD_PRODUCT
+UPDATE_PRODUCT
+DELETE_PRODUCT
+ADD_OFFER
+UPDATE_OFFER
+DELETE_OFFER
+CUD supplier
+CUD employee
+CUD product
+CUD offer
+
+Customer
+
+Long id
+List<Order> orders
+Royalty royaltyDetails
+ContactDetails contactDetails
+
+
+Royalty
+
+Long id
+Customer customer
+String royaltyPoints
+Boolean isLoyaltyMember
+LocalDateTime loyaltyStartDate
+LocalDateTime loyaltyEndDate/validTill
+
+
+Offer
+
+Long id
+String offerName
+List<Product> products
+String discount
+List<Coupon> coupons
+
+
+Coupon
+
+Long id
+LocalDateTime validTill
+Integer numberOfUses
+
+
+Supplier/Distributor/Vendor
+
+Long id;
+String firstName
+String middleName
+String lastName
+ContactDetails primaryContactDetails
+List<Address> addresses
+
+
+ContactDetails
+
+Long id
+String mobile1
+String mobile2
+String email
+Boolean isMobile1Whatsapp
+Boolean isMobile2Whatsapp
+String telephone
+
+
+Address
+
+Long id
+String line1
+String line2
+String pincode
+String city
+String state
+String country
+ContactDetails contactDetails
+Boolean isDefault
+
+
+Accounting
+
+Balances
+
+
+Audit
+
+various reports as per govt law
+
+
+Payroll
+
+Long id
+Double salary
+LocalDateTime dateofJoining
+
+
+OnlineDelivery
+
+
+HomeDelivery
+
+
+Returns - logic to update inventory
+
+Long id
+Order order
+List<Product> returnedProducts
+QuantityOfProduct quantityOfProduct
+
+History
+
+Long id
+Employee employee
+LocalDateTime createdTimestamp
+Permission permission
