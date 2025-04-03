@@ -197,15 +197,15 @@ Customer
 
 Long id
 List<Order> orders
-Royalty royaltyDetails
+Loyalty loyaltyDetails
 ContactDetails contactDetails
 
 
-Royalty
+Loyalty
 
 Long id
 Customer customer
-String royaltyPoints
+String loyaltyPoints
 Boolean isLoyaltyMember
 LocalDateTime loyaltyStartDate
 LocalDateTime loyaltyEndDate/validTill
@@ -278,10 +278,20 @@ Double salary
 LocalDateTime dateofJoining
 
 
-OnlineDelivery
+OnlineDelivery - dicounted rate, offers, loyalty points
+
+packaging cost
+courier details
+total cost
+Address address
+ContactDetails contactDetails
 
 
 HomeDelivery
+
+Charges as per porter
+Order order
+
 
 
 Returns - logic to update inventory
