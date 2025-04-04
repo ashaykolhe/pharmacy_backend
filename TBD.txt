@@ -122,6 +122,11 @@ data rest
 hashcode and equals for all hash based models
 casecadetype in mappings
 nullable in mappings
+@Column
+enum variables - https://www.baeldung.com/a-guide-to-java-enums
+composite keys?
+caching master data - hashmap on start
+hikari pooling
 ----------------------------------------------------------------------------------------------------------------------------------
 MODELS
 
@@ -244,8 +249,12 @@ Product
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "photo_id", referencedColumnName = "id")	
 	Photo photo
-
-
+	String genericName
+	Shelf shelf
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "quantity_of_product_id", referencedColumnName = "id")
+	QuantityOfProduct quantityOfProduct
+	
 ProductCompany
 
 	Long id
@@ -262,22 +271,6 @@ Manufacturer
 	String licenseNumber
 	@ManyToMany(mappedBy="manufacturers")
 	List<Product> products
-	
-
-Medicine extends Product
-
-	String genericName
-	Shelf shelf
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "quantity_of_product_id", referencedColumnName = "id")
-	QuantityOfProduct quantityOfProduct
-
-
-NonMedicine extends Product
-
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "quantity_of_product_id", referencedColumnName = "id")
-	QuantityOfProduct quantityOfProduct
 
 
 QuantityOfProduct
@@ -340,6 +333,8 @@ Order/Receipt/Bill/Sale/Invoice
 LineItem
 
 	Long id
+	@OneToOne
+	@JoinColumn(name="product_id",referencedColumnName="id")
 	Product product
 	Double discount
 	@ManyToOne
@@ -393,9 +388,6 @@ PaymentMethod - ENUM
 	NetBanking
 	DebitCard
 	CreditCard
-
-
-UserHasRoles
 
 
 
@@ -460,6 +452,8 @@ Customer
 	List<Order> orders
 	@OneToMany(mappedBy="customer")
 	List<Loyalty> loyaltyDetails
+	@OneToOne
+	@JoinColumn(name="contact_detail_id",referencedColumnName="id")
 	ContactDetail contactDetail
 	String patientName
 	String doctorName
@@ -623,8 +617,7 @@ Returns - logic to update inventory - physical or online cancelled return
 	Long id
 	@OneToOne
 	@JoinColumn(name="order_id",referencedColumnName="id")
-	Order order
-	@ManyToMany(name="returns_products",joinColumns=@JoinColumn(name="return_id",referencedColumnName="id",inverseJoinColumns(name="product_id",referencedColumnName=""id")))
+	Order order	@ManyToMany(name="returns_products",joinColumns=@JoinColumn(name="return_id",referencedColumnName="id",inverseJoinColumns(name="product_id",referencedColumnName=""id")))
 	List<Product> products
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "quantity_of_product_id", referencedColumnName = "id")
