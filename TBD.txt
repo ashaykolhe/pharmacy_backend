@@ -28,9 +28,64 @@ google font
 jasper report - https://www.baeldung.com/spring-jasper
 spring aop
 sql, hql, criteria, jpql
+heroicons svg
+docker
 
+
+https://www.baeldung.com/jpa-embedded-embeddable
+https://www.baeldung.com/jpa-persisting-enums-in-jpa
+https://www.baeldung.com/entity-to-and-from-dto-for-a-java-spring-application
+google guava
+Try.of
+
+https://github.com/john-smilga/react-course-v3/tree/main/05-axios-tutorial
+https://developer.okta.com/blog/2022/06/17/simple-crud-react-and-spring-boot
+https://www.taniarascia.com/crud-app-in-react-with-hooks/
+https://docs.emmet.io/cheat-sheet/
+https://www.geeksforgeeks.org/difference-between-put-and-patch-request/
+https://react-typescript-cheatsheet.netlify.app/docs/basic/getting-started/hooks/
+https://mui.com/material-ui/getting-started/supported-components/
+https://web.dev/learn/css/box-model
+https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#input_types
+https://react-redux.js.org/api/hooks
+https://master-spring-ter.medium.com/simplifying-file-uploads-in-spring-boot-with-multipartfile-eb8bbef68dfe
+https://www.geeksforgeeks.org/spring-security-role-based-and-permission-based-access-control/
+https://riteshpanigrahi.com/series/spring-security
+https://riteshpanigrahi.com/spring-security-role-based-authentication
+https://riteshpanigrahi.com/understanding-roles-and-authorities-and-how-to-create-them-using-enums
+https://riteshpanigrahi.com/what-is-basic-auth-and-how-to-secure-apis-using-it
+https://riteshpanigrahi.com/getting-started-with-spring-security
+https://www.baeldung.com/spring-data-derived-queries
+https://www.baeldung.com/spring-rest-openapi-documentation
+https://stackoverflow.com/questions/2109476/how-to-handle-dataintegrityviolationexception-in-spring
+https://medium.com/@jovannypcg/understanding-springs-controlleradvice-cd96a364033f
+https://medium.com/@tericcabrel/validate-request-body-and-parameter-in-spring-boot-53ca77f97fe9
+https://stackoverflow.com/questions/69105565/handling-the-javax-validation-constraintviolationexception-in-spring-boot 
+https://stackoverflow.com/questions/2751603/how-to-get-error-text-in-controller-from-bindingresult
+http://stackoverflow.com/questions/19261807/getting-bindingresults-to-show-me-the-field-associated-with-an-error
+https://stackoverflow.com/questions/34913675/how-to-iterate-keys-values-in-javascript
+https://stackoverflow.com/questions/7111134/how-to-get-the-constraint-name-in-a-org-springframework-dao-dataintegrityviolati
+https://developers.google.com/workspace/gmail/api/guides/sending
+https://stackoverflow.com/questions/55579240/spring-data-find-by-property-of-a-nested-object
+https://www.geeksforgeeks.org/spring-mvc-validation/
+https://www.highlight.io/blog/4-best-logging-libraries-for-java
+https://www.baeldung.com/hibernate-inheritance
+https://www.baeldung.com/sql-logging-spring-boot
+https://github.com/bezkoder/react-jwt-auth?tab=readme-ov-file
+
+
+
+
+
+
+
+
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------
 TODO
-
 
 bulk CUD products
 bulk CUD suppliers
@@ -43,10 +98,24 @@ reports - bar chart, pie chart, line chart - toggle for various charts
 shortcuts
 logo - create online
 spring AOP for history tables
-upload images - date + order or purchase id - direct functionality on mobile app. on desktop, upload separately
+upload images - date + order or purchase id - direct functionality on mobile app. on desktop, upload separately - size constraint
 purchase order status - ordered, delivered + delivery date
 override equals and hashcode with appropriate attributes
-
+upload documents - size constraint
+validations
+payment gateway for online delivery
+notifications
+filtered tables
+database index
+lock employee account if wrong password for 5 times
+csrf
+corsorigin
+master data - insert script
+mapstruct for model to dto - https://mapstruct.org/
+spring security with roles and permission - https://www.youtube.com/watch?v=pPU9eumD4sY&list=PLQTYNpk8jwk2ig7m44RilAvDxJbjiqAmV&index=6
+employee password reset
+employee birthday reminder
+----------------------------------------------------------------------------------------------------------------------------------
 MODELS
 
 Branches/Franchise
@@ -55,6 +124,8 @@ Long id
 String name
 Address address
 ContactDetails primaryContactDetails
+String gstin
+Boolean isHeadQuarters
 
 
 Backup
@@ -79,40 +150,104 @@ LocalDate dateOfBirth
 LocalDateTime createdTimestamp
 LocalDateTime modifiedTimestamp
 String userName
+PersonalDocument document
+Photo photo
+List<Role> roles
+String PharmacyLicenceNumber
+Boolean isActive
+Boolean isAccountLocked
+
+Photo
+
+Long id
+String fileName
+String displayName
+//path should come from properties
+String dimension
+String size
 
 
-Product/Inventory/Supplies
+Document
+
+Long id
+String fineName
+String displayName
+Type type
+String size
+
+
+Type - ENUM
+
+Excel
+Pdf
+Csv
+Text
+
+PersonalDocument - ENUM
+
+Long id
+PAN
+AADHAR
+DRIVING_LICENSE
+
+
+Product
 
 Long id
 String name
 LocalDate manufactureDate
 LocalDate expiryDate
 String batchNumber
-String company
-Double cost
-Double discount
+ProductCompany productCompany
 Double purchaseRate
-Double saleRate
+Double saleRate/mrp/sellingPrice/cost
 ProductType type
-QuantityOfProduct quantityOfProduct
+Boolean inStock
+Double tax
+Double profit
+Supplier supplier
+Manufacturer manufacturer
+Photo photo
 
 
-QuantityOfProduct
+ProductCompany
+
+Long id
+String name
+
+
+Manufacturer
+
+Long id
+String name
+Address address
+String licenseNumber
+
+
+
+QuantityOfMedicine
 
 Long id
 Double numberOfPackets
-Double quantityPerPacket
+Double numberOfStrips
+Double quantityPerStrip
+
+
+QuantityOfNonMedicine
+
+Double quantity
 
 
 Medicine extends Product
 
 String genericName
 Shelf shelf
+QuantityOfMedicine quantityOfMedicine
 
 
 NonMedicine extends Product
 
-
+QuantityOfNonMedicine quantityOfNonMedicine
 
 
 
@@ -122,14 +257,13 @@ Long id
 String name
 
 
-EnumCategory
+Category - ENUM
 
-sachet, liquid, tablet, other
+sachet, liquid, tablet, capsule, inhaler, patches, injection, cream, lotion, drops other
 
 
-Shelf
+Shelf - ENUM
 
-Long id
 String shelfName - A to Z, AA to ZZ, AAA to ZZZ
 
 
@@ -140,14 +274,40 @@ Employee cashier
 LocalDateTime createdTimestamp
 LocalDateTime modifiedTimestamp
 Double total
-List<Medicine> medicines
-double paid
-double change
+List<LineItem> lineItems
+double paidAmount
+double remainingAmount
 LocalDateTime payDateTime
 Customer customer
 PaymentMethod paymentMethod
 QuantityOfProduct quantityOfProduct
 Offer offer
+String comment
+PaymentStatus paymentStatus
+
+
+LineItem
+
+Product product
+Double discount
+
+
+
+Tax - ENUM
+
+CGST
+SGST
+VAT
+CESS
+SURCHARGE
+SALES
+
+
+PaymentStatus - ENUM
+
+PAID
+PENDING
+PARTIALPAID
 
 
 Purchase
@@ -159,14 +319,19 @@ Supplier/Distributor/Vendor supplier
 QuantityOfProduct quantityOfProduct
 
 
-PaymentMethod
+PaymentMethod - ENUM
 
 Cash
 Upi
 NetBanking
 
 
-Roles
+UserHasRoles
+
+
+
+Roles - https://www.baeldung.com/role-and-privilege-for-spring-security-registration - Enum
+https://www.baeldung.com/spring-security-method-security
 
 Cashier
 Pharmacist
@@ -174,7 +339,14 @@ Manager
 Helper
 Admin
 
-Permissions
+
+RoleHasPermissions
+
+Long roleId
+Long permissionId
+
+
+Permission/Privilege
 
 ADD_EMPLOYEE
 UPDATE_EMPLOYEE
@@ -199,6 +371,8 @@ Long id
 List<Order> orders
 Loyalty loyaltyDetails
 ContactDetails contactDetails
+String patientName
+String doctorName
 
 
 Loyalty
@@ -225,6 +399,7 @@ Coupon
 Long id
 LocalDateTime validTill
 Integer numberOfUses
+Boolean isValid
 
 
 Supplier/Distributor/Vendor
@@ -235,6 +410,7 @@ String middleName
 String lastName
 ContactDetails primaryContactDetails
 List<Address> addresses
+Boolean isActive
 
 
 ContactDetails
@@ -275,35 +451,79 @@ Payroll
 
 Long id
 Double salary
-LocalDateTime dateofJoining
+LocalDate joiningDate
+LocalDate resignationDate
 
 
 OnlineDelivery - dicounted rate, offers, loyalty points
 
-packaging cost
-courier details
-total cost
+Double packagingCost/deliveryCharges
+Courier courier
+String trackingId
+Double courierCost
+Double totalCost
 Address address
-ContactDetails contactDetails
+String shippingStatus
+Order order
+String prescription - upload photo
+PaymentStatus paymentStatus - no cod
+
+
+ShippingStatus - ENUM
+
+Ordered
+Packed
+Intransit
+Delievered
+Cancelled
+
+
+Courier
+
+Long id
+String name
+String mobile
 
 
 HomeDelivery
 
 Charges as per porter
 Order order
+PaymentStatus paymentStatus - no COD
+Address address
 
 
-
-Returns - logic to update inventory
+Returns - logic to update inventory - physical or online cancelled return
 
 Long id
 Order order
 List<Product> returnedProducts
 QuantityOfProduct quantityOfProduct
 
-History
+History/ActivityLog //AOP
 
 Long id
 Employee employee
 LocalDateTime createdTimestamp
 Permission permission
+
+-------------------------------------------------------------------------------------------------------------------------------
+BUSINESS LOGIC
+
+
+
+
+DASHBOARD
+
+total sales
+total profit today
+total profit
+sales today
+expired products
+purchase orders
+loyal customers
+most sold medicines
+most sold meds revenue
+outofstock meds - 0 Red, 1 to 10 - orange. greater than 10 green
+sales today, last 30 days, last 6 months, last 1 year, all the time or between datewise
+profit today, last 30 days, last 6 months, last 1 year, all the time or between datewise
