@@ -237,10 +237,10 @@ Product
 	Boolean inStock
 	Double tax
 	Double profit
-	@OneToMany(mappedBy="products")
-	List<Supplier> supplier
-	@OneToMany(mappedBy="products")
-	Manufacturer manufacturer
+	@ManyToMany	@JoinTable(name="products_suppliers",joinColumns=@JoinColumn(name="product_id",referencedColumnName="id"),inverseJoinColumns=@JoinColumn(name="supplier_id",referencedColumnName="id"))
+	List<Supplier> suppliers
+	@ManyToMany	@JoinTable(name="products_manufacturers",joinColumns=@JoinColumn(name="product_id",referencedColumnName="id",inverseJoinColumns=@JoinColumn(name="manufacturer_id",referencedColumnName="id")))
+	List<Manufacturer> manufacturers
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "photo_id", referencedColumnName = "id")	
 	Photo photo
@@ -260,8 +260,7 @@ Manufacturer
 	@JoinColumn(name = "address_id", referencedColumnName = "id")	
 	Address address
 	String licenseNumber
-	@ManyToOne
-    @JoinColumn(name="product_id", nullable=false)
+	@ManyToMany(mappedBy="manufacturers")
 	List<Product> products
 	
 
@@ -515,11 +514,11 @@ Supplier/Distributor/Vendor
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="primary_contact_detail_id", referencedColumnName="id")
 	ContactDetail primaryContactDetail
-	
-	List<Address> addresses
+	@OneToOne
+	@JoinColumn(name="address_id",referencedColumnName="id")
+	Address address
 	Boolean isActive
-	@ManyToOne
-    @JoinColumn(name="product_id", nullable=false)
+	@ManyToMany(mappedBy="suppliers")
 	List<Product> products
 
 
@@ -543,6 +542,8 @@ Address
 	String city
 	String state
 	String country
+	@OneToOne
+	@JoinColumn(name="contact_detail_id",referencedColumnName="id")
 	ContactDetail contactDetail
 	Boolean isDefault
 
@@ -569,14 +570,22 @@ Payroll
 OnlineDelivery - dicounted rate, offers, loyalty points
 
 	Double packagingCost/deliveryCharges
+	@OneToOne
+	@JoinColumn(name="courier_id",referencedColumnName="id")
 	Courier courier
 	String trackingId
 	Double courierCost
 	Double totalCost
+	@OneToOne
+	@JoinColumn(name="address_id",referencedColumnName="id")
 	Address address
-	String shippingStatus
+	@Enumerated(EnumType.STRING)
+	ShippingStatus shippingStatus
+	@OneToOne
+	@JoinColumn(name="order_id",referencedColumnName="id")
 	Order order
 	String prescription - upload photo
+	@Enumerated(EnumType.STRING)
 	PaymentStatus paymentStatus - no cod
 
 
@@ -599,23 +608,37 @@ Courier
 HomeDelivery
 
 	Charges as per porter
+	@OneToOne
+	@JoinColumn(name="order_id",referencedColumnName="id")
 	Order order
+	@Enumerated(EnumType.STRING)
 	PaymentStatus paymentStatus - no COD
+	@OneToOne
+	@JoinColumn(name="address_id",referencedColumnName="id")
 	Address address
 
 
 Returns - logic to update inventory - physical or online cancelled return
 
 	Long id
+	@OneToOne
+	@JoinColumn(name="order_id",referencedColumnName="id")
 	Order order
-	List<Product> returnedProducts
+	@ManyToMany(name="returns_products",joinColumns=@JoinColumn(name="return_id",referencedColumnName="id",inverseJoinColumns(name="product_id",referencedColumnName=""id")))
+	List<Product> products
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "quantity_of_product_id", referencedColumnName = "id")
 	QuantityOfProduct quantityOfProduct
 
 History/ActivityLog //AOP
 
 	Long id
+	@OneToOne
+	@JoinColumn(name="employee_id",referencedColumnName="id")
 	Employee employee
 	LocalDateTime createdTimestamp
+	@OneToOne
+	@JoinColumn(name="permission_id",referencedColumnName="id")
 	Permission permission
 
 
