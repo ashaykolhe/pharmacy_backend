@@ -32,8 +32,6 @@ heroicons svg
 docker
 
 
-https://www.baeldung.com/jpa-embedded-embeddable
-https://www.baeldung.com/jpa-persisting-enums-in-jpa
 https://www.baeldung.com/entity-to-and-from-dto-for-a-java-spring-application
 google guava
 Try.of
@@ -73,9 +71,14 @@ https://www.baeldung.com/hibernate-inheritance
 https://www.baeldung.com/sql-logging-spring-boot
 https://github.com/bezkoder/react-jwt-auth?tab=readme-ov-file
 
-
-
-
+Hibernate
+https://www.baeldung.com/jpa-one-to-one
+https://www.baeldung.com/jpa-hibernate-associations
+https://www.baeldung.com/jpa-embedded-embeddable
+https://www.baeldung.com/jpa-persisting-enums-in-jpa
+https://www.baeldung.com/hibernate-one-to-many
+https://www.baeldung.com/jpa-many-to-many
+https://www.baeldung.com/hibernate-many-to-many
 
 
 
@@ -115,238 +118,310 @@ mapstruct for model to dto - https://mapstruct.org/
 spring security with roles and permission - https://www.youtube.com/watch?v=pPU9eumD4sY&list=PLQTYNpk8jwk2ig7m44RilAvDxJbjiqAmV&index=6
 employee password reset
 employee birthday reminder
+data rest
+hashcode and equals for all hash based models
+casecadetype in mappings
+nullable in mappings
 ----------------------------------------------------------------------------------------------------------------------------------
 MODELS
 
-Branches/Franchise
+Branch/Franchise
 
-Long id
-String name
-Address address
-ContactDetails primaryContactDetails
-String gstin
-Boolean isHeadQuarters
+	Long id
+	String name
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "address_id", referencedColumnName = "id")
+	Address address
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "primary_contact_detail_id", referencedColumnName = "id")
+	ContactDetail primaryContactDetail
+	String gstin
+	Boolean isHeadQuarters
 
 
 Backup
 
-Long id
-LocalDateTime createdTimestamp
-String name
+	Long id
+	LocalDateTime createdTimestamp
+	String name
 
 
 
 Employee/Users
 
-Long id
-String firstName
-String middleName
-String lastName
-ContactDetails primaryContactDetails
-List<Address> addresses
-String password
-Payroll payroll
-LocalDate dateOfBirth
-LocalDateTime createdTimestamp
-LocalDateTime modifiedTimestamp
-String userName
-PersonalDocument document
-Photo photo
-List<Role> roles
-String PharmacyLicenceNumber
-Boolean isActive
-Boolean isAccountLocked
+	Long id
+	String firstName
+	String middleName
+	String lastName
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "primary_contact_detail_id", referencedColumnName = "id")
+	ContactDetail primaryContactDetail
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "address_id", referencedColumnName = "id")
+	Address address
+	String password
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "payroll_id", referencedColumnName = "id")	
+	Payroll payroll
+	LocalDate dateOfBirth
+	LocalDateTime createdTimestamp
+	LocalDateTime modifiedTimestamp
+	String userName
+	@Enumerated(EnumType.STRING)
+	PersonalDocument document
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "photo_id", referencedColumnName = "id")	
+	Photo photo
+	@ManyToMany 
+    @JoinTable( 
+        name = "users_roles", 
+        joinColumns = @JoinColumn(
+          name = "user_id", referencedColumnName = "id"), 
+        inverseJoinColumns = @JoinColumn(
+          name = "role_id", referencedColumnName = "id")) 
+    List<Role> roles;
+	String PharmacyLicenceNumber
+	Boolean isActive
+	Boolean isAccountLocked
 
 Photo
 
-Long id
-String fileName
-String displayName
-//path should come from properties
-String dimension
-String size
+	Long id
+	String fileName
+	String displayName
+	//path should come from properties
+	String dimension
+	String size
+
 
 
 Document
 
-Long id
-String fineName
-String displayName
-Type type
-String size
+	Long id
+	String fineName
+	String displayName
+	@Enumerated(EnumType.STRING)
+	Type type
+	String size
 
 
 Type - ENUM
 
-Excel
-Pdf
-Csv
-Text
+	Excel
+	Pdf
+	Csv
+	Text
 
 PersonalDocument - ENUM
 
-Long id
-PAN
-AADHAR
-DRIVING_LICENSE
+	PAN
+	AADHAR
+	DRIVING_LICENSE
 
 
 Product
 
-Long id
-String name
-LocalDate manufactureDate
-LocalDate expiryDate
-String batchNumber
-ProductCompany productCompany
-Double purchaseRate
-Double saleRate/mrp/sellingPrice/cost
-ProductType type
-Boolean inStock
-Double tax
-Double profit
-Supplier supplier
-Manufacturer manufacturer
-Photo photo
+	Long id
+	String name
+	LocalDate manufactureDate
+	LocalDate expiryDate
+	String batchNumber
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "product_company_id", referencedColumnName = "id")	
+	ProductCompany productCompany
+	Double purchaseRate
+	Double saleRate/mrp/sellingPrice/cost
+	@ManyToOne
+    @JoinColumn(name="product_id", nullable=false)
+	ProductType productType
+	Boolean inStock
+	Double tax
+	Double profit
+	@OneToMany(mappedBy="products")
+	List<Supplier> supplier
+	@OneToMany(mappedBy="products")
+	Manufacturer manufacturer
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "photo_id", referencedColumnName = "id")	
+	Photo photo
 
 
 ProductCompany
 
-Long id
-String name
+	Long id
+	String name
 
 
 Manufacturer
 
-Long id
-String name
-Address address
-String licenseNumber
-
-
-
-QuantityOfMedicine
-
-Long id
-Double numberOfPackets
-Double numberOfStrips
-Double quantityPerStrip
-
-
-QuantityOfNonMedicine
-
-Double quantity
-
+	Long id
+	String name
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "address_id", referencedColumnName = "id")	
+	Address address
+	String licenseNumber
+	@ManyToOne
+    @JoinColumn(name="product_id", nullable=false)
+	List<Product> products
+	
 
 Medicine extends Product
 
-String genericName
-Shelf shelf
-QuantityOfMedicine quantityOfMedicine
+	String genericName
+	Shelf shelf
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "quantity_of_product_id", referencedColumnName = "id")
+	QuantityOfProduct quantityOfProduct
 
 
 NonMedicine extends Product
 
-QuantityOfNonMedicine quantityOfNonMedicine
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "quantity_of_product_id", referencedColumnName = "id")
+	QuantityOfProduct quantityOfProduct
 
+
+QuantityOfProduct
+
+	Long id
+	Double numberOfPackets
+	Double numberOfStrips
+	Double quantityPerStrip
+	Double quantityOfNonMedicine
 
 
 ProductType/Category
 
-Long id
-String name
+	Long id
+	String name
+	@OneToMany(mappedBy="productType")
+	List<Product> product
 
 
 Category - ENUM
 
-sachet, liquid, tablet, capsule, inhaler, patches, injection, cream, lotion, drops other
+	sachet, liquid, tablet, capsule, inhaler, patches, injection, cream, lotion, drops other
 
 
 Shelf - ENUM
 
-String shelfName - A to Z, AA to ZZ, AAA to ZZZ
+	String shelfName - A to Z, AA to ZZ, AAA to ZZZ
 
 
 Order/Receipt/Bill/Sale/Invoice
 
-Long id
-Employee cashier
-LocalDateTime createdTimestamp
-LocalDateTime modifiedTimestamp
-Double total
-List<LineItem> lineItems
-double paidAmount
-double remainingAmount
-LocalDateTime payDateTime
-Customer customer
-PaymentMethod paymentMethod
-QuantityOfProduct quantityOfProduct
-Offer offer
-String comment
-PaymentStatus paymentStatus
+	Long id
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "employee_id", referencedColumnName = "id")
+	Employee employee
+	LocalDateTime createdTimestamp
+	LocalDateTime modifiedTimestamp
+	Double total
+	@OneToMany(mappedBy="order")
+	List<LineItem> lineItems
+	double paidAmount
+	double remainingAmount
+	LocalDateTime payDateTime
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "customer_id", referencedColumnName = "id")		
+	Customer customer
+	@Enumerated(EnumType.STRING)
+	PaymentMethod paymentMethod
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "quantity_of_product_id", referencedColumnName = "id")		
+	QuantityOfProduct quantityOfProduct
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "offer_id", referencedColumnName = "id")		
+	Offer offer
+	String comment
+	@Enumerated(EnumType.STRING)
+	PaymentStatus paymentStatus
 
 
 LineItem
 
-Product product
-Double discount
+	Long id
+	Product product
+	Double discount
+	@ManyToOne
+    @JoinColumn(name="order_id", nullable=false)
+	Order order
 
 
 
 Tax - ENUM
 
-CGST
-SGST
-VAT
-CESS
-SURCHARGE
-SALES
+	CGST
+	SGST
+	VAT
+	CESS
+	SURCHARGE
+	SALES
 
 
 PaymentStatus - ENUM
 
-PAID
-PENDING
-PARTIALPAID
+	PAID
+	PENDING
+	PARTIALPAID
 
 
 Purchase
 
-Long id
-List<Product> products
-LocalDateTime purchaseDate
-Supplier/Distributor/Vendor supplier
-QuantityOfProduct quantityOfProduct
+	Long id
+	@ManyToMany 
+    @JoinTable( 
+        name = "purchase_products", 
+        joinColumns = @JoinColumn(
+          name = "purchase_id", referencedColumnName = "id"), 
+        inverseJoinColumns = @JoinColumn(
+          name = "product_id", referencedColumnName = "id"))
+	List<Product> products
+	LocalDateTime purchaseDate
+	@OneToOne(cascase)
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "supplier_id", referencedColumnName = "id")	
+	Supplier/Distributor/Vendor supplier
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "quantity_of_product_id", referencedColumnName = "id")	
+	QuantityOfProduct quantityOfProduct
 
 
 PaymentMethod - ENUM
 
-Cash
-Upi
-NetBanking
+	Cash
+	Upi
+	NetBanking
+	DebitCard
+	CreditCard
 
 
 UserHasRoles
 
 
 
-Roles - https://www.baeldung.com/role-and-privilege-for-spring-security-registration - Enum
+cashier
+manager
+admin
+pharmacist
+helper
+
+Roles - https://www.baeldung.com/role-and-privilege-for-spring-security-registration
 https://www.baeldung.com/spring-security-method-security
 
-Cashier
-Pharmacist
-Manager
-Helper
-Admin
+	Long id
+	String name	
+	@ManyToMany(mappedBy = "roles")
+    private List<Employee> employees;
+	@ManyToMany
+    @JoinTable(
+        name = "roles_permissions", 
+        joinColumns = @JoinColumn(
+          name = "role_id", referencedColumnName = "id"), 
+        inverseJoinColumns = @JoinColumn(
+          name = "permission_id", referencedColumnName = "id"))
+    private Collection<Permission> permissions;
 
-
-RoleHasPermissions
-
-Long roleId
-Long permissionId
-
-
-Permission/Privilege
 
 ADD_EMPLOYEE
 UPDATE_EMPLOYEE
@@ -365,76 +440,111 @@ CUD employee
 CUD product
 CUD offer
 
+Permission/Privilege
+
+	Long id
+	String name
+	@ManyToMany(mappedBy = "permissions")
+	List<Role> roles;
+
+
 Customer
 
-Long id
-List<Order> orders
-Loyalty loyaltyDetails
-ContactDetails contactDetails
-String patientName
-String doctorName
+	Long id
+	@ManyToMany 
+    @JoinTable( 
+        name = "customers_orders", 
+        joinColumns = @JoinColumn(
+          name = "customer_id", referencedColumnName = "id"), 
+        inverseJoinColumns = @JoinColumn(
+          name = "order_id", referencedColumnName = "id"))
+	List<Order> orders
+	@OneToMany(mappedBy="customer")
+	List<Loyalty> loyaltyDetails
+	ContactDetail contactDetail
+	String patientName
+	String doctorName
 
 
 Loyalty
 
-Long id
-Customer customer
-String loyaltyPoints
-Boolean isLoyaltyMember
-LocalDateTime loyaltyStartDate
-LocalDateTime loyaltyEndDate/validTill
+	Long id
+	@ManyToOne
+    @JoinColumn(name="customer_id", nullable=false)
+	Customer customer
+	Integer loyaltyPoints
+	LocalDateTime loyaltyStartDate
+	LocalDateTime loyaltyEndDate/validTill
+	Boolean isActive
 
 
 Offer
 
-Long id
-String offerName
-List<Product> products
-String discount
-List<Coupon> coupons
+	Long id
+	String offerName
+	@ManyToMany 
+    @JoinTable( 
+        name = "offers_products", 
+        joinColumns = @JoinColumn(
+          name = "offer_id", referencedColumnName = "id"), 
+        inverseJoinColumns = @JoinColumn(
+          name = "product_id", referencedColumnName = "id"))	
+	List<Product> products
+	String discount
+	@OneToMany(mappedBy="offer")
+	List<Coupon> coupons
 
 
 Coupon
 
-Long id
-LocalDateTime validTill
-Integer numberOfUses
-Boolean isValid
+	Long id
+	LocalDateTime validTill
+	Integer numberOfUses
+	Boolean isValid
+	@ManyToOne
+	@JoinColumn(name="offer_id")
+	Offer offer
 
 
 Supplier/Distributor/Vendor
 
-Long id;
-String firstName
-String middleName
-String lastName
-ContactDetails primaryContactDetails
-List<Address> addresses
-Boolean isActive
+	Long id;
+	String firstName
+	String middleName
+	String lastName
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="primary_contact_detail_id", referencedColumnName="id")
+	ContactDetail primaryContactDetail
+	
+	List<Address> addresses
+	Boolean isActive
+	@ManyToOne
+    @JoinColumn(name="product_id", nullable=false)
+	List<Product> products
 
 
-ContactDetails
+ContactDetail
 
-Long id
-String mobile1
-String mobile2
-String email
-Boolean isMobile1Whatsapp
-Boolean isMobile2Whatsapp
-String telephone
+	Long id
+	String mobile1
+	String mobile2
+	String email
+	Boolean isMobile1Whatsapp
+	Boolean isMobile2Whatsapp
+	String telephone
 
 
 Address
 
-Long id
-String line1
-String line2
-String pincode
-String city
-String state
-String country
-ContactDetails contactDetails
-Boolean isDefault
+	Long id
+	String line1
+	String line2
+	String pincode
+	String city
+	String state
+	String country
+	ContactDetail contactDetail
+	Boolean isDefault
 
 
 Accounting
@@ -449,63 +559,67 @@ various reports as per govt law
 
 Payroll
 
-Long id
-Double salary
-LocalDate joiningDate
-LocalDate resignationDate
-
+	Long id
+	Double salary
+	LocalDate joiningDate
+	LocalDate resignationDate
+	@OneToOne(mappedBy="payroll")
+	Employee employee
 
 OnlineDelivery - dicounted rate, offers, loyalty points
 
-Double packagingCost/deliveryCharges
-Courier courier
-String trackingId
-Double courierCost
-Double totalCost
-Address address
-String shippingStatus
-Order order
-String prescription - upload photo
-PaymentStatus paymentStatus - no cod
+	Double packagingCost/deliveryCharges
+	Courier courier
+	String trackingId
+	Double courierCost
+	Double totalCost
+	Address address
+	String shippingStatus
+	Order order
+	String prescription - upload photo
+	PaymentStatus paymentStatus - no cod
 
 
 ShippingStatus - ENUM
 
-Ordered
-Packed
-Intransit
-Delievered
-Cancelled
+	Ordered
+	Packed
+	Intransit
+	Delievered
+	Cancelled
 
 
 Courier
 
-Long id
-String name
-String mobile
+	Long id
+	String name
+	String mobile
 
 
 HomeDelivery
 
-Charges as per porter
-Order order
-PaymentStatus paymentStatus - no COD
-Address address
+	Charges as per porter
+	Order order
+	PaymentStatus paymentStatus - no COD
+	Address address
 
 
 Returns - logic to update inventory - physical or online cancelled return
 
-Long id
-Order order
-List<Product> returnedProducts
-QuantityOfProduct quantityOfProduct
+	Long id
+	Order order
+	List<Product> returnedProducts
+	QuantityOfProduct quantityOfProduct
 
 History/ActivityLog //AOP
 
-Long id
-Employee employee
-LocalDateTime createdTimestamp
-Permission permission
+	Long id
+	Employee employee
+	LocalDateTime createdTimestamp
+	Permission permission
+
+
+Cart - for online delivery
 
 -------------------------------------------------------------------------------------------------------------------------------
 BUSINESS LOGIC
