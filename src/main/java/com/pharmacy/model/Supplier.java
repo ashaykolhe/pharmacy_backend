@@ -20,9 +20,6 @@ public class Supplier {//Distributor/Vendor
     private String middleName;
     private String lastName;
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "primary_contact_detail_id", referencedColumnName = "id")
-    private ContactDetail primaryContactDetail;
-    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
     private Boolean active;
