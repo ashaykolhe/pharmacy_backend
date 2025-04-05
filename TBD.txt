@@ -1,0 +1,666 @@
+TECH STACK
+
+log4j
+swagger
+spring cloud
+jwt
+react
+nextjs
+react router
+react form
+reduxtoolkit
+html5
+css3
+javascript
+typescript
+tailwind
+daisyui
+spring security - roles and permissions in DB
+junit
+mockito
+springboot
+data jpa
+docker
+netlify
+aws or gcp
+react native
+google font
+jasper report - https://www.baeldung.com/spring-jasper
+spring aop
+sql, hql, criteria, jpql
+heroicons svg
+docker
+figma
+
+https://www.baeldung.com/entity-to-and-from-dto-for-a-java-spring-application
+google guava
+Try.of
+
+https://github.com/john-smilga/react-course-v3/tree/main/05-axios-tutorial
+https://developer.okta.com/blog/2022/06/17/simple-crud-react-and-spring-boot
+https://www.taniarascia.com/crud-app-in-react-with-hooks/
+https://docs.emmet.io/cheat-sheet/
+https://www.geeksforgeeks.org/difference-between-put-and-patch-request/
+https://react-typescript-cheatsheet.netlify.app/docs/basic/getting-started/hooks/
+https://mui.com/material-ui/getting-started/supported-components/
+https://web.dev/learn/css/box-model
+https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#input_types
+https://react-redux.js.org/api/hooks
+https://master-spring-ter.medium.com/simplifying-file-uploads-in-spring-boot-with-multipartfile-eb8bbef68dfe
+https://www.geeksforgeeks.org/spring-security-role-based-and-permission-based-access-control/
+https://riteshpanigrahi.com/series/spring-security
+https://riteshpanigrahi.com/spring-security-role-based-authentication
+https://riteshpanigrahi.com/understanding-roles-and-authorities-and-how-to-create-them-using-enums
+https://riteshpanigrahi.com/what-is-basic-auth-and-how-to-secure-apis-using-it
+https://riteshpanigrahi.com/getting-started-with-spring-security
+https://www.baeldung.com/spring-data-derived-queries
+https://www.baeldung.com/spring-rest-openapi-documentation
+https://stackoverflow.com/questions/2109476/how-to-handle-dataintegrityviolationexception-in-spring
+https://medium.com/@jovannypcg/understanding-springs-controlleradvice-cd96a364033f
+https://medium.com/@tericcabrel/validate-request-body-and-parameter-in-spring-boot-53ca77f97fe9
+https://stackoverflow.com/questions/69105565/handling-the-javax-validation-constraintviolationexception-in-spring-boot 
+https://stackoverflow.com/questions/2751603/how-to-get-error-text-in-controller-from-bindingresult
+http://stackoverflow.com/questions/19261807/getting-bindingresults-to-show-me-the-field-associated-with-an-error
+https://stackoverflow.com/questions/34913675/how-to-iterate-keys-values-in-javascript
+https://stackoverflow.com/questions/7111134/how-to-get-the-constraint-name-in-a-org-springframework-dao-dataintegrityviolati
+https://developers.google.com/workspace/gmail/api/guides/sending
+https://stackoverflow.com/questions/55579240/spring-data-find-by-property-of-a-nested-object
+https://www.geeksforgeeks.org/spring-mvc-validation/
+https://www.highlight.io/blog/4-best-logging-libraries-for-java
+https://www.baeldung.com/hibernate-inheritance
+https://www.baeldung.com/sql-logging-spring-boot
+https://github.com/bezkoder/react-jwt-auth?tab=readme-ov-file
+
+Hibernate
+https://www.baeldung.com/jpa-one-to-one
+https://www.baeldung.com/jpa-hibernate-associations
+https://www.baeldung.com/jpa-embedded-embeddable
+https://www.baeldung.com/jpa-persisting-enums-in-jpa
+https://www.baeldung.com/hibernate-one-to-many
+https://www.baeldung.com/jpa-many-to-many
+https://www.baeldung.com/hibernate-many-to-many
+
+
+
+
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------
+TODO
+
+bulk CUD products
+bulk CUD suppliers
+pagination
+carousel
+reminder toasters/sms/email/whatsapp - product about to be expired, low quantity products - show supplier details, 
+reports - export as excel, pdf
+export all tables as excel - useful if want to modify some values in bulk
+reports - bar chart, pie chart, line chart - toggle for various charts
+shortcuts
+logo - create online
+spring AOP for history tables
+upload images - date + order or purchase id - direct functionality on mobile app. on desktop, upload separately - size constraint
+purchase order status - ordered, delivered + delivery date
+override equals and hashcode with appropriate attributes
+upload documents - size constraint
+validations - size, nonnull, min, max, range, etc
+payment gateway for online delivery
+notifications
+filtered tables
+database index
+lock employee account if wrong password for 5 times
+csrf
+corsorigin
+master data - insert script - or code with batch insert like itasveer enums and builders
+mapstruct for model to dto - https://mapstruct.org/ - https://www.baeldung.com/mapstruct
+spring security with roles and permission - https://www.youtube.com/watch?v=pPU9eumD4sY&list=PLQTYNpk8jwk2ig7m44RilAvDxJbjiqAmV&index=6
+employee password reset
+employee birthday reminder
+data rest
+hashcode and equals for all hash based models
+casecadetype in mappings
+nullable in mappings
+@Column
+enum variables - https://www.baeldung.com/a-guide-to-java-enums
+composite keys?
+caching master data - hashmap on start
+hikari pooling
+GlobalExceptionHandler
+@JsonIgnore https://www.javaguides.net/2019/04/jackson-jsonignore-jsonignoreproperties-and-jsonignoretype.html
+@JsonIgnoreProperties
+@Transient
+swagger - https://www.youtube.com/watch?v=7QlvGBJ9Tng
+@ToString - not working
+Constant strings
+----------------------------------------------------------------------------------------------------------------------------------
+MODELS
+
+Branch/Franchise
+
+	Long id
+	String name
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "address_id", referencedColumnName = "id")
+	Address address
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "primary_contact_detail_id", referencedColumnName = "id")
+	ContactDetail primaryContactDetail
+	String gstin
+	Boolean isHeadQuarters
+
+
+Backup
+
+	Long id
+	LocalDateTime createdTimestamp
+	String name
+
+
+
+Employee/Users
+
+	Long id
+	String firstName
+	String middleName
+	String lastName
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "primary_contact_detail_id", referencedColumnName = "id")
+	ContactDetail primaryContactDetail
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "address_id", referencedColumnName = "id")
+	Address address
+	String password
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "payroll_id", referencedColumnName = "id")	
+	Payroll payroll
+	LocalDate dateOfBirth
+	LocalDateTime createdTimestamp
+	LocalDateTime modifiedTimestamp
+	String userName
+	@Enumerated(EnumType.STRING)
+	PersonalDocument document
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "photo_id", referencedColumnName = "id")	
+	Photo photo
+	@ManyToMany 
+    @JoinTable( 
+        name = "users_roles", 
+        joinColumns = @JoinColumn(
+          name = "user_id", referencedColumnName = "id"), 
+        inverseJoinColumns = @JoinColumn(
+          name = "role_id", referencedColumnName = "id")) 
+    List<Role> roles;
+	String PharmacyLicenceNumber
+	Boolean Active
+	Boolean isAccountLocked
+
+Photo
+
+	Long id
+	String fileName
+	String displayName
+	//path should come from properties
+	String dimension
+	String size
+
+
+
+Document
+
+	Long id
+	String fineName
+	String displayName
+	@Enumerated(EnumType.STRING)
+	Type type
+	String size
+
+
+Type - ENUM
+
+	Excel
+	Pdf
+	Csv
+	Text
+
+PersonalDocument - ENUM
+
+	PAN
+	AADHAR
+	DRIVING_LICENSE
+
+
+Product
+
+	Long id
+	String name
+	LocalDate manufactureDate
+	LocalDate expiryDate
+	String batchNumber
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "product_company_id", referencedColumnName = "id")	
+	ProductCompany productCompany
+	Double purchaseRate
+	Double saleRate/mrp/sellingPrice/cost
+	@ManyToOne
+    @JoinColumn(name="product_id", nullable=false)
+	ProductType productType
+	Boolean inStock
+	Double tax
+	Double profit
+	@ManyToMany	@JoinTable(name="products_suppliers",joinColumns=@JoinColumn(name="product_id",referencedColumnName="id"),inverseJoinColumns=@JoinColumn(name="supplier_id",referencedColumnName="id"))
+	List<Supplier> suppliers
+	@ManyToMany	@JoinTable(name="products_manufacturers",joinColumns=@JoinColumn(name="product_id",referencedColumnName="id",inverseJoinColumns=@JoinColumn(name="manufacturer_id",referencedColumnName="id")))
+	List<Manufacturer> manufacturers
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "photo_id", referencedColumnName = "id")	
+	Photo photo
+	String genericName
+	Shelf shelf
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "quantity_of_product_id", referencedColumnName = "id")
+	QuantityOfProduct quantityOfProduct
+	
+ProductCompany
+
+	Long id
+	String name
+
+
+Manufacturer
+
+	Long id
+	String name
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "address_id", referencedColumnName = "id")	
+	Address address
+	String licenseNumber
+	@ManyToMany(mappedBy="manufacturers")
+	List<Product> products
+
+
+QuantityOfProduct
+
+	Long id
+	Double numberOfPackets
+	Double numberOfStrips
+	Double quantityPerStrip
+	Double quantityOfNonMedicine
+
+
+ProductType/Category
+
+	Long id
+	String name
+	@OneToMany(mappedBy="productType")
+	List<Product> product
+
+
+Category - ENUM
+
+	sachet, liquid, tablet, capsule, inhaler, patches, injection, cream, lotion, drops other
+
+
+Shelf - ENUM
+
+	String shelfName - A to Z, AA to ZZ, AAA to ZZZ
+
+
+Order/Receipt/Bill/Sale/Invoice
+
+	Long id
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "employee_id", referencedColumnName = "id")
+	Employee employee
+	LocalDateTime createdTimestamp
+	LocalDateTime modifiedTimestamp
+	Double total
+	@OneToMany(mappedBy="order")
+	List<LineItem> lineItems
+	double paidAmount
+	double remainingAmount
+	LocalDateTime payDateTime
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "customer_id", referencedColumnName = "id")		
+	Customer customer
+	@Enumerated(EnumType.STRING)
+	PaymentMethod paymentMethod
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "quantity_of_product_id", referencedColumnName = "id")		
+	QuantityOfProduct quantityOfProduct
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "offer_id", referencedColumnName = "id")		
+	Offer offer
+	String comment
+	@Enumerated(EnumType.STRING)
+	PaymentStatus paymentStatus
+
+
+LineItem
+
+	Long id
+	@OneToOne
+	@JoinColumn(name="product_id",referencedColumnName="id")
+	Product product
+	Double discount
+	@ManyToOne
+    @JoinColumn(name="order_id", nullable=false)
+	Order order
+
+
+
+Tax - ENUM
+
+	CGST
+	SGST
+	VAT
+	CESS
+	SURCHARGE
+	SALES
+
+
+PaymentStatus - ENUM
+
+	PAID
+	PENDING
+	PARTIALPAID
+
+
+Purchase
+
+	Long id
+	@ManyToMany 
+    @JoinTable( 
+        name = "purchase_products", 
+        joinColumns = @JoinColumn(
+          name = "purchase_id", referencedColumnName = "id"), 
+        inverseJoinColumns = @JoinColumn(
+          name = "product_id", referencedColumnName = "id"))
+	List<Product> products
+	LocalDateTime purchaseDate
+	@OneToOne(cascase)
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "supplier_id", referencedColumnName = "id")	
+	Supplier/Distributor/Vendor supplier
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "quantity_of_product_id", referencedColumnName = "id")	
+	QuantityOfProduct quantityOfProduct
+
+
+PaymentMethod - ENUM
+
+	Cash
+	Upi
+	NetBanking
+	DebitCard
+	CreditCard
+
+
+
+cashier
+manager
+admin
+pharmacist
+helper
+
+Roles - https://www.baeldung.com/role-and-privilege-for-spring-security-registration
+https://www.baeldung.com/spring-security-method-security
+
+	Long id
+	String name	
+	@ManyToMany(mappedBy = "roles")
+    private List<Employee> employees;
+	@ManyToMany
+    @JoinTable(
+        name = "roles_permissions", 
+        joinColumns = @JoinColumn(
+          name = "role_id", referencedColumnName = "id"), 
+        inverseJoinColumns = @JoinColumn(
+          name = "permission_id", referencedColumnName = "id"))
+    private Collection<Permission> permissions;
+
+
+ADD_EMPLOYEE
+UPDATE_EMPLOYEE
+DELETE_EMPLOYEE
+ADD_SUPPLIER
+UPDATE_SUPPLIER
+DELETE_SUPPLIER
+ADD_PRODUCT
+UPDATE_PRODUCT
+DELETE_PRODUCT
+ADD_OFFER
+UPDATE_OFFER
+DELETE_OFFER
+CUD supplier
+CUD employee
+CUD product
+CUD offer
+
+Permission/Privilege
+
+	Long id
+	String name
+	@ManyToMany(mappedBy = "permissions")
+	List<Role> roles;
+
+
+Customer
+
+	Long id
+	@ManyToMany 
+    @JoinTable( 
+        name = "customers_orders", 
+        joinColumns = @JoinColumn(
+          name = "customer_id", referencedColumnName = "id"), 
+        inverseJoinColumns = @JoinColumn(
+          name = "order_id", referencedColumnName = "id"))
+	List<Order> orders
+	@OneToMany(mappedBy="customer")
+	List<Loyalty> loyaltyDetails
+	@OneToOne
+	@JoinColumn(name="contact_detail_id",referencedColumnName="id")
+	ContactDetail contactDetail
+	String patientName
+	String doctorName
+
+
+Loyalty
+
+	Long id
+	@ManyToOne
+    @JoinColumn(name="customer_id", nullable=false)
+	Customer customer
+	Integer loyaltyPoints
+	LocalDateTime loyaltyStartDate
+	LocalDateTime loyaltyEndDate/validTill
+	Boolean active
+
+
+Offer
+
+	Long id
+	String offerName
+	@ManyToMany 
+    @JoinTable( 
+        name = "offers_products", 
+        joinColumns = @JoinColumn(
+          name = "offer_id", referencedColumnName = "id"), 
+        inverseJoinColumns = @JoinColumn(
+          name = "product_id", referencedColumnName = "id"))	
+	List<Product> products
+	String discount
+	@OneToMany(mappedBy="offer")
+	List<Coupon> coupons
+
+
+Coupon
+
+	Long id
+	LocalDateTime validTill
+	Integer numberOfUses
+	Boolean isValid
+	@ManyToOne
+	@JoinColumn(name="offer_id")
+	Offer offer
+
+
+Supplier/Distributor/Vendor
+
+	Long id;
+	String firstName
+	String middleName
+	String lastName
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="primary_contact_detail_id", referencedColumnName="id")
+	ContactDetail primaryContactDetail
+	@OneToOne
+	@JoinColumn(name="address_id",referencedColumnName="id")
+	Address address
+	Boolean active
+	@ManyToMany(mappedBy="suppliers")
+	List<Product> products
+
+
+ContactDetail
+
+	Long id
+	String mobile1
+	String mobile2
+	String email
+	Boolean isMobile1Whatsapp
+	Boolean isMobile2Whatsapp
+	String telephone
+
+
+Address
+
+	Long id
+	String line1
+	String line2
+	String pincode
+	String city
+	String state
+	String country
+	@OneToOne
+	@JoinColumn(name="contact_detail_id",referencedColumnName="id")
+	ContactDetail contactDetail
+	Boolean isDefault
+
+
+Accounting
+
+Balances
+
+
+Audit
+
+various reports as per govt law
+
+
+Payroll
+
+	Long id
+	Double salary
+	LocalDate joiningDate
+	LocalDate resignationDate
+	@OneToOne(mappedBy="payroll")
+	Employee employee
+
+OnlineDelivery - dicounted rate, offers, loyalty points
+
+	Double packagingCost/deliveryCharges
+	@OneToOne
+	@JoinColumn(name="courier_id",referencedColumnName="id")
+	Courier courier
+	String trackingId
+	Double courierCost
+	Double totalCost
+	@OneToOne
+	@JoinColumn(name="address_id",referencedColumnName="id")
+	Address address
+	@Enumerated(EnumType.STRING)
+	ShippingStatus shippingStatus
+	@OneToOne
+	@JoinColumn(name="order_id",referencedColumnName="id")
+	Order order
+	String prescription - upload photo
+	@Enumerated(EnumType.STRING)
+	PaymentStatus paymentStatus - no cod
+
+
+ShippingStatus - ENUM
+
+	Ordered
+	Packed
+	Intransit
+	Delievered
+	Cancelled
+
+
+Courier
+
+	Long id
+	String name
+	String mobile
+
+
+HomeDelivery
+
+	Charges as per porter
+	@OneToOne
+	@JoinColumn(name="order_id",referencedColumnName="id")
+	Order order
+	@Enumerated(EnumType.STRING)
+	PaymentStatus paymentStatus - no COD
+	@OneToOne
+	@JoinColumn(name="address_id",referencedColumnName="id")
+	Address address
+
+
+Returns - logic to update inventory - physical or online cancelled return
+
+	Long id
+	@OneToOne
+	@JoinColumn(name="order_id",referencedColumnName="id")
+	Order order	@ManyToMany(name="returns_products",joinColumns=@JoinColumn(name="return_id",referencedColumnName="id",inverseJoinColumns(name="product_id",referencedColumnName=""id")))
+	List<Product> products
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "quantity_of_product_id", referencedColumnName = "id")
+	QuantityOfProduct quantityOfProduct
+
+History/ActivityLog //AOP
+
+	Long id
+	@OneToOne
+	@JoinColumn(name="employee_id",referencedColumnName="id")
+	Employee employee
+	LocalDateTime createdTimestamp
+	@OneToOne
+	@JoinColumn(name="permission_id",referencedColumnName="id")
+	Permission permission
+
+
+Cart - for online delivery
+
+-------------------------------------------------------------------------------------------------------------------------------
+BUSINESS LOGIC
+
+
+
+
+DASHBOARD
+
+total sales
+total profit today
+total profit
+sales today
+expired products
+purchase orders
+loyal customers
+most sold medicines
+most sold meds revenue
+outofstock meds - 0 Red, 1 to 10 - orange. greater than 10 green
+sales today, last 30 days, last 6 months, last 1 year, all the time or between datewise
+profit today, last 30 days, last 6 months, last 1 year, all the time or between datewise
