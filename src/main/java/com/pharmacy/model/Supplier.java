@@ -1,5 +1,6 @@
 package com.pharmacy.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,10 +22,10 @@ public class Supplier {//Distributor/Vendor
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "primary_contact_detail_id", referencedColumnName = "id")
     private ContactDetail primaryContactDetail;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
-    private Boolean isActive;
+    private Boolean active;
     @ManyToMany(mappedBy = "suppliers")
     private List<Product> products;
 }

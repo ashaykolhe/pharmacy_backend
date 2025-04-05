@@ -19,7 +19,7 @@ public class Address {
     private String city;
     private String state;
     private String country;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "contact_detail_id", referencedColumnName = "id")
     private ContactDetail contactDetail;
     private Boolean isDefault;

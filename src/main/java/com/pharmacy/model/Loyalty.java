@@ -21,5 +21,5 @@ public class Loyalty {
     private Integer loyaltyPoints;
     private LocalDateTime loyaltyStartDate;
     private LocalDateTime loyaltyEndDate;//validTill
-    private Boolean isActive;
+    private Boolean active;
 }

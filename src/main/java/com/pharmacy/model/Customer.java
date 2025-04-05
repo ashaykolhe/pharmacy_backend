@@ -1,5 +1,6 @@
 package com.pharmacy.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,7 +26,7 @@ public class Customer {
     private List<Orders> orders;
     @OneToMany(mappedBy = "customer")
     private List<Loyalty> loyaltyDetails;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "contact_detail_id", referencedColumnName = "id")
     private ContactDetail contactDetail;
     private String patientName;

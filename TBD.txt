@@ -30,7 +30,7 @@ spring aop
 sql, hql, criteria, jpql
 heroicons svg
 docker
-
+figma
 
 https://www.baeldung.com/entity-to-and-from-dto-for-a-java-spring-application
 google guava
@@ -105,7 +105,7 @@ upload images - date + order or purchase id - direct functionality on mobile app
 purchase order status - ordered, delivered + delivery date
 override equals and hashcode with appropriate attributes
 upload documents - size constraint
-validations
+validations - size, nonnull, min, max, range, etc
 payment gateway for online delivery
 notifications
 filtered tables
@@ -113,8 +113,8 @@ database index
 lock employee account if wrong password for 5 times
 csrf
 corsorigin
-master data - insert script
-mapstruct for model to dto - https://mapstruct.org/
+master data - insert script - or code with batch insert like itasveer enums and builders
+mapstruct for model to dto - https://mapstruct.org/ - https://www.baeldung.com/mapstruct
 spring security with roles and permission - https://www.youtube.com/watch?v=pPU9eumD4sY&list=PLQTYNpk8jwk2ig7m44RilAvDxJbjiqAmV&index=6
 employee password reset
 employee birthday reminder
@@ -127,6 +127,13 @@ enum variables - https://www.baeldung.com/a-guide-to-java-enums
 composite keys?
 caching master data - hashmap on start
 hikari pooling
+GlobalExceptionHandler
+@JsonIgnore https://www.javaguides.net/2019/04/jackson-jsonignore-jsonignoreproperties-and-jsonignoretype.html
+@JsonIgnoreProperties
+@Transient
+swagger - https://www.youtube.com/watch?v=7QlvGBJ9Tng
+@ToString - not working
+Constant strings
 ----------------------------------------------------------------------------------------------------------------------------------
 MODELS
 
@@ -186,7 +193,7 @@ Employee/Users
           name = "role_id", referencedColumnName = "id")) 
     List<Role> roles;
 	String PharmacyLicenceNumber
-	Boolean isActive
+	Boolean Active
 	Boolean isAccountLocked
 
 Photo
@@ -468,7 +475,7 @@ Loyalty
 	Integer loyaltyPoints
 	LocalDateTime loyaltyStartDate
 	LocalDateTime loyaltyEndDate/validTill
-	Boolean isActive
+	Boolean active
 
 
 Offer
@@ -511,7 +518,7 @@ Supplier/Distributor/Vendor
 	@OneToOne
 	@JoinColumn(name="address_id",referencedColumnName="id")
 	Address address
-	Boolean isActive
+	Boolean active
 	@ManyToMany(mappedBy="suppliers")
 	List<Product> products
 

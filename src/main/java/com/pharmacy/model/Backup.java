@@ -7,6 +7,7 @@ import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -18,6 +19,7 @@ public class Backup {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @CreationTimestamp
     private LocalDateTime createdTimestamp;
     private String name;
 }

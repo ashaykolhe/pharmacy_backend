@@ -25,7 +25,7 @@ public class Purchase {
                     name = "product_id", referencedColumnName = "id"))
     private List<Product> products;
     private LocalDateTime purchaseDate;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "supplier_id", referencedColumnName = "id")
     private Supplier supplier; //Distributor/Vendor
     @OneToOne(cascade = CascadeType.ALL)

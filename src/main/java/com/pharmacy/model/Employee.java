@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -31,7 +33,9 @@ public class Employee {//Users
     @JoinColumn(name = "payroll_id", referencedColumnName = "id")
     private Payroll payroll;
     private LocalDate dateOfBirth;
+    @CreationTimestamp
     private LocalDateTime createdTimestamp;
+    @UpdateTimestamp
     private LocalDateTime modifiedTimestamp;
     private String userName;
     @Enumerated(EnumType.STRING)
@@ -47,7 +51,7 @@ public class Employee {//Users
             inverseJoinColumns = @JoinColumn(
                     name = "role_id", referencedColumnName = "id"))
     private List<Role> roles;
-    private String PharmacyLicenceNumber;
-    private Boolean isActive;
-    private Boolean isAccountLocked;
+    private String pharmacyLicenceNumber;
+    private Boolean active;
+    private Boolean accountLocked;
 }

@@ -20,7 +20,7 @@ public class Product {
     private LocalDate manufactureDate;
     private LocalDate expiryDate;
     private String batchNumber;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "product_company_id", referencedColumnName = "id")
     private ProductCompany productCompany;
     private Double purchaseRate;
