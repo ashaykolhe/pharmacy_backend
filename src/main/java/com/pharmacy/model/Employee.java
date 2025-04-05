@@ -23,9 +23,6 @@ public class Employee {//Users
     private String middleName;
     private String lastName;
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "primary_contact_detail_id", referencedColumnName = "id")
-    private ContactDetail primaryContactDetail;
-    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
     private String password;
@@ -54,4 +51,5 @@ public class Employee {//Users
     private String pharmacyLicenceNumber;
     private Boolean active;
     private Boolean accountLocked;
+    private String email;
 }

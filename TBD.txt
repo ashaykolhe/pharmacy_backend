@@ -80,6 +80,10 @@ https://www.baeldung.com/hibernate-one-to-many
 https://www.baeldung.com/jpa-many-to-many
 https://www.baeldung.com/hibernate-many-to-many
 
+https://docs.spring.io/spring-data/jpa/reference/jpa/query-methods.html
+
+@Query
+@NamedQuery
 
 
 
@@ -132,8 +136,286 @@ GlobalExceptionHandler
 @JsonIgnoreProperties
 @Transient
 swagger - https://www.youtube.com/watch?v=7QlvGBJ9Tng
-@ToString - not working
 Constant strings
+@Column
+
+
+TODO
+
+add employee
+update employee
+delete employee
+delete all employees
+find all employee
+find employee by firstname
+find employee by lastname
+find employee by phone number
+find employee by username
+find employee by email
+find employee by pharmacylicensenumber
+find active employees
+find employees whose account is locked
+find empployee by joining date range
+fine employee by resignation date range
+activate employee
+deactivate employee
+lock employee
+lock employee account on 5 password unsuccessful attempt
+
+bulk insert employees
+bulk update employees
+bulk delete employees
+export employees/products/suppliers/manufacturers as excel or pdf
+bulk insert supplier
+bulk update supplier
+bulk delete supplier
+bulk insert manufacturer
+bulk update manufacturer
+bulk delete manufacturer
+bulk insert category
+bulk update category
+bulk delete category
+bulk insert coutier
+bulk update courier
+bulk delete courier
+bulk insert product
+bulk update product
+bulk delete product
+
+add product
+update product
+delete product
+delete all products
+find all products
+find product by name
+find product by expiredate range
+find product by batchnumber
+find product by product company
+find product by product type
+find product by suppliers
+find product by generic name
+
+add activity log
+delete activity log
+delete all activity log
+find activity log by employee
+find activity log by createdTimestamp range
+find activity log by permission
+
+add address
+update address
+delete address
+delete all addresses
+find address by phone number
+find address by email
+
+add branch
+update branch
+delete branch
+delete all branches
+find branch by name
+find branch by phone number
+find branch by email
+
+add contact detail
+update contact detail
+delete contact detail
+find contact detail by mobile1/mobile2
+find contact detail by email
+
+add coupon
+delete coupon
+delete all coupons
+find coupon by validtill range
+find coupon by isValid
+find coupon by numberOfUses
+find coupon by offername
+find coupon by offer id
+
+add courier
+update courier
+delete courier
+delete all courier
+find courier by name
+find courier by mobile
+
+add customer
+update customer
+delete customer
+delete all customers
+find customer by order id
+find customer by loyalty
+find customer by mobile
+find customer by email
+
+add document
+update document
+delete document
+delete all documents
+find document by filename
+find document by displayName
+find document by type
+
+add homedelivery
+update homedelivery
+delete homedelivery
+find all homedelivery orders
+find homedelievery by payment status
+find homedelivery by address
+
+add lineitem
+update lineitem
+delete lineitem
+find lineitem by product
+find lineitem by orders
+
+add loyalty
+update loyalty
+delete loyalty
+find loyalty by customer
+find loyalty by loyaltypoints
+find loyalty between start and end date
+find active loyalty
+
+add manufacture
+update manufacture
+delete manufacture
+delete all manufacture
+find manufacture by contact number
+find manufacture by contact email
+find manufacture by license number
+find manufacture by product
+
+add offer
+update offer
+delete offer
+delete all offers
+find offer by offername
+find offer by product
+find offer by coupon
+
+add onlinedelivery
+update onlinedelivery
+delete onlinedelivery
+delete all onlinedelivery
+find onlinedelivery by courier
+find onlinedelivery by tracking id
+find onlinedelivery by contact number
+find onlinedelivery by contact email
+find onlinedelivery by shipping status
+find onlinedelivery by order
+find onlinedelivery by payment status
+
+add order
+update order
+delete order
+delete all orders
+find order by employee
+find orders between createdtimestamp
+find order by lineitem
+find order by paydatetime
+find order by customer
+find order by payment method
+find order by offer
+find order by payment status
+
+add payroll
+update payroll
+delete payroll
+delete all payroll
+find payroll by joining date
+find payroll by resignation date
+find payroll by employee
+
+add permission
+update permission
+delete permission
+delete all permission
+find permission by role
+
+add photo
+update photo
+delete photo
+delete all photo
+find photo by displayname
+find photo by filename
+
+add product company
+update product company
+delete product company
+delete all product company
+find product company by name
+
+add producttype
+update producttype
+delete producttype
+delete all producttype
+find producttype by name
+find producttype by product
+
+add purchase
+update purchase
+delete purchase
+delete all purchase
+find purchase by product
+find purchase by purchasedate range
+find purchase by supplier
+
+add quantityofproduct
+update quantityofproduct
+delete quantityofproduct
+delete all quantityofproduct
+
+add return
+update return
+delete return
+find returns by order
+find return by product
+
+add role
+update role
+delete role
+delete all role
+find role by permission
+
+add supplier
+update supplier
+delete supplier
+delete all supplier
+find supplier by firstName
+find supplier by mobile
+find supplier by email
+find active suppliers
+find supplier by product
+
+reports
+
+sales - day, week, month, year, all - date range
+profit - day, week, month, year, all - date range
+expired products
+purchase orders
+loyal customers
+most sold medicines
+most sold meds revenue
+outofstock meds - 0 Red, 1 to 10 - orange. greater than 10 green
+product list
+product category list
+employee list
+supplier list
+manufacturer list
+product by supplier
+product by manufacturer
+product by category
+productby product type
+
+
+--------------------
+IN PROGRESS
+---------------------
+DONE
+----------------------
+TESTED
+--------------------
 ----------------------------------------------------------------------------------------------------------------------------------
 MODELS
 
@@ -648,19 +930,4 @@ Cart - for online delivery
 BUSINESS LOGIC
 
 
-
-
-DASHBOARD
-
-total sales
-total profit today
-total profit
-sales today
-expired products
-purchase orders
-loyal customers
-most sold medicines
-most sold meds revenue
-outofstock meds - 0 Red, 1 to 10 - orange. greater than 10 green
-sales today, last 30 days, last 6 months, last 1 year, all the time or between datewise
-profit today, last 30 days, last 6 months, last 1 year, all the time or between datewise
+---------------------

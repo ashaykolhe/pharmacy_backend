@@ -30,6 +30,7 @@ public class Orders {//Receipt/Bill/Sale/Invoice
     private List<LineItem> lineItems;
     private double paidAmount;
     private double remainingAmount;
+    @CreationTimestamp
     private LocalDateTime payDateTime;
     @OneToOne
     @JoinColumn(name = "customer_id", referencedColumnName = "id")

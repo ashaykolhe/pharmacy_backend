@@ -13,7 +13,7 @@ public class Document {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String fineName;
+    private String fileName;
     private String displayName;
     @Enumerated(EnumType.STRING)
     private Type type;

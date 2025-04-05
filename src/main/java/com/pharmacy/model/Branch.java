@@ -17,9 +17,6 @@ public class Branch { //Franchise
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "primary_contact_detail_id", referencedColumnName = "id")
-    private ContactDetail primaryContactDetail;
     private String gstin;
     private Boolean isHeadQuarters;
 }
