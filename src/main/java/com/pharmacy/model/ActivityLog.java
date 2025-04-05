@@ -17,11 +17,11 @@ public class ActivityLog {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @OneToOne
-    @JoinColumn(name = "employee_id", referencedColumnName = "id")
+    @JoinColumn(name = "employee_id", referencedColumnName = "id", nullable = false)
     private Employee employee;
     @CreationTimestamp
     private LocalDateTime createdTimestamp;
     @OneToOne
-    @JoinColumn(name = "permission_id", referencedColumnName = "id")
+    @JoinColumn(name = "permission_id", referencedColumnName = "id", nullable = false)
     private Permission permission;
 }
