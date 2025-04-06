@@ -21,4 +21,5 @@ public class Branch { //Franchise
     @Column(nullable = false, length = 20, unique = true)
     private String gstin;
     private Boolean isHeadQuarters;
+    private String licenseNumber;
 }

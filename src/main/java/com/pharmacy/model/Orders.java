@@ -47,4 +47,6 @@ public class Orders {//Receipt/Bill/Sale/Invoice
     private String comment;
     @Enumerated(EnumType.STRING)
     private PaymentStatus paymentStatus;
+    @Column(nullable = false, unique = true, length = 10)
+    private String orderNumber;
 }

@@ -1,5 +1,6 @@
 package com.pharmacy.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -28,6 +29,7 @@ public class Employee {//Users
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
+    @JsonIgnore
     @Column(nullable = false, length = 20)
     private String password;
     @OneToOne(cascade = CascadeType.ALL)

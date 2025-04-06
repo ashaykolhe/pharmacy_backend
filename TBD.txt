@@ -81,6 +81,7 @@ https://www.baeldung.com/jpa-many-to-many
 https://www.baeldung.com/hibernate-many-to-many
 
 https://docs.spring.io/spring-data/jpa/reference/jpa/query-methods.html
+https://www.baeldung.com/spring-data-derived-queries
 
 @Query
 @NamedQuery
@@ -147,7 +148,18 @@ loyalty engine
 notification scheduler
 username cannot be changed
 mapper update - not updating if null values sent - CHECK LATER
+https://commons.apache.org/proper/commons-lang/apidocs/org/apache/commons/lang3/RandomStringUtils.html
+https://www.baeldung.com/java-pdf-creation
+order pdf file path in app properties as environment variable - delete pdf older than 10 days automatically
+log file path as environment variable
+order number generation - system.milliseconds or randomstringutils or date+incrementby1
 
+purchase pdf
+order pdf
+
+*findall pageable
+@Valid in requestbody
+*hide password while fetching employee
 
 TODO
 
@@ -155,17 +167,17 @@ TODO
 *update employee
 *delete employee
 *delete all employees
-*find all employee
+*find all employee - pageable and sortable
 find employee by firstname - invalid
 find employee by lastname - invalid
 find employee by first and last name - invalid
 find employee by phone number
-find employee by username
+*find employee by username
 find employee by email
 find employee by pharmacylicensenumber
 find active employees
 find employees whose account is locked
-find empployee by joining date range
+find employee by joining date range
 fine employee by resignation date range
 *activate employee
 *deactivate employee
@@ -449,15 +461,12 @@ manufacturer list
 product by supplier
 product by manufacturer
 product by category
-productby product type
+product by product type
 
 --------------------
 IN PROGRESS
 ---------------------
 DONE
-
-add employee
-update employee
 ----------------------
 TESTED
 --------------------

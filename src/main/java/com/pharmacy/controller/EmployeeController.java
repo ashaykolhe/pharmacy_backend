@@ -5,10 +5,9 @@ import com.pharmacy.dto.EmployeeDto;
 import com.pharmacy.model.Employee;
 import com.pharmacy.service.IEmployeeService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/employee")
@@ -21,27 +20,24 @@ public class EmployeeController {
     }
 
     @GetMapping("/findAll")
-    public ResponseEntity<List<Employee>> findAll() {
-        return ResponseEntity.ok(iEmployeeService.findAll());
+    public ResponseEntity<Page<Employee>> findAll(@RequestParam Integer pageNumber, @RequestParam Integer numberOfElements, @RequestParam String sortDir, @RequestParam String sortBy) {
+        return ResponseEntity.ok(iEmployeeService.findAll(pageNumber, numberOfElements, sortDir, sortBy));
     }
 
     @PostMapping("/add")
     public ResponseEntity<String> add(@RequestBody EmployeeDto employeeDto) {
-        log.debug("employee dto " + employeeDto);
         iEmployeeService.addEmployee(employeeDto);
         return ResponseEntity.ok(Constants.EMPLOYEE_ADDED);
     }
 
     @PatchMapping("/update")
     public ResponseEntity<String> update(@RequestBody EmployeeDto employeeDto) {
-        log.debug("employee dto " + employeeDto);
         iEmployeeService.updateEmployee(employeeDto);
         return ResponseEntity.ok(Constants.EMPLOYEE_UPDATED);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> delete(@PathVariable Long id) {
-        log.debug("delete " + id);
         iEmployeeService.deleteEmployee(id);
         return ResponseEntity.ok(Constants.EMPLOYEE_DELETED);
     }
@@ -54,10 +50,13 @@ public class EmployeeController {
 
     @PutMapping("/active/{employeeId}")
     public ResponseEntity<String> setActive(@PathVariable Long employeeId, @RequestParam Boolean active) {
-        log.debug("employee id " + employeeId + " active " + active);
         iEmployeeService.setActiveEmployee(employeeId, active);
         return ResponseEntity.ok(active ? Constants.EMPLOYEE_ACTIVATED : Constants.EMPLOYEE_DEACTIVATED);
     }
 
+    @GetMapping("/findByUserName/{userName}")
+    public ResponseEntity<Employee> findByUserName(@PathVariable String userName) {
+        return ResponseEntity.ok(iEmployeeService.findByUserName(userName));
+    }
 
 }

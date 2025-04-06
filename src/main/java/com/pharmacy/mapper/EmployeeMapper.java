@@ -12,6 +12,6 @@ public interface EmployeeMapper {
     Employee dtoToModel(EmployeeDto employeeDto);
 
     EmployeeDto modelToDto(Employee employee);
-    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.SET_TO_NULL) //send all values of employee while updating
     void updateEmployee(EmployeeDto employeeDto, @MappingTarget Employee employee);
 }
