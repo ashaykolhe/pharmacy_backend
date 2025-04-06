@@ -20,7 +20,7 @@ public class EmployeeController {
         this.iEmployeeService = iEmployeeService;
     }
 
-    @GetMapping("/findAll")
+    @GetMapping("/findAllEmployees")
     public ResponseEntity<List<Employee>> findAll() {
         return ResponseEntity.ok(iEmployeeService.findAll());
     }
@@ -32,7 +32,26 @@ public class EmployeeController {
         return ResponseEntity.ok(Constants.EMPLOYEE_ADDED);
     }
 
-    @PutMapping("/setActive/{employeeId}")
+    @PatchMapping("/update")
+    public ResponseEntity<String> updateEmployee(@RequestBody EmployeeDto employeeDto) {
+        log.debug("employee dto " + employeeDto);
+        iEmployeeService.updateEmployee(employeeDto);
+        return ResponseEntity.ok(Constants.EMPLOYEE_UPDATED);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteEmployee(@PathVariable Long id) {
+        iEmployeeService.deleteEmployee(id);
+        return ResponseEntity.ok(Constants.EMPLOYEE_DELETED);
+    }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<String> deleteAllEmployees() {
+        iEmployeeService.deleteAllEmployees();
+        return ResponseEntity.ok(Constants.ALL_EMPLOYEES_DELETED);
+    }
+
+    @PutMapping("/active/{employeeId}")
     public ResponseEntity<String> setActiveEmployee(@PathVariable Long employeeId, @RequestParam Boolean active) {
         log.debug("employee id " + employeeId + " active " + active);
         iEmployeeService.setActiveEmployee(employeeId, active);

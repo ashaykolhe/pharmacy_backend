@@ -16,6 +16,7 @@ public class ProductType {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(nullable = false, length = 20, unique = true)
     private String name;
     @OneToMany(mappedBy = "productType")
     private List<Product> product;

@@ -37,6 +37,27 @@ public class EmployeeService implements IEmployeeService {
     }
 
     @Override
+    public void updateEmployee(EmployeeDto employeeDto) {
+        Optional<Employee> byId = employeeRepository.findById(employeeDto.getId());
+        Employee employee1 = byId.orElseThrow(() -> new EmployeeNotFoundException(Constants.EMPLOYEE_NOT_FOUND));
+        employeeMapper.updateEmployee(employeeDto, employee1);
+        log.debug("employee dto " + employeeDto);
+        log.debug("employee " + employee1);
+        employeeRepository.save(employee1);
+    }
+
+    @Override
+    public void deleteEmployee(Long id) {
+        Optional<Employee> byId = employeeRepository.findById(id);
+        employeeRepository.delete(byId.orElseThrow(() -> new EmployeeNotFoundException(Constants.EMPLOYEE_NOT_FOUND)));
+    }
+
+    @Override
+    public void deleteAllEmployees() {
+        employeeRepository.deleteAll();
+    }
+
+    @Override
     public void setActiveEmployee(Long employeeId, Boolean active) {
         log.debug("employee id " + employeeId + " active " + active);
         Optional<Employee> byId = employeeRepository.findById(employeeId);

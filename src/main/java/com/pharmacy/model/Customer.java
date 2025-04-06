@@ -27,7 +27,7 @@ public class Customer {
     @OneToMany(mappedBy = "customer")
     private List<Loyalty> loyaltyDetails;
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "contact_detail_id", referencedColumnName = "id")
+    @JoinColumn(name = "contact_detail_id", referencedColumnName = "id", nullable = false)
     private ContactDetail contactDetail;
     private String patientName;
     private String doctorName;

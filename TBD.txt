@@ -138,12 +138,12 @@ GlobalExceptionHandler
 swagger - https://www.youtube.com/watch?v=7QlvGBJ9Tng
 Constant strings
 @Column
+https://www.baeldung.com/spring-data-partial-update
 
 
 TODO
 
-add employee
-update employee
+
 delete employee
 delete all employees
 find all employee
@@ -229,7 +229,8 @@ delete all coupons
 find coupon by validtill range
 find coupon by isValid
 find coupon by numberOfUses
-find coupon by offername
+find coupon by name
+find coupon by offer name
 find coupon by offer id
 
 add courier
@@ -413,6 +414,9 @@ productby product type
 IN PROGRESS
 ---------------------
 DONE
+
+add employee
+update employee
 ----------------------
 TESTED
 --------------------

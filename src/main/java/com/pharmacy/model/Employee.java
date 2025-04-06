@@ -19,24 +19,32 @@ public class Employee {//Users
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(nullable = false, length = 50)
     private String firstName;
+    @Column(length = 50)
     private String middleName;
+    @Column(nullable = false, length = 50)
     private String lastName;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
+    @Column(nullable = false, length = 20)
     private String password;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "payroll_id", referencedColumnName = "id")
     private Payroll payroll;
+    @Column(nullable = false)
     private LocalDate dateOfBirth;
     @CreationTimestamp
     private LocalDateTime createdTimestamp;
     @UpdateTimestamp
     private LocalDateTime modifiedTimestamp;
+    @Column(nullable = false, length = 20, unique = true)
     private String userName;
     @Enumerated(EnumType.STRING)
     private PersonalDocument document;
+    @Column(nullable = false, length = 20)
+    private String personalDocumentNumber;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "photo_id", referencedColumnName = "id")
     private Photo photo;
@@ -51,5 +59,7 @@ public class Employee {//Users
     private String pharmacyLicenceNumber;
     private Boolean active;
     private Boolean accountLocked;
-    private String email;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "contact_detail_id", referencedColumnName = "id", nullable = false)
+    private ContactDetail contactDetail;
 }

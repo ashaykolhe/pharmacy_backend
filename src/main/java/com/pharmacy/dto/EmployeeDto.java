@@ -14,6 +14,7 @@ import java.util.List;
 @Setter
 @ToString
 public class EmployeeDto {
+    Long id;
     @NotEmpty
     private String firstName;
     private String middleName;
@@ -37,5 +38,5 @@ public class EmployeeDto {
     private Boolean active;
     private Boolean accountLocked;
     @NotEmpty
-    private String email;
+    private String personalDocumentNumber;
 }

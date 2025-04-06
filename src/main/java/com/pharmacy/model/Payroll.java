@@ -16,7 +16,9 @@ public class Payroll {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(nullable = false, length = 10)
     private Double salary;
+    @Column(nullable = false)
     private LocalDate joiningDate;
     private LocalDate resignationDate;
     @OneToOne(mappedBy = "payroll")
