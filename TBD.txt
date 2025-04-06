@@ -139,16 +139,26 @@ swagger - https://www.youtube.com/watch?v=7QlvGBJ9Tng
 Constant strings
 @Column
 https://www.baeldung.com/spring-data-partial-update
+scheduler based notifications - or event based?
+jwt
+pricing engine
+offer engine
+loyalty engine
+notification scheduler
+username cannot be changed
+mapper update - not updating if null values sent - CHECK LATER
 
 
 TODO
 
-
-delete employee
-delete all employees
-find all employee
-find employee by firstname
-find employee by lastname
+*add employee
+*update employee
+*delete employee
+*delete all employees
+*find all employee
+find employee by firstname - invalid
+find employee by lastname - invalid
+find employee by first and last name - invalid
 find employee by phone number
 find employee by username
 find employee by email
@@ -157,8 +167,8 @@ find active employees
 find employees whose account is locked
 find empployee by joining date range
 fine employee by resignation date range
-activate employee
-deactivate employee
+*activate employee
+*deactivate employee
 lock employee
 lock employee account on 5 password unsuccessful attempt
 
@@ -201,6 +211,7 @@ delete all activity log
 find activity log by employee
 find activity log by createdTimestamp range
 find activity log by permission
+find all
 
 add address
 update address
@@ -208,6 +219,7 @@ delete address
 delete all addresses
 find address by phone number
 find address by email
+find all
 
 add branch
 update branch
@@ -216,12 +228,14 @@ delete all branches
 find branch by name
 find branch by phone number
 find branch by email
+find all
 
 add contact detail
 update contact detail
 delete contact detail
 find contact detail by mobile1/mobile2
 find contact detail by email
+find all
 
 add coupon
 delete coupon
@@ -232,6 +246,7 @@ find coupon by numberOfUses
 find coupon by name
 find coupon by offer name
 find coupon by offer id
+find all
 
 add courier
 update courier
@@ -239,6 +254,7 @@ delete courier
 delete all courier
 find courier by name
 find courier by mobile
+find all
 
 add customer
 update customer
@@ -248,6 +264,7 @@ find customer by order id
 find customer by loyalty
 find customer by mobile
 find customer by email
+find all
 
 add document
 update document
@@ -256,6 +273,7 @@ delete all documents
 find document by filename
 find document by displayName
 find document by type
+find all
 
 add homedelivery
 update homedelivery
@@ -263,12 +281,14 @@ delete homedelivery
 find all homedelivery orders
 find homedelievery by payment status
 find homedelivery by address
+find all
 
 add lineitem
 update lineitem
 delete lineitem
 find lineitem by product
 find lineitem by orders
+find all
 
 add loyalty
 update loyalty
@@ -277,6 +297,7 @@ find loyalty by customer
 find loyalty by loyaltypoints
 find loyalty between start and end date
 find active loyalty
+find all
 
 add manufacture
 update manufacture
@@ -286,6 +307,7 @@ find manufacture by contact number
 find manufacture by contact email
 find manufacture by license number
 find manufacture by product
+find all
 
 add offer
 update offer
@@ -294,6 +316,7 @@ delete all offers
 find offer by offername
 find offer by product
 find offer by coupon
+find all
 
 add onlinedelivery
 update onlinedelivery
@@ -306,6 +329,7 @@ find onlinedelivery by contact email
 find onlinedelivery by shipping status
 find onlinedelivery by order
 find onlinedelivery by payment status
+find all
 
 add order
 update order
@@ -319,6 +343,7 @@ find order by customer
 find order by payment method
 find order by offer
 find order by payment status
+find all
 
 add payroll
 update payroll
@@ -327,12 +352,14 @@ delete all payroll
 find payroll by joining date
 find payroll by resignation date
 find payroll by employee
+find all
 
 add permission
 update permission
 delete permission
 delete all permission
 find permission by role
+find all
 
 add photo
 update photo
@@ -340,12 +367,14 @@ delete photo
 delete all photo
 find photo by displayname
 find photo by filename
+find all
 
 add product company
 update product company
 delete product company
 delete all product company
 find product company by name
+find all
 
 add producttype
 update producttype
@@ -353,6 +382,7 @@ delete producttype
 delete all producttype
 find producttype by name
 find producttype by product
+find all
 
 add purchase
 update purchase
@@ -361,23 +391,27 @@ delete all purchase
 find purchase by product
 find purchase by purchasedate range
 find purchase by supplier
+find all
 
 add quantityofproduct
 update quantityofproduct
 delete quantityofproduct
 delete all quantityofproduct
+find all
 
 add return
 update return
 delete return
 find returns by order
 find return by product
+find all
 
 add role
 update role
 delete role
 delete all role
 find role by permission
+find all
 
 add supplier
 update supplier
@@ -388,6 +422,14 @@ find supplier by mobile
 find supplier by email
 find active suppliers
 find supplier by product
+find all
+
+add notification
+delete notification
+delete all notification
+find notification by createdTimestamp
+find all
+
 
 reports
 
@@ -408,7 +450,6 @@ product by supplier
 product by manufacturer
 product by category
 productby product type
-
 
 --------------------
 IN PROGRESS
@@ -929,6 +970,13 @@ History/ActivityLog //AOP
 
 
 Cart - for online delivery
+
+
+Notification
+
+	Long id
+	String title
+	LocalDateTime createdTimestamp
 
 -------------------------------------------------------------------------------------------------------------------------------
 BUSINESS LOGIC

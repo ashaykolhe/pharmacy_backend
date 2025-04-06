@@ -20,41 +20,44 @@ public class EmployeeController {
         this.iEmployeeService = iEmployeeService;
     }
 
-    @GetMapping("/findAllEmployees")
+    @GetMapping("/findAll")
     public ResponseEntity<List<Employee>> findAll() {
         return ResponseEntity.ok(iEmployeeService.findAll());
     }
 
     @PostMapping("/add")
-    public ResponseEntity<String> addEmployee(@RequestBody EmployeeDto employeeDto) {
+    public ResponseEntity<String> add(@RequestBody EmployeeDto employeeDto) {
         log.debug("employee dto " + employeeDto);
         iEmployeeService.addEmployee(employeeDto);
         return ResponseEntity.ok(Constants.EMPLOYEE_ADDED);
     }
 
     @PatchMapping("/update")
-    public ResponseEntity<String> updateEmployee(@RequestBody EmployeeDto employeeDto) {
+    public ResponseEntity<String> update(@RequestBody EmployeeDto employeeDto) {
         log.debug("employee dto " + employeeDto);
         iEmployeeService.updateEmployee(employeeDto);
         return ResponseEntity.ok(Constants.EMPLOYEE_UPDATED);
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> deleteEmployee(@PathVariable Long id) {
+    public ResponseEntity<String> delete(@PathVariable Long id) {
+        log.debug("delete " + id);
         iEmployeeService.deleteEmployee(id);
         return ResponseEntity.ok(Constants.EMPLOYEE_DELETED);
     }
 
     @DeleteMapping("/delete")
-    public ResponseEntity<String> deleteAllEmployees() {
+    public ResponseEntity<String> deleteAll() {
         iEmployeeService.deleteAllEmployees();
         return ResponseEntity.ok(Constants.ALL_EMPLOYEES_DELETED);
     }
 
     @PutMapping("/active/{employeeId}")
-    public ResponseEntity<String> setActiveEmployee(@PathVariable Long employeeId, @RequestParam Boolean active) {
+    public ResponseEntity<String> setActive(@PathVariable Long employeeId, @RequestParam Boolean active) {
         log.debug("employee id " + employeeId + " active " + active);
         iEmployeeService.setActiveEmployee(employeeId, active);
         return ResponseEntity.ok(active ? Constants.EMPLOYEE_ACTIVATED : Constants.EMPLOYEE_DEACTIVATED);
     }
+
+
 }

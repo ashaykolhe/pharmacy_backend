@@ -2,7 +2,10 @@ package com.pharmacy.service;
 
 import com.pharmacy.constants.Constants;
 import com.pharmacy.dto.EmployeeDto;
+import com.pharmacy.exception.EmployeeAlreadyActiveException;
+import com.pharmacy.exception.EmployeeAlreadyDeactiveException;
 import com.pharmacy.exception.EmployeeNotFoundException;
+import com.pharmacy.exception.UserNameAlreadyExistsException;
 import com.pharmacy.mapper.EmployeeMapper;
 import com.pharmacy.model.Employee;
 import com.pharmacy.repository.EmployeeRepository;
@@ -30,6 +33,9 @@ public class EmployeeService implements IEmployeeService {
 
     @Override
     public void addEmployee(EmployeeDto employeeDto) {
+        employeeRepository.findByUserName(employeeDto.getUserName()).ifPresent(user -> {
+            throw new UserNameAlreadyExistsException(user.getUserName() + " " + Constants.USERNAME_ALREADY_EXISTS);
+        });
         Employee employee = employeeMapper.dtoToModel(employeeDto);
         log.debug("employee dto " + employeeDto);
         log.debug("employee " + employee);
@@ -38,12 +44,14 @@ public class EmployeeService implements IEmployeeService {
 
     @Override
     public void updateEmployee(EmployeeDto employeeDto) {
-        Optional<Employee> byId = employeeRepository.findById(employeeDto.getId());
-        Employee employee1 = byId.orElseThrow(() -> new EmployeeNotFoundException(Constants.EMPLOYEE_NOT_FOUND));
-        employeeMapper.updateEmployee(employeeDto, employee1);
-        log.debug("employee dto " + employeeDto);
-        log.debug("employee " + employee1);
-        employeeRepository.save(employee1);
+        employeeRepository.findById(employeeDto.getId()).ifPresentOrElse(employee -> {
+            employeeMapper.updateEmployee(employeeDto, employee);
+            log.debug("employee dto " + employeeDto);
+            log.debug("employee " + employee);
+            employeeRepository.save(employee);
+        }, () -> {
+            throw new EmployeeNotFoundException(Constants.EMPLOYEE_NOT_FOUND);
+        });
     }
 
     @Override
@@ -60,8 +68,17 @@ public class EmployeeService implements IEmployeeService {
     @Override
     public void setActiveEmployee(Long employeeId, Boolean active) {
         log.debug("employee id " + employeeId + " active " + active);
-        Optional<Employee> byId = employeeRepository.findById(employeeId);
-        byId.orElseThrow(() -> new EmployeeNotFoundException(Constants.EMPLOYEE_NOT_FOUND)).setActive(active);
-        employeeRepository.save(byId.get());
+        employeeRepository.findById(employeeId).ifPresentOrElse(employee -> {
+            if (active.equals(employee.getActive())) {
+                if (active)
+                    throw new EmployeeAlreadyActiveException(Constants.EMPLOYEE_ALREADY_ACTIVE);
+                else
+                    throw new EmployeeAlreadyDeactiveException(Constants.EMPLOYEE_ALREADY_DEACTIVE);
+            }
+            employee.setActive(active);
+            employeeRepository.save(employee);
+        }, () -> {
+            throw new EmployeeNotFoundException(Constants.EMPLOYEE_NOT_FOUND);
+        });
     }
 }
