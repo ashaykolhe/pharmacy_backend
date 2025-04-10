@@ -9,7 +9,7 @@ import com.pharmacy.exception.UserNameAlreadyExistsException;
 import com.pharmacy.mapper.EmployeeMapper;
 import com.pharmacy.model.Employee;
 import com.pharmacy.repository.EmployeeRepository;
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-@Slf4j
+@Log4j2
 public class EmployeeService implements IEmployeeService {
     private final EmployeeRepository employeeRepository;
     private final EmployeeMapper employeeMapper;

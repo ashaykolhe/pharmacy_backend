@@ -1,6 +1,6 @@
 TECH STACK
 
-log4j
+log4j - https://projectlombok.org/features/log, https://logging.apache.org/log4j/1.x/manual.html
 swagger
 spring cloud
 jwt
@@ -31,6 +31,8 @@ sql, hql, criteria, jpql
 heroicons svg
 docker
 figma
+websocket
+
 
 https://www.baeldung.com/entity-to-and-from-dto-for-a-java-spring-application
 google guava
@@ -70,7 +72,7 @@ https://www.highlight.io/blog/4-best-logging-libraries-for-java
 https://www.baeldung.com/hibernate-inheritance
 https://www.baeldung.com/sql-logging-spring-boot
 https://github.com/bezkoder/react-jwt-auth?tab=readme-ov-file
-
+https://docs.spring.io/spring-boot/reference/features/logging.html#features.logging.custom-log-configuration - log4j properties
 Hibernate
 https://www.baeldung.com/jpa-one-to-one
 https://www.baeldung.com/jpa-hibernate-associations
@@ -86,7 +88,7 @@ https://www.baeldung.com/spring-data-derived-queries
 @Query
 @NamedQuery
 
-
+https://ginger-uranium-8af.notion.site/EP01-Auth-Service-9ff640aee5cb435ebd22be61b5fb1aae - AUTH SERVICE
 
 
 
@@ -153,6 +155,10 @@ https://www.baeldung.com/java-pdf-creation
 order pdf file path in app properties as environment variable - delete pdf older than 10 days automatically
 log file path as environment variable
 order number generation - system.milliseconds or randomstringutils or date+incrementby1
+offer only on selected products which has more profit margin
+n+1 problem - findAll api - @EntityGraph(attributePaths = "addresses") or left join fetch
+caching - redis? @Cacheable - products
+archive older orders, line items
 
 purchase pdf
 order pdf
@@ -160,7 +166,27 @@ order pdf
 *findall pageable
 @Valid in requestbody
 *hide password while fetching employee
+password constraints
+fetchtype eager
+GenerationType.UUID
 
+@Aspect
+
+@AfterThrowing(execution(login()))
+if login failed 5 times, block account - maintain counter - try parallel login
+
+ADMIN
+
+unlock account
+change password
+add/remove roles
+archive
+clear cache/refresh cache
+
+/api/v1
+versioning apis - https://medium.com/@vivekkadiyanits/rest-api-versioning-in-spring-boot-application-7e47f0cbd8f4
+postman environment variables - https://learning.postman.com/docs/sending-requests/variables/variables/
+------------------------------------------------------------
 TODO
 
 *add employee
@@ -990,5 +1016,3 @@ Notification
 -------------------------------------------------------------------------------------------------------------------------------
 BUSINESS LOGIC
 
-
----------------------
