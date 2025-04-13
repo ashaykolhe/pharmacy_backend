@@ -4,17 +4,6 @@ log4j - https://projectlombok.org/features/log, https://logging.apache.org/log4j
 swagger
 spring cloud
 jwt
-react
-nextjs
-react router
-react form
-reduxtoolkit
-html5
-css3
-javascript
-typescript
-tailwind
-daisyui
 spring security - roles and permissions in DB
 junit
 mockito
@@ -23,17 +12,15 @@ data jpa
 docker
 netlify
 aws or gcp
-react native
-google font
 jasper report - https://www.baeldung.com/spring-jasper
 spring aop
 sql, hql, criteria, jpql
-heroicons svg
 docker
 figma
 websocket
 
 
+https://stackoverflow.com/questions/27726066/jwt-refresh-token-flow
 https://www.baeldung.com/entity-to-and-from-dto-for-a-java-spring-application
 google guava
 Try.of
@@ -85,13 +72,26 @@ https://www.baeldung.com/hibernate-many-to-many
 https://docs.spring.io/spring-data/jpa/reference/jpa/query-methods.html
 https://www.baeldung.com/spring-data-derived-queries
 
+https://drive.google.com/drive/folders/1nct4ATqgDDpo8s_wTh-V4i3IsXBQ3MnM - authservice code
+https://drive.google.com/drive/folders/1pMrp6c6IXcupg3DNQYWau9F7tHUiEFNl - PubSub
+https://drive.google.com/drive/folders/1tKun6KN_4alQfu3Vp60cvdMPXPrqkU8X - landing page
+https://drive.google.com/file/d/13mUxuNwqGKTLm0orAia-94OdqUHMhmiq/view - kafka doc
+
+https://github.com/singhdevhub-lovepreet/authservice/tree/add/kafkaProducer
+https://github.com/singhdevhub-lovepreet/userservice
+https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-22-04
+https://drive.google.com/file/d/11Vhh3FBjttTdUsdtQhb7ZrkHbwaMoA1L/view
+
+
 @Query
 @NamedQuery
 
 https://ginger-uranium-8af.notion.site/EP01-Auth-Service-9ff640aee5cb435ebd22be61b5fb1aae - AUTH SERVICE
+https://www.baeldung.com/spring-security-block-brute-force-authentication-attempts
+https://stackoverflow.com/questions/3299800/spring-security-spring-doesnt-check-on-isaccountnonlocked-for-userdetails-on
 
-
-
+https://manishankarjaiswal.medium.com/installing-and-running-apache-kafka-on-windows-a-step-by-step-guide-part-1-7e957942e841
+https://hub.docker.com/r/apache/kafka
 
 
 ---------------------------------------------------------------------------------------------------------------------------------
@@ -170,6 +170,9 @@ password constraints
 fetchtype eager
 GenerationType.UUID
 
+ROLE_PERMISSION - eg ADMIN_ADD_EMPLOYEE
+
+
 @Aspect
 
 @AfterThrowing(execution(login()))
@@ -186,6 +189,8 @@ clear cache/refresh cache
 /api/v1
 versioning apis - https://medium.com/@vivekkadiyanits/rest-api-versioning-in-spring-boot-application-7e47f0cbd8f4
 postman environment variables - https://learning.postman.com/docs/sending-requests/variables/variables/
+
+delete all option only for GOD role
 ------------------------------------------------------------
 TODO
 
@@ -209,6 +214,7 @@ fine employee by resignation date range
 *deactivate employee
 lock employee
 lock employee account on 5 password unsuccessful attempt
+update/change password
 
 bulk insert employees
 bulk update employees
@@ -760,11 +766,12 @@ PaymentMethod - ENUM
 
 
 
-cashier
-manager
-admin
-pharmacist
-helper
+cashier - CRU
+manager - CRU
+admin - CRUD
+pharmacist - CRU
+helper - CRU
+god - clear cache, delete all
 
 Roles - https://www.baeldung.com/role-and-privilege-for-spring-security-registration
 https://www.baeldung.com/spring-security-method-security
@@ -1016,3 +1023,45 @@ Notification
 -------------------------------------------------------------------------------------------------------------------------------
 BUSINESS LOGIC
 
+
+
+
+
+
+
+
+
+
+
+UI
+
+https://www.youtube.com/watch?v=6biMWgD6_JY - tailwindcss
+https://www.creative-tim.com/
+https://drive.google.com/file/d/1NqPmjZ1LHsJEQOo0e-o2GFWiRgK16l4w/view - tailwind css guide
+https://www.youtube.com/watch?v=aSlK3GhRuXA - tailwind tips
+https://jsmastery.pro/learning-paths/7002ef0d-2762-4c02-afc6-f299cbc20fbd/5681afb9-afab-471b-82ab-eed5f99ef6a1
+https://drive.google.com/file/d/1GT-WAMY-VsOhW7kVBgZ-_XU5qwEvEGi9/view - nextjs guide
+
+
+react
+nextjs
+react router
+react form
+reduxtoolkit
+html5
+css3
+javascript
+typescript
+tailwind
+daisyui
+axios
+heroicons svg
+google font
+shadcnui
+material-tailwind ui
+react native
+framer motion
+react scan - for performance issue
+
+dark mode toggle or themes - store themes in localstorage
+useDEcounce hook - react-use package

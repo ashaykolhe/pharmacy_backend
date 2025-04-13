@@ -9,24 +9,26 @@ import com.pharmacy.exception.UserNameAlreadyExistsException;
 import com.pharmacy.mapper.EmployeeMapper;
 import com.pharmacy.model.Employee;
 import com.pharmacy.repository.EmployeeRepository;
+import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
 @Log4j2
-public class EmployeeService implements IEmployeeService {
+@AllArgsConstructor
+public class EmployeeService implements IEmployeeService, UserDetailsService {
     private final EmployeeRepository employeeRepository;
     private final EmployeeMapper employeeMapper;
-
-    public EmployeeService(EmployeeRepository employeeRepository, EmployeeMapper employeeMapper) {
-        this.employeeRepository = employeeRepository;
-        this.employeeMapper = employeeMapper;
-    }
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public Page<Employee> findAll(Integer pageNumber, Integer numberOfElements, String sortDir, String sortBy) {
@@ -40,20 +42,22 @@ public class EmployeeService implements IEmployeeService {
     public void addEmployee(EmployeeDto employeeDto) {
         log.debug("employee dto " + employeeDto);
         employeeRepository.findByUserName(employeeDto.getUserName()).ifPresent(user -> {
-            throw new UserNameAlreadyExistsException(user.getUserName() + " " + Constants.USERNAME_ALREADY_EXISTS);
+            throw new UserNameAlreadyExistsException(user.getUserName() + " " + Constants.EMPLOYEE.USERNAME_ALREADY_EXISTS);
         });
         Employee employee = employeeMapper.dtoToModel(employeeDto);
+        employee.setPassword(passwordEncoder.encode(employeeDto.getPassword()));
         employeeRepository.save(employee);
     }
 
     @Override
     public void updateEmployee(EmployeeDto employeeDto) {
         log.debug("employee dto " + employeeDto);
+//        employeeRepository.existsById(employeeDto.getId())
         employeeRepository.findById(employeeDto.getId()).ifPresentOrElse(employee -> {
             employeeMapper.updateEmployee(employeeDto, employee);
             employeeRepository.save(employee);
         }, () -> {
-            throw new EmployeeNotFoundException(Constants.EMPLOYEE_NOT_FOUND);
+            throw new EmployeeNotFoundException(Constants.EMPLOYEE.EMPLOYEE_NOT_FOUND);
         });
     }
 
@@ -61,7 +65,7 @@ public class EmployeeService implements IEmployeeService {
     public void deleteEmployee(Long id) {
         log.debug("delete " + id);
         Optional<Employee> byId = employeeRepository.findById(id);
-        employeeRepository.delete(byId.orElseThrow(() -> new EmployeeNotFoundException(Constants.EMPLOYEE_NOT_FOUND)));
+        employeeRepository.delete(byId.orElseThrow(() -> new EmployeeNotFoundException(Constants.EMPLOYEE.EMPLOYEE_NOT_FOUND)));
     }
 
     @Override
@@ -75,14 +79,14 @@ public class EmployeeService implements IEmployeeService {
         employeeRepository.findById(employeeId).ifPresentOrElse(employee -> {
             if (active.equals(employee.getActive())) {
                 if (active)
-                    throw new EmployeeAlreadyActiveException(Constants.EMPLOYEE_ALREADY_ACTIVE);
+                    throw new EmployeeAlreadyActiveException(Constants.EMPLOYEE.EMPLOYEE_ALREADY_ACTIVE);
                 else
-                    throw new EmployeeAlreadyDeactiveException(Constants.EMPLOYEE_ALREADY_DEACTIVE);
+                    throw new EmployeeAlreadyDeactiveException(Constants.EMPLOYEE.EMPLOYEE_ALREADY_DEACTIVE);
             }
             employee.setActive(active);
             employeeRepository.save(employee);
         }, () -> {
-            throw new EmployeeNotFoundException(Constants.EMPLOYEE_NOT_FOUND);
+            throw new EmployeeNotFoundException(Constants.EMPLOYEE.EMPLOYEE_NOT_FOUND);
         });
     }
 
@@ -90,7 +94,19 @@ public class EmployeeService implements IEmployeeService {
     public Employee findByUserName(String userName) {
         log.debug("finding user name " + userName);
         return employeeRepository.findByUserName(userName).orElseThrow(() -> {
-            throw new EmployeeNotFoundException(Constants.EMPLOYEE_NOT_FOUND);
+            throw new EmployeeNotFoundException(Constants.EMPLOYEE.EMPLOYEE_NOT_FOUND);
         });
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        log.debug("Entering in loadUserByUsername Method...");
+        Optional<Employee> employee = employeeRepository.findByUserName(username);
+        if (employee.isEmpty()) {
+            log.error("Username not found: " + username);
+            throw new UsernameNotFoundException("could not found user..!!");
+        }
+        log.info("User Authenticated Successfully..!!!");
+        return new CustomEmployeeDetails(employee.get());
     }
 }

@@ -30,7 +30,7 @@ public class Employee {//Users
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
     @JsonIgnore
-    @Column(nullable = false, length = 20)
+    @Column(nullable = false, length = 100)
     private String password;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "payroll_id", referencedColumnName = "id")
