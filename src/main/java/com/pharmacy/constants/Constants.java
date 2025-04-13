@@ -13,11 +13,10 @@ public interface Constants {
         String EMPLOYEE_ALREADY_ACTIVE = "Employee already active";
         String EMPLOYEE_ALREADY_DEACTIVE = "Employee already deactive";
     }
+
     static interface ROLE_PERMISSION {
         String ADMIN_ADD_EMPLOYEE = "ADMIN_ADD_EMPLOYEE";
-    }
-
-    static interface GENERAL {
-        String TOKEN_DELETED_SUCCESSFULLY = "TOKEN_DELETED_SUCCESSFULLY";
+        String ADMIN_UPDATE_EMPLOYEE = "ADMIN_UPDATE_EMPLOYEE";
+        String ADMIN_DELETE_EMPLOYEE = "ADMIN_DELETE_EMPLOYEE";
     }
 }

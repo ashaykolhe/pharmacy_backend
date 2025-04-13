@@ -18,6 +18,7 @@ public class Role {
     private Long id;
     @Column(nullable = false, length = 20, unique = true)
     private String name;
+    @JsonIgnore
     @ManyToMany(mappedBy = "roles")
     private List<Employee> employees;
     @ManyToMany

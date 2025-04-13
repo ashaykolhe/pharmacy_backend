@@ -1,5 +1,6 @@
 package com.pharmacy.controller;
 
+import com.pharmacy.exception.ErrorDetails;
 import com.pharmacy.model.Employee;
 import com.pharmacy.request.AuthRequestDTO;
 import com.pharmacy.response.JwtResponseDTO;
@@ -14,6 +15,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 @AllArgsConstructor
@@ -37,7 +39,7 @@ public class AuthController {
                         .build(), HttpStatus.OK);
             }
         }
-        return new ResponseEntity<>("Exception in User Service", HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(new ErrorDetails(LocalDateTime.now(), "Unable to login", null), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 //    @PostMapping("auth/v1/signup")
