@@ -1,6 +1,7 @@
 package com.pharmacy.service;
 
 import com.pharmacy.dto.EmployeeDto;
+import com.pharmacy.dto.UpdateEmployeeDto;
 import com.pharmacy.model.Employee;
 import org.springframework.data.domain.Page;
 
@@ -9,7 +10,7 @@ public interface IEmployeeService {
 
     void addEmployee(EmployeeDto employeeDto);
 
-    void updateEmployee(EmployeeDto employeeDto);
+    void updateEmployee(UpdateEmployeeDto employeeDto);
 
     void deleteEmployee(Long id);
 

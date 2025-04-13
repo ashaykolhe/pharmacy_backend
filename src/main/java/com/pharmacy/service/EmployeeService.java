@@ -2,6 +2,7 @@ package com.pharmacy.service;
 
 import com.pharmacy.constants.Constants;
 import com.pharmacy.dto.EmployeeDto;
+import com.pharmacy.dto.UpdateEmployeeDto;
 import com.pharmacy.exception.EmployeeAlreadyActiveException;
 import com.pharmacy.exception.EmployeeAlreadyDeactiveException;
 import com.pharmacy.exception.EmployeeNotFoundException;
@@ -50,11 +51,11 @@ public class EmployeeService implements IEmployeeService, UserDetailsService {
     }
 
     @Override
-    public void updateEmployee(EmployeeDto employeeDto) {
-        log.debug("employee dto " + employeeDto);
+    public void updateEmployee(UpdateEmployeeDto updateEmployeeDto) {
+        log.debug("update employeeDto " + updateEmployeeDto);
 //        employeeRepository.existsById(employeeDto.getId())
-        employeeRepository.findById(employeeDto.getId()).ifPresentOrElse(employee -> {
-            employeeMapper.updateEmployee(employeeDto, employee);
+        employeeRepository.findById(updateEmployeeDto.getId()).ifPresentOrElse(employee -> {
+            employeeMapper.updateEmployee(updateEmployeeDto, employee);
             employeeRepository.save(employee);
         }, () -> {
             throw new EmployeeNotFoundException(Constants.EMPLOYEE.EMPLOYEE_NOT_FOUND);
@@ -103,8 +104,8 @@ public class EmployeeService implements IEmployeeService, UserDetailsService {
         log.debug("Entering in loadUserByUsername Method...");
         Optional<Employee> employee = employeeRepository.findByUserName(username);
         if (employee.isEmpty()) {
-            log.error("Username not found: " + username);
-            throw new UsernameNotFoundException("could not found user..!!");
+            log.error("Employee not found: " + username);
+            throw new EmployeeNotFoundException(Constants.EMPLOYEE.EMPLOYEE_NOT_FOUND);
         }
         log.info("User Authenticated Successfully..!!!");
         return new CustomEmployeeDetails(employee.get());

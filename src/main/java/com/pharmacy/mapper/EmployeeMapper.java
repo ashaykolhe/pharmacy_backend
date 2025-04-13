@@ -1,6 +1,7 @@
 package com.pharmacy.mapper;
 
 import com.pharmacy.dto.EmployeeDto;
+import com.pharmacy.dto.UpdateEmployeeDto;
 import com.pharmacy.model.Employee;
 import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapper;
@@ -12,6 +13,8 @@ public interface EmployeeMapper {
     Employee dtoToModel(EmployeeDto employeeDto);
 
     EmployeeDto modelToDto(Employee employee);
-    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.SET_TO_NULL) //send all values of employee while updating
-    void updateEmployee(EmployeeDto employeeDto, @MappingTarget Employee employee);
+
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.SET_TO_NULL)
+        //send all values of employee while updating
+    void updateEmployee(UpdateEmployeeDto updateEmployeeDto, @MappingTarget Employee employee);
 }

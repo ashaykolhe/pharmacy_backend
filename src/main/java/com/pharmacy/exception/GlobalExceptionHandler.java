@@ -23,7 +23,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<?> dataIntegrityViolationExceptionHandler(DataIntegrityViolationException exception, WebRequest request) {
-        return new ResponseEntity<>(new ErrorDetails(LocalDateTime.now(), exception.getMostSpecificCause().getMessage()), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(new ErrorDetails(LocalDateTime.now(), exception.getMostSpecificCause().getMessage(), null), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler({EmployeeAlreadyActiveException.class, EmployeeAlreadyDeactiveException.class})
@@ -32,6 +32,6 @@ public class GlobalExceptionHandler {
     }
 
     private ResponseEntity<?> genericHandler(Exception exception, HttpStatus httpStatus) {
-        return new ResponseEntity<>(new ErrorDetails(LocalDateTime.now(), exception.getMessage()), httpStatus);
+        return new ResponseEntity<>(new ErrorDetails(LocalDateTime.now(), exception.getMessage(), null), httpStatus);
     }
 }

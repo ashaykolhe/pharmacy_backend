@@ -9,7 +9,9 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Data
-public class EmployeeDto {
+public class UpdateEmployeeDto {
+    @NotNull
+    private Long id;
     @NotEmpty
     private String firstName;
     private String middleName;
@@ -18,13 +20,9 @@ public class EmployeeDto {
     @NotNull
     private ContactDetail contactDetail;
     private Address address;
-    @NotEmpty
-    private String password;
     private Payroll payroll;
     @NotNull
     private LocalDate dateOfBirth;
-    @NotEmpty
-    private String userName;
     private PersonalDocument document;
     private Photo photo;
     @NotNull

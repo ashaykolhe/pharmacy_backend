@@ -2,11 +2,15 @@ package com.pharmacy.controller;
 
 import com.pharmacy.constants.Constants;
 import com.pharmacy.dto.EmployeeDto;
+import com.pharmacy.dto.UpdateEmployeeDto;
 import com.pharmacy.model.Employee;
 import com.pharmacy.service.IEmployeeService;
+import com.pharmacy.utils.Utils;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -21,14 +25,20 @@ public class EmployeeController {
     }
 
     @PostMapping("/v1/add")
-    public ResponseEntity<String> add(@RequestBody EmployeeDto employeeDto) {
+    public ResponseEntity<?> add(@Valid @RequestBody EmployeeDto employeeDto, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return ResponseEntity.ok(Utils.validationErrors(bindingResult));
+        }
         iEmployeeService.addEmployee(employeeDto);
         return ResponseEntity.ok(Constants.EMPLOYEE.EMPLOYEE_ADDED);
     }
 
     @PutMapping("/v1/update")
-    public ResponseEntity<String> update(@RequestBody EmployeeDto employeeDto) {
-        iEmployeeService.updateEmployee(employeeDto);
+    public ResponseEntity<?> update(@Valid @RequestBody UpdateEmployeeDto updateEmployeeDto, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return ResponseEntity.badRequest().body(Utils.validationErrors(bindingResult));
+        }
+        iEmployeeService.updateEmployee(updateEmployeeDto);
         return ResponseEntity.ok(Constants.EMPLOYEE.EMPLOYEE_UPDATED);
     }
 
