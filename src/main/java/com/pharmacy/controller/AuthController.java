@@ -58,7 +58,7 @@ public class AuthController {
 //        }
 //    }
 
-    @GetMapping("/auth/v1/ping")
+    @GetMapping("/ping")
     public ResponseEntity<String> ping() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.isAuthenticated()) {
@@ -68,6 +68,13 @@ public class AuthController {
             }
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized");
+    }
+
+    @PostMapping("/extend/{username}")
+    public ResponseEntity<?> extendSession(@PathVariable String username) {
+        return new ResponseEntity<>(JwtResponseDTO.builder()
+                .accessToken(jwtService.GenerateToken(username))
+                .build(), HttpStatus.OK);
     }
 
     @GetMapping("/health")

@@ -16,12 +16,8 @@ public class ActivityLog {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @OneToOne
-    @JoinColumn(name = "employee_id", referencedColumnName = "id", nullable = false)
-    private Employee employee;
+    private String employee;
     @CreationTimestamp
     private LocalDateTime createdTimestamp;
-    @OneToOne
-    @JoinColumn(name = "permission_id", referencedColumnName = "id", nullable = false)
-    private Permission permission;
+    private String permission;
 }
