@@ -30,8 +30,8 @@ public class EmployeeDto {
     @NotNull
     private List<Role> roles;
     private String pharmacyLicenseNumber;
-    private Boolean active;
-    private Boolean accountLocked;
+    private Boolean active = true;
+    private Boolean accountLocked = false;
     @NotEmpty
     private String personalDocumentNumber;
 }
