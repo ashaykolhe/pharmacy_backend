@@ -50,7 +50,7 @@ public class Employee {//Users
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "photo_id", referencedColumnName = "id")
     private Photo photo;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_roles",
             joinColumns = @JoinColumn(
@@ -64,4 +64,7 @@ public class Employee {//Users
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "contact_detail_id", referencedColumnName = "id", nullable = false)
     private ContactDetail contactDetail;
+    @JsonIgnore
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+    private List<ActivityLog> activityLog;
 }

@@ -16,7 +16,9 @@ public class ActivityLog {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String employee;
+    @ManyToOne
+    @JoinColumn(name = "employee_id", referencedColumnName = "id", nullable = false)
+    private Employee employee;
     @CreationTimestamp
     private LocalDateTime createdTimestamp;
     private String permission;

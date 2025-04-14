@@ -14,13 +14,27 @@ public interface Constants {
         String EMPLOYEE_ALREADY_DEACTIVE = "Employee already deactive";
     }
 
-    static interface ROLE_PERMISSION {
-        String ADMIN_ADD_EMPLOYEE = "ADMIN_ADD_EMPLOYEE";
-        String ADMIN_UPDATE_EMPLOYEE = "ADMIN_UPDATE_EMPLOYEE";
-        String ADMIN_DELETE_EMPLOYEE = "ADMIN_DELETE_EMPLOYEE";
-    }
-
     static interface GENERAL {
         String BAD_CREDENTIALS = "Username or password is wrong.";
+        String ACCESS_DENIED = "Access denied.";
+    }
+
+    static interface ROLE {
+        String ADMIN = "ADMIN";
+        String GOD = "GOD";
+        String MANAGER = "MANAGER";
+        String HELPER = "HELPER";
+        String PHARMACIST = "PHARMACIST";
+        String CASHIER = "CASHIER";
+    }
+    static interface PERMISSION {
+        static interface EMPLOYEE {
+            String ADD_EMPLOYEE = "ADD_EMPLOYEE";
+            String UPDATE_EMPLOYEE = "UPDATE_EMPLOYEE";
+            String DELETE_EMPLOYEE = "DELETE_EMPLOYEE";
+            String ACTIVATE_DEACTIVATE_EMPLOYEE = "ACTIVATE_DEACTIVATE_EMPLOYEE";
+            String LOCK_UNLOCK_EMPLOYEE = "LOCK_UNLOCK_EMPLOYEE";
+            String CHANGE_EMPLOYEE_PASSWORD = "CHANGE_EMPLOYEE_PASSWORD";
+        }
     }
 }

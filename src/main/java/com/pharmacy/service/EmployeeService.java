@@ -10,11 +10,13 @@ import com.pharmacy.exception.UserNameAlreadyExistsException;
 import com.pharmacy.mapper.EmployeeMapper;
 import com.pharmacy.model.Employee;
 import com.pharmacy.repository.EmployeeRepository;
+import jakarta.annotation.security.RolesAllowed;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -51,6 +53,7 @@ public class EmployeeService implements IEmployeeService, UserDetailsService {
         employeeRepository.save(employee);
     }
 
+    @PreAuthorize("hasAuthority('" + Constants.ROLE.GOD + "_" + Constants.PERMISSION.EMPLOYEE.UPDATE_EMPLOYEE + "') OR hasAuthority('" + Constants.ROLE.ADMIN + "_" + Constants.PERMISSION.EMPLOYEE.UPDATE_EMPLOYEE + "') OR hasAuthority('" + Constants.ROLE.MANAGER + "_" + Constants.PERMISSION.EMPLOYEE.UPDATE_EMPLOYEE + "')")
     @Override
     public void updateEmployee(UpdateEmployeeDto updateEmployeeDto) {
         log.debug("update employeeDto " + updateEmployeeDto);

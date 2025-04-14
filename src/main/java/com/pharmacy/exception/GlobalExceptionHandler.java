@@ -4,6 +4,7 @@ import com.pharmacy.constants.Constants;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.LockedException;
@@ -17,6 +18,7 @@ import java.time.LocalDateTime;
 public class GlobalExceptionHandler {
     @ExceptionHandler(EmployeeNotFoundException.class)
     public ResponseEntity<?> employeeNotFoundExceptionHandler(Exception exception) {
+        exception.printStackTrace();
         return genericHandler(exception.getMessage(), HttpStatus.NOT_FOUND);
     }
 
@@ -44,8 +46,13 @@ public class GlobalExceptionHandler {
         return genericHandler(exception.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler({BadCredentialsException.class})
+    @ExceptionHandler(BadCredentialsException.class)
     public ResponseEntity<?> badcredentialsException(Exception exception) {
         return genericHandler(Constants.GENERAL.BAD_CREDENTIALS, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(AccessDeniedException.class)
+    public ResponseEntity<?> accessDeniedException(Exception exception) {
+        return genericHandler(Constants.GENERAL.ACCESS_DENIED, HttpStatus.BAD_REQUEST);
     }
 }

@@ -20,12 +20,12 @@ public class CustomEmployeeDetails implements UserDetails {
         this.password = employee.getPassword();
         List<GrantedAuthority> auths = new ArrayList<>();
 
-//        employee.getRoles().forEach((role) -> {
-//            role.getPermissions().forEach(permission -> {
-//                auths.add(new SimpleGrantedAuthority(role.getName().toUpperCase() + "_" + permission.getName()));
-//            });
-//        });
-
+        employee.getRoles().forEach((role) -> {
+            role.getPermissions().forEach(permission -> {
+                auths.add(new SimpleGrantedAuthority(role.getName().toUpperCase() + "_" + permission.getName()));
+            });
+        });
+        System.out.println(auths);
         this.authorities = auths;
     }
 
