@@ -1,6 +1,7 @@
 package com.pharmacy.service;
 
 import com.pharmacy.model.Employee;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,11 +14,15 @@ public class CustomEmployeeDetails implements UserDetails {
 
     private String username;
     private String password;
+    private Boolean isLocked;
+    private Boolean isActive;
     Collection<? extends GrantedAuthority> authorities;
 
     public CustomEmployeeDetails(Employee employee) {
         this.username = employee.getUserName();
         this.password = employee.getPassword();
+        this.isLocked = employee.getAccountLocked();
+        this.isActive = employee.getActive();
         List<GrantedAuthority> auths = new ArrayList<>();
 
         employee.getRoles().forEach((role) -> {
@@ -51,7 +56,7 @@ public class CustomEmployeeDetails implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+        return !isLocked;
     }
 
     @Override
@@ -61,6 +66,6 @@ public class CustomEmployeeDetails implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return isActive;
     }
 }

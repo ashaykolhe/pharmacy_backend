@@ -107,43 +107,43 @@ export all tables as excel - useful if want to modify some values in bulk
 reports - bar chart, pie chart, line chart - toggle for various charts
 shortcuts
 logo - create online
-spring AOP for history tables
+*spring AOP for history tables
 upload images - date + order or purchase id - direct functionality on mobile app. on desktop, upload separately - size constraint
 purchase order status - ordered, delivered + delivery date
 override equals and hashcode with appropriate attributes
 upload documents - size constraint
-validations - size, nonnull, min, max, range, etc
+*validations - size, nonnull, min, max, range, etc
 payment gateway for online delivery
 notifications
 filtered tables
 database index
-lock employee account if wrong password for 5 times
+*lock employee account if wrong password for 5 times
 csrf
 corsorigin
-master data - insert script - or code with batch insert like itasveer enums and builders
-mapstruct for model to dto - https://mapstruct.org/ - https://www.baeldung.com/mapstruct
-spring security with roles and permission - https://www.youtube.com/watch?v=pPU9eumD4sY&list=PLQTYNpk8jwk2ig7m44RilAvDxJbjiqAmV&index=6
+*master data - insert script - or code with batch insert like itasveer enums and builders
+*mapstruct for model to dto - https://mapstruct.org/ - https://www.baeldung.com/mapstruct
+*spring security with roles and permission - https://www.youtube.com/watch?v=pPU9eumD4sY&list=PLQTYNpk8jwk2ig7m44RilAvDxJbjiqAmV&index=6
 employee password reset
 employee birthday reminder
-data rest
-hashcode and equals for all hash based models
-casecadetype in mappings
-nullable in mappings
-@Column
-enum variables - https://www.baeldung.com/a-guide-to-java-enums
+*data rest
+*hashcode and equals for all hash based models
+*casecadetype in mappings
+*nullable in mappings
+*@Column
+*enum variables - https://www.baeldung.com/a-guide-to-java-enums
 composite keys?
 caching master data - hashmap on start
 hikari pooling
-GlobalExceptionHandler
+*GlobalExceptionHandler
 @JsonIgnore https://www.javaguides.net/2019/04/jackson-jsonignore-jsonignoreproperties-and-jsonignoretype.html
 @JsonIgnoreProperties
 @Transient
-swagger - https://www.youtube.com/watch?v=7QlvGBJ9Tng
-Constant strings
+*swagger - https://www.youtube.com/watch?v=7QlvGBJ9Tng
+*Constant strings
 @Column
 https://www.baeldung.com/spring-data-partial-update
 scheduler based notifications - or event based?
-jwt
+*jwt
 pricing engine
 offer engine
 loyalty engine
@@ -164,19 +164,19 @@ purchase pdf
 order pdf
 
 *findall pageable
-@Valid in requestbody
+*@Valid in requestbody
 *hide password while fetching employee
 password constraints
 fetchtype eager
 GenerationType.UUID
 
-ROLE_PERMISSION - eg ADMIN_ADD_EMPLOYEE
+*ROLE_PERMISSION - eg ADMIN_ADD_EMPLOYEE
 
 
-@Aspect
+*@Aspect
 
-@AfterThrowing(execution(login()))
-if login failed 5 times, block account - maintain counter - try parallel login
+*@AfterThrowing(execution(login()))
+*if login failed 5 times, block account - maintain counter - try parallel login
 
 ADMIN
 
@@ -203,6 +203,25 @@ god can change anyone's password
 remove requestmatchers
 *contact detail - duplicate key if id sent while updating - contact id should match with that user
 exclude god from findall, findbyusername and update
+2nd level cache
+*account lock
+*account disabled
+
+2 diff excel and api for inserting and updating. Updating myst have PK - update must happpen on existing exporter excel. Chooose products to update then export and then update excel then upload.
+
+inserting and updating - upload to temp table then give option to verify and modify on ui then insert into actual table
+
+tmp table - userid - only that user can see his inserted products and can modify and verify later. Once verified, table will be cleared for that userid. This will 
+mean 2 diff users can insert and verify parallely.
+
+merge duplicate products - choose which one to keep and if that product has FK in another table then update that fk after merging. What should be merged?
+
+env variables
+
+reminder button
+pause reminder
+fav products
+frequently ordered products list
 ------------------------------------------------------------
 TODO
 

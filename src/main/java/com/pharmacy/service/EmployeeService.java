@@ -75,7 +75,7 @@ public class EmployeeService implements IEmployeeService, UserDetailsService {
         employeeRepository.delete(byId.orElseThrow(() -> new EmployeeNotFoundException(Constants.EMPLOYEE.EMPLOYEE_NOT_FOUND)));
     }
 
-    @PreAuthorize("hasAuthority('" + Constants.ROLE.GOD + "_" + Constants.PERMISSION.EMPLOYEE.DELETE_EMPLOYEE + "') OR hasAuthority('" + Constants.ROLE.ADMIN + "_" + Constants.PERMISSION.EMPLOYEE.DELETE_EMPLOYEE + "') OR hasAuthority('" + Constants.ROLE.MANAGER + "_" + Constants.PERMISSION.EMPLOYEE.DELETE_EMPLOYEE + "')")
+    @PreAuthorize("hasAuthority('" + Constants.ROLE.GOD + "_" + Constants.PERMISSION.EMPLOYEE.DELETE_EMPLOYEE + "')")
     @Override
     public void deleteAllEmployees() {
         employeeRepository.deleteAll();
@@ -120,6 +120,12 @@ public class EmployeeService implements IEmployeeService, UserDetailsService {
 //    @PreAuthorize("hasAuthority('" + Constants.ROLE.GOD + "_" + Constants.PERMISSION.EMPLOYEE.ADD_EMPLOYEE + "') OR hasAuthority('" + Constants.ROLE.ADMIN + "_" + Constants.PERMISSION.EMPLOYEE.ADD_EMPLOYEE + "') OR hasAuthority('" + Constants.ROLE.MANAGER + "_" + Constants.PERMISSION.EMPLOYEE.ADD_EMPLOYEE + "')")
     @Override
     public void save(Employee employee) {
+        employeeRepository.save(employee);
+    }
+
+    @Override
+    public void lockEmployee(Employee employee) {
+        employee.setAccountLocked(true);
         employeeRepository.save(employee);
     }
 }
