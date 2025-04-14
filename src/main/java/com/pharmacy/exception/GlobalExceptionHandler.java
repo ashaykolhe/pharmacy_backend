@@ -18,7 +18,6 @@ import java.time.LocalDateTime;
 public class GlobalExceptionHandler {
     @ExceptionHandler(EmployeeNotFoundException.class)
     public ResponseEntity<?> employeeNotFoundExceptionHandler(Exception exception) {
-        exception.printStackTrace();
         return genericHandler(exception.getMessage(), HttpStatus.NOT_FOUND);
     }
 

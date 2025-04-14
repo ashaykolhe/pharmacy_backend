@@ -25,7 +25,7 @@ public class CustomEmployeeDetails implements UserDetails {
                 auths.add(new SimpleGrantedAuthority(role.getName().toUpperCase() + "_" + permission.getName()));
             });
         });
-        System.out.println(auths);
+//        System.out.println(auths);
         this.authorities = auths;
     }
 

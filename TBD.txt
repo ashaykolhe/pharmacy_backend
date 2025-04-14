@@ -199,9 +199,10 @@ god can change anyone's password
 *check aop - update and delete
 *delete employe - delete activity first
 *wrong password unauthorised - return wrong password message
-master data - role and permission
+*master data - role and permission
 remove requestmatchers
-contact detail - duplicate key if id sent while updating
+*contact detail - duplicate key if id sent while updating - contact id should match with that user
+exclude god from findall, findbyusername and update
 ------------------------------------------------------------
 TODO
 

@@ -42,6 +42,7 @@ public class EmployeeService implements IEmployeeService, UserDetailsService {
         return employeeRepository.findAll(pageRequest);
     }
 
+    @PreAuthorize("hasAuthority('" + Constants.ROLE.GOD + "_" + Constants.PERMISSION.EMPLOYEE.ADD_EMPLOYEE + "') OR hasAuthority('" + Constants.ROLE.ADMIN + "_" + Constants.PERMISSION.EMPLOYEE.ADD_EMPLOYEE + "') OR hasAuthority('" + Constants.ROLE.MANAGER + "_" + Constants.PERMISSION.EMPLOYEE.ADD_EMPLOYEE + "')")
     @Override
     public void addEmployee(EmployeeDto employeeDto) {
         log.debug("employee dto " + employeeDto);
@@ -66,6 +67,7 @@ public class EmployeeService implements IEmployeeService, UserDetailsService {
         });
     }
 
+    @PreAuthorize("hasAuthority('" + Constants.ROLE.GOD + "_" + Constants.PERMISSION.EMPLOYEE.DELETE_EMPLOYEE + "') OR hasAuthority('" + Constants.ROLE.ADMIN + "_" + Constants.PERMISSION.EMPLOYEE.DELETE_EMPLOYEE + "') OR hasAuthority('" + Constants.ROLE.MANAGER + "_" + Constants.PERMISSION.EMPLOYEE.DELETE_EMPLOYEE + "')")
     @Override
     public void deleteEmployee(Long id) {
         log.debug("delete " + id);
@@ -73,11 +75,13 @@ public class EmployeeService implements IEmployeeService, UserDetailsService {
         employeeRepository.delete(byId.orElseThrow(() -> new EmployeeNotFoundException(Constants.EMPLOYEE.EMPLOYEE_NOT_FOUND)));
     }
 
+    @PreAuthorize("hasAuthority('" + Constants.ROLE.GOD + "_" + Constants.PERMISSION.EMPLOYEE.DELETE_EMPLOYEE + "') OR hasAuthority('" + Constants.ROLE.ADMIN + "_" + Constants.PERMISSION.EMPLOYEE.DELETE_EMPLOYEE + "') OR hasAuthority('" + Constants.ROLE.MANAGER + "_" + Constants.PERMISSION.EMPLOYEE.DELETE_EMPLOYEE + "')")
     @Override
     public void deleteAllEmployees() {
         employeeRepository.deleteAll();
     }
 
+    @PreAuthorize("hasAuthority('" + Constants.ROLE.GOD + "_" + Constants.PERMISSION.EMPLOYEE.ACTIVATE_DEACTIVATE_EMPLOYEE + "') OR hasAuthority('" + Constants.ROLE.ADMIN + "_" + Constants.PERMISSION.EMPLOYEE.ACTIVATE_DEACTIVATE_EMPLOYEE + "'))")
     @Override
     public void setActiveEmployee(Long employeeId, Boolean active) {
         log.debug("employee id " + employeeId + " active " + active);
@@ -111,5 +115,11 @@ public class EmployeeService implements IEmployeeService, UserDetailsService {
             throw new BadCredentialsException(Constants.GENERAL.BAD_CREDENTIALS);
         }
         return new CustomEmployeeDetails(employee.get());
+    }
+
+    @PreAuthorize("hasAuthority('" + Constants.ROLE.GOD + "_" + Constants.PERMISSION.EMPLOYEE.ADD_EMPLOYEE + "') OR hasAuthority('" + Constants.ROLE.ADMIN + "_" + Constants.PERMISSION.EMPLOYEE.ADD_EMPLOYEE + "') OR hasAuthority('" + Constants.ROLE.MANAGER + "_" + Constants.PERMISSION.EMPLOYEE.ADD_EMPLOYEE + "')")
+    @Override
+    public void save(Employee employee) {
+        employeeRepository.save(employee);
     }
 }

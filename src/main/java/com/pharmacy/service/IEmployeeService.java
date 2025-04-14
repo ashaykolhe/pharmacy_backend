@@ -19,4 +19,5 @@ public interface IEmployeeService {
     void setActiveEmployee(Long employeeId, Boolean active);
 
     Employee findByUserName(String userName);
+    void save(Employee employee);
 }
