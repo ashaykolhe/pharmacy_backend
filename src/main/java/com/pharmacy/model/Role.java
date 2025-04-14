@@ -19,9 +19,11 @@ public class Role {
     private Long id;
     @Column(nullable = false, length = 20, unique = true)
     private String name;
+    @ToString.Exclude
     @JsonIgnore
     @ManyToMany(mappedBy = "roles")
     private List<Employee> employees;
+    @ToString.Exclude
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "roles_permissions",

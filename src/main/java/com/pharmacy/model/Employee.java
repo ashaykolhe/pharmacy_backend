@@ -51,6 +51,7 @@ public class Employee {//Users
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "photo_id", referencedColumnName = "id")
     private Photo photo;
+    @ToString.Exclude
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_roles",
@@ -65,6 +66,7 @@ public class Employee {//Users
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "contact_detail_id", referencedColumnName = "id", nullable = false)
     private ContactDetail contactDetail;
+    @ToString.Exclude
     @JsonIgnore
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
     private List<ActivityLog> activityLog;

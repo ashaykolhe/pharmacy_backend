@@ -52,6 +52,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(AccessDeniedException.class)
     public ResponseEntity<?> accessDeniedException(Exception exception) {
+        exception.printStackTrace();
         return genericHandler(Constants.GENERAL.ACCESS_DENIED, HttpStatus.BAD_REQUEST);
     }
 }

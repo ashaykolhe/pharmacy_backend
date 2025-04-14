@@ -1,5 +1,6 @@
 package com.pharmacy.controller;
 
+import com.pharmacy.aop.NoActivityLog;
 import com.pharmacy.constants.Constants;
 import com.pharmacy.dto.EmployeeDto;
 import com.pharmacy.dto.UpdateEmployeeDto;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 public class EmployeeController {
     private final IEmployeeService iEmployeeService;
 
+    @NoActivityLog
     @GetMapping("/v1/findAll")
     public ResponseEntity<Page<Employee>> findAll(@RequestParam Integer pageNumber, @RequestParam Integer numberOfElements, @RequestParam String sortDir, @RequestParam String sortBy) {
         return ResponseEntity.ok(iEmployeeService.findAll(pageNumber, numberOfElements, sortDir, sortBy));
@@ -60,6 +62,7 @@ public class EmployeeController {
         return ResponseEntity.ok(active ? Constants.EMPLOYEE.EMPLOYEE_ACTIVATED : Constants.EMPLOYEE.EMPLOYEE_DEACTIVATED);
     }
 
+    @NoActivityLog
     @GetMapping("/v1/findByUserName/{userName}")
     public ResponseEntity<Employee> findByUserName(@PathVariable String userName) {
         return ResponseEntity.ok(iEmployeeService.findByUserName(userName));

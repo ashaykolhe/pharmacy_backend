@@ -191,10 +191,10 @@ versioning apis - https://medium.com/@vivekkadiyanits/rest-api-versioning-in-spr
 postman environment variables - https://learning.postman.com/docs/sending-requests/variables/variables/
 
 delete all option only for GOD role
-findbyusername returning multiple employees
+*findbyusername returning multiple employees
 handle 401 in react - show dialog for 1 min with extend session, if timer expires, redirect to login
 god can change anyone's password
-@PreAuthorize
+*@PreAuthorize
 
 *check aop - update and delete
 *delete employe - delete activity first

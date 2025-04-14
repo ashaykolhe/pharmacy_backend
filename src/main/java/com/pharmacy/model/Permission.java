@@ -17,8 +17,9 @@ public class Permission {//Privilege
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(nullable = false, length = 30, unique = true)
+    @Column(nullable = false, length = 50, unique = true)
     private String name;
+    @ToString.Exclude
     @JsonIgnore
     @ManyToMany(mappedBy = "permissions")
     private List<Role> roles;

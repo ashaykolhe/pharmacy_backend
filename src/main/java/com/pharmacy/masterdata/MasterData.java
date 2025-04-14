@@ -62,6 +62,8 @@ public class MasterData {
                 .contactDetail(contactDetail)
                 .dateOfBirth(LocalDate.now())
                 .personalDocumentNumber("ABC")
+                .active(true)
+                .accountLocked(false)
                 .build();
 
         iEmployeeService.save(employee);

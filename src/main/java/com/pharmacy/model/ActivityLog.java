@@ -21,5 +21,6 @@ public class ActivityLog {
     private Employee employee;
     @CreationTimestamp
     private LocalDateTime createdTimestamp;
+    @Column(nullable = false, length = 100)
     private String permission;
 }

@@ -26,7 +26,7 @@ public class ActivityLogAop {
     private final IActivityLogService iActivityLogService;
     private final HttpServletRequest request;
 
-    @AfterReturning(pointcut = "execution(* com.pharmacy.controller..*(..))", returning = "returnValue")
+    @AfterReturning(pointcut = "execution(* com.pharmacy.controller..*(..)) && !@annotation(com.pharmacy.aop.NoActivityLog)", returning = "returnValue")
     public void a(JoinPoint joinPoint, Object returnValue) {
         String authorization = request.getHeader("Authorization");
         if (authorization != null) {
