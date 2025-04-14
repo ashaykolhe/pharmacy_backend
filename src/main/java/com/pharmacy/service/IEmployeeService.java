@@ -21,5 +21,5 @@ public interface IEmployeeService {
     Employee findByUserName(String userName);
 
     void save(Employee employee);
-    void lockEmployee(Employee employee);
+    void lockEmployee(Long employeeId, Boolean lock);
 }

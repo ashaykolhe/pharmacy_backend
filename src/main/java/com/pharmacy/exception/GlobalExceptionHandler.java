@@ -31,8 +31,8 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(new ErrorDetails(LocalDateTime.now(), exception.getMostSpecificCause().getMessage(), null), HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler({EmployeeAlreadyActiveException.class, EmployeeAlreadyDeactiveException.class})
-    public ResponseEntity<?> employeeActiveDeactiveExceptionHandler(Exception exception) {
+    @ExceptionHandler({EmployeeAlreadyActiveException.class, EmployeeAlreadyDeactiveException.class, EmployeeAlreadyLockedException.class, EmployeeAlreadyNotLockedException.class})
+    public ResponseEntity<?> employeeActiveDeactiveLockNotlockExceptionHandler(Exception exception) {
         return genericHandler(exception.getMessage(), HttpStatus.BAD_REQUEST);
     }
 

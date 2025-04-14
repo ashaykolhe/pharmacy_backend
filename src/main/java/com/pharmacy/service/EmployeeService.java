@@ -3,10 +3,7 @@ package com.pharmacy.service;
 import com.pharmacy.constants.Constants;
 import com.pharmacy.dto.EmployeeDto;
 import com.pharmacy.dto.UpdateEmployeeDto;
-import com.pharmacy.exception.EmployeeAlreadyActiveException;
-import com.pharmacy.exception.EmployeeAlreadyDeactiveException;
-import com.pharmacy.exception.EmployeeNotFoundException;
-import com.pharmacy.exception.UserNameAlreadyExistsException;
+import com.pharmacy.exception.*;
 import com.pharmacy.mapper.EmployeeMapper;
 import com.pharmacy.model.Employee;
 import com.pharmacy.repository.EmployeeRepository;
@@ -121,8 +118,19 @@ public class EmployeeService implements IEmployeeService, UserDetailsService {
     }
 
     @Override
-    public void lockEmployee(Employee employee) {
-        employee.setAccountLocked(true);
-        employeeRepository.save(employee);
+    public void lockEmployee(Long employeeId, Boolean lock) {
+        log.debug("employee id " + employeeId + " lock " + lock);
+        employeeRepository.findById(employeeId).ifPresentOrElse(employee -> {
+            if (lock.equals(employee.getAccountLocked())) {
+                if (lock)
+                    throw new EmployeeAlreadyLockedException(Constants.EMPLOYEE.EMPLOYEE_ALREADY_LOCKED);
+                else
+                    throw new EmployeeAlreadyNotLockedException(Constants.EMPLOYEE.EMPLOYEE_ALREADY_NOT_LOCKED);
+            }
+            employee.setAccountLocked(lock);
+            employeeRepository.save(employee);
+        }, () -> {
+            throw new EmployeeNotFoundException(Constants.EMPLOYEE.EMPLOYEE_NOT_FOUND);
+        });
     }
 }

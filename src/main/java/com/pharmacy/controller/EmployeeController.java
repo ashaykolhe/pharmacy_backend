@@ -68,4 +68,9 @@ public class EmployeeController {
         return ResponseEntity.ok(iEmployeeService.findByUserName(userName));
     }
 
+    @PutMapping("/v1/lock/{employeeId}")
+    public ResponseEntity<String> setLocl(@PathVariable Long employeeId, @RequestParam Boolean lock) {
+        iEmployeeService.lockEmployee(employeeId, lock);
+        return ResponseEntity.ok(lock ? Constants.EMPLOYEE.EMPLOYEE_LOCKED : Constants.EMPLOYEE.EMPLOYEE_UNLOCKED);
+    }
 }

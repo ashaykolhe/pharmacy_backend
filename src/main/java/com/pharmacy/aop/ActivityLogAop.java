@@ -62,7 +62,7 @@ public class ActivityLogAop {
             countOfFailedLogin.put(username, integer + 1);
         }
         if(integer != null && integer >= 4) {
-            iEmployeeService.lockEmployee(employee);
+            iEmployeeService.lockEmployee(employee.getId(), true);
             countOfFailedLogin.remove(username);
         }
     }

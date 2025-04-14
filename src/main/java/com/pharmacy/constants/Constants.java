@@ -12,6 +12,10 @@ public interface Constants {
         String USERNAME_ALREADY_EXISTS = "username already exists";
         String EMPLOYEE_ALREADY_ACTIVE = "Employee already active";
         String EMPLOYEE_ALREADY_DEACTIVE = "Employee already deactive";
+        String EMPLOYEE_ALREADY_LOCKED = "Employee already locked";
+        String EMPLOYEE_ALREADY_NOT_LOCKED = "Employee already not locked";
+        String EMPLOYEE_LOCKED = "Employee locked";
+        String EMPLOYEE_UNLOCKED = "Employee unlocked";
     }
 
     static interface GENERAL {
