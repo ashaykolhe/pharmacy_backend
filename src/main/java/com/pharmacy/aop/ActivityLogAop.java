@@ -66,4 +66,10 @@ public class ActivityLogAop {
             countOfFailedLogin.remove(username);
         }
     }
+
+    @AfterReturning(pointcut = "execution(* com.pharmacy.controller.AuthController.login(..))", returning = "retValue")
+    public void clearLockEmployee(JoinPoint joinPoint, Object retValue) {
+        String username = ((AuthRequestDTO)joinPoint.getArgs()[0]).getUsername();
+        countOfFailedLogin.remove(username);
+    }
 }
