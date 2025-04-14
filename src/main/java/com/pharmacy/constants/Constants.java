@@ -15,7 +15,7 @@ public interface Constants {
     }
 
     static interface GENERAL {
-        String BAD_CREDENTIALS = "Username or password is wrong.";
+        String BAD_CREDENTIALS = "Password is wrong.";
         String ACCESS_DENIED = "Access denied.";
     }
 

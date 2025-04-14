@@ -24,6 +24,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -109,12 +110,8 @@ public class EmployeeService implements IEmployeeService, UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<Employee> employee = employeeRepository.findByUserName(username);
-        if (employee.isEmpty()) {
-            log.error("Employee not found: " + username);
-            throw new BadCredentialsException(Constants.GENERAL.BAD_CREDENTIALS);
-        }
-        return new CustomEmployeeDetails(employee.get());
+        Employee employee = findByUserName(username);
+        return new CustomEmployeeDetails(employee);
     }
 
 //    @PreAuthorize("hasAuthority('" + Constants.ROLE.GOD + "_" + Constants.PERMISSION.EMPLOYEE.ADD_EMPLOYEE + "') OR hasAuthority('" + Constants.ROLE.ADMIN + "_" + Constants.PERMISSION.EMPLOYEE.ADD_EMPLOYEE + "') OR hasAuthority('" + Constants.ROLE.MANAGER + "_" + Constants.PERMISSION.EMPLOYEE.ADD_EMPLOYEE + "')")
