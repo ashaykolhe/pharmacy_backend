@@ -7,6 +7,7 @@ import com.pharmacy.response.JwtResponseDTO;
 import com.pharmacy.service.EmployeeService;
 import com.pharmacy.service.JwtService;
 import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -21,6 +22,7 @@ import java.util.Objects;
 @AllArgsConstructor
 @RestController
 @RequestMapping("/login")
+@Log4j2
 public class AuthController {
 
     private final JwtService jwtService;
@@ -29,7 +31,8 @@ public class AuthController {
 
     @PostMapping
     public ResponseEntity<?> login(@RequestBody AuthRequestDTO authRequestDTO) {
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequestDTO.getUsername(), authRequestDTO.getPassword()));
+        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(authRequestDTO.getUsername(), authRequestDTO.getPassword());
+        Authentication authentication = authenticationManager.authenticate(usernamePasswordAuthenticationToken);
         if (authentication.isAuthenticated()) {
             Employee employee = employeeService.findByUserName(authRequestDTO.getUsername());
 
@@ -38,8 +41,9 @@ public class AuthController {
                         .accessToken(jwtService.GenerateToken(authRequestDTO.getUsername()))
                         .build(), HttpStatus.OK);
             }
+
         }
-        return new ResponseEntity<>(new ErrorDetails(LocalDateTime.now(), "Unable to login", null), HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(new ErrorDetails(LocalDateTime.now(), "Username or password is wrong.", null), HttpStatus.BAD_REQUEST);
     }
 
 //    @PostMapping("auth/v1/signup")

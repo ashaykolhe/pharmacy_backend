@@ -15,6 +15,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -101,13 +102,11 @@ public class EmployeeService implements IEmployeeService, UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        log.debug("Entering in loadUserByUsername Method...");
         Optional<Employee> employee = employeeRepository.findByUserName(username);
         if (employee.isEmpty()) {
             log.error("Employee not found: " + username);
-            throw new EmployeeNotFoundException(Constants.EMPLOYEE.EMPLOYEE_NOT_FOUND);
+            throw new BadCredentialsException(Constants.GENERAL.BAD_CREDENTIALS);
         }
-        log.info("User Authenticated Successfully..!!!");
         return new CustomEmployeeDetails(employee.get());
     }
 }

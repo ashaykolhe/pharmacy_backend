@@ -19,4 +19,8 @@ public interface Constants {
         String ADMIN_UPDATE_EMPLOYEE = "ADMIN_UPDATE_EMPLOYEE";
         String ADMIN_DELETE_EMPLOYEE = "ADMIN_DELETE_EMPLOYEE";
     }
+
+    static interface GENERAL {
+        String BAD_CREDENTIALS = "Username or password is wrong.";
+    }
 }
