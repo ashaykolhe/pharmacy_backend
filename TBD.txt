@@ -222,6 +222,84 @@ reminder button
 pause reminder
 fav products
 frequently ordered products list
+react debounce
+SECRET key from app.props from env variable
+jwt expiration in app.props
+
+chat between users
+
+kaggle medicine database
+https://www.kaggle.com/datasets/mohneesh7/indian-medicine-data?select=medicine_data.csv
+https://www.kaggle.com/datasets/shudhanshusingh/az-medicine-dataset-of-india
+https://github.com/junioralive/Indian-Medicine-Dataset
+https://www.kaggle.com/datasets/shudhanshusingh/250k-medicines-usage-side-effects-and-substitutes - Another table with this....for FYI
+https://softwares.cmsstores.com/download-medical-store-items/
+https://help.inventoryplus.in/
+
+https://www.baeldung.com/spring-data-jpa-batch-inserts
+
+Product name, batchno and expiry composite key - if existing the give option to update qty
+Database index annotations
+MySQL full text search
+https://stackoverflow.com/questions/57683004/how-to-implement-full-text-search-in-spring-boot-with-jpa-mysql
+
+Product + generic name in full text search
+
+*Stock table with expiry and batch number and product id as FK
+
+How to manage same product but multiple stock with diff expiry - Use Stock entity with expiry and qty with product fk
+Prod type - medicine or non medicine?
+Reminders on low qty and nearing expiry for selected or Freq ordered prods - admin settings
+If 2 diff expiry are required to be sold then enter qty for both prod separately but it should appear on invoice only once.
+
+
+Download CSV
+Load to db - check tooling repo for reading, writing CSV and mail
+Practice tanstack forms table query state on prod api
+
+discount logic
+	on selected products
+	if even 1 of the products are in order then discount coupon applicable
+	discount only applicable with coupon
+	coupons available with loyalty rewards
+	buy more to get more coupons when loyalty rewards are active
+	
+	send coupons on whatsapp or sms or email
+
+loyalty - only 1 active loyalty at one time - always check if active loyalty present
+			renew loyalty - increase enddate
+
+//NOT APPLICABLE
+TABLET
+quantity - packet = default 1, strip - default 1, tablets default 1, nonmedicine
+	if 1 tablet is there - then packet and strip will be 1
+	if tablet becomes 0 then strip and packet becomes 0
+	when new stock comes, add as per physical qty
+NOT APPLICABLE	
+	
+
+TABLET
+SACHET
+LIQUID
+CAPSULE
+INHALER
+PATCHES
+INJECTION
+CREAM
+LOTION
+DROPS
+OTHER
+		
+During returns
+bill is important or order id is important
+	add quantity back to stocked item
+	if item is out of stock, bring it back in stock
+	store the item in correct shelf
+
+when order
+	subtract quantity from in stock qty for that expiry and batch number
+
+
 ------------------------------------------------------------
 TODO
 
@@ -634,9 +712,6 @@ Product
 
 	Long id
 	String name
-	LocalDate manufactureDate
-	LocalDate expiryDate
-	String batchNumber
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "product_company_id", referencedColumnName = "id")	
 	ProductCompany productCompany
@@ -657,10 +732,25 @@ Product
 	Photo photo
 	String genericName
 	Shelf shelf
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "quantity_of_product_id", referencedColumnName = "id")
-	QuantityOfProduct quantityOfProduct
+	@OneToMany(mappedBy = "product")
+	List<Stock> stocks;
+	String description
 	
+
+Stock
+
+	Long id
+	@ManyToOne
+	@JoinColumn(name = "product_id", referencedColumnName = "id")
+	Product product
+	LocalDate expiry
+	String batchNumber
+	String manufactureDate
+	//@OneToOne(cascade = CascadeType.ALL)
+	//@JoinColumn(name = "quantity_of_product_id", referencedColumnName = "id")
+	//QuantityOfProduct quantityOfProduct
+	private Integer quantityl
+
 ProductCompany
 
 	Long id
@@ -679,7 +769,7 @@ Manufacturer
 	List<Product> products
 
 
-QuantityOfProduct
+QuantityOfProduct - not in use
 
 	Long id
 	Double numberOfPackets
@@ -1076,23 +1166,60 @@ https://drive.google.com/file/d/1GT-WAMY-VsOhW7kVBgZ-_XU5qwEvEGi9/view - nextjs 
 
 react
 nextjs
-react router
-react form
-reduxtoolkit
+react router - nextjs
+react form - tanstack form
+reduxtoolkit - tanstack store probably
 html5
 css3
 javascript
 typescript
 tailwind
-daisyui
+daisyui - shadcn
 axios
 heroicons svg
 google font
 shadcnui
-material-tailwind ui
+material-tailwind ui - no
 react native
 framer motion
 react scan - for performance issue
+tanstack
+	table
+	form
+	query
+	store
 
 dark mode toggle or themes - store themes in localstorage
-useDEcounce hook - react-use package
+useDebounce hook - react-use package
+
+tailwindcss animate and typography
+localfont
+
+@layer utilities {
+@apply uppercase
+}
+
+zod for form validation - https://zod.dev/
+react hook form - not using. using tanstack form
+npm install -D @hookform/devtools
+react table - tanstack - https://blog.logrocket.com/tanstack-table-formerly-react-table/
+
+npm i @tanstack/react-form
+npm i @tanstack/zod-form-adapter zod
+npm install zod
+npm install -D tailwindcss
+npx tailwindcss init
+npx shadcn-ui@latest init
+npx shadcn-ui@latest add button
+npx shadcn-ui@latest add card
+npx shadcn-ui@latest add input
+npx shadcn-ui@latest add textarea
+npm i country-state-city
+npm install react-phone-input-2
+
+@tailwind base
+@tailwind components
+@tailwind utilities
+
+fieldset
+legend

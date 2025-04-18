@@ -5,20 +5,25 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.time.LocalDate;
+
 @Getter
 @Setter
 @ToString
 @Entity
-public class LineItem {
+public class Stock {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private LocalDate manufactureDate;
+    private LocalDate expiryDate;
+    @Column(nullable = false, length = 50)
+    private String batchNumber;
     @ManyToOne
     @JoinColumn(name = "product_id", referencedColumnName = "id")
     private Product product;
-    @ManyToOne
-    @JoinColumn(name = "order_id", nullable = false)
-    private Orders orders;
     @Column(nullable = false)
     private Integer quantity;
+    @Column(nullable = false)
+    private Boolean inStock;
 }

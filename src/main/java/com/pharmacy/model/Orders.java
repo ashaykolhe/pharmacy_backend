@@ -38,13 +38,10 @@ public class Orders {//Receipt/Bill/Sale/Invoice
     private Customer customer;
     @Enumerated(EnumType.STRING)
     private PaymentMethod paymentMethod;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "quantity_of_product_id", referencedColumnName = "id", nullable = false)
-    private QuantityOfProduct quantityOfProduct;
     @OneToOne
     @JoinColumn(name = "offer_id", referencedColumnName = "id")
     private Offer offer;
-    private String comment;
+    private String comment;//notes
     @Enumerated(EnumType.STRING)
     private PaymentStatus paymentStatus;
     @Column(nullable = false, unique = true, length = 10)

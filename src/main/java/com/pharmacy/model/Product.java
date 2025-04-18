@@ -18,10 +18,6 @@ public class Product {
     private Long id;
     @Column(nullable = false, length = 50, unique = true)
     private String name;
-    private LocalDate manufactureDate;
-    private LocalDate expiryDate;
-    @Column(nullable = false, length = 50)
-    private String batchNumber;
     @OneToOne
     @JoinColumn(name = "product_company_id", referencedColumnName = "id")
     private ProductCompany productCompany;
@@ -32,12 +28,12 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "product_id", nullable = false)
     private ProductType productType;
-    @Column(nullable = false)
-    private Boolean inStock;
     @Column(nullable = false, length = 10)
     private Double tax;
-    @Column(nullable = false, length = 10)
+    @Column(length = 10)
     private Double profit;
+    @Column(nullable = false, length = 10)
+    private Double baseRate;
     @ManyToMany
     @JoinTable(name = "products_suppliers", joinColumns = @JoinColumn(name = "product_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "supplier_id", referencedColumnName = "id"))
     private List<Supplier> suppliers;
@@ -52,7 +48,6 @@ public class Product {
     @Column(nullable = false, length = 10)
     private String genericName;
     private Shelf shelf;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "quantity_of_product_id", referencedColumnName = "id", nullable = false)
-    private QuantityOfProduct quantityOfProduct;
+    @Column(length = 5000)
+    private String description;
 }

@@ -29,7 +29,6 @@ public class Purchase {
     @OneToOne
     @JoinColumn(name = "supplier_id", referencedColumnName = "id", nullable = false)
     private Supplier supplier; //Distributor/Vendor
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "quantity_of_product_id", referencedColumnName = "id", nullable = false)
-    private QuantityOfProduct quantityOfProduct;
+    @Column(nullable = false)
+    private Integer orderedQuantity;
 }
