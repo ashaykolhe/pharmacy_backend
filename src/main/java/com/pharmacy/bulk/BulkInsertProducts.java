@@ -42,7 +42,7 @@ public class BulkInsertProducts {
         Tax tax18 = new Tax();
         tax18.setName(ETax.GST);
         tax18.setValue(18.0);
-        Thread medicine2 = new Thread(new Medicine1(iTaxService.saveTax(tax18)));
+        Thread medicine2 = new Thread(new Medicine2(iTaxService.saveTax(tax18)));
         executorService.submit(medicine1);
         executorService.submit(medicine2);
         executorService.shutdown();
@@ -139,7 +139,7 @@ public class BulkInsertProducts {
         public void run() {
             System.out.println(LocalDateTime.now());
             Random rand = new Random();
-            String path = "C:\\pharmacy\\pharmacy_backend\\database\\medicine2.xlsx";
+            String path = "C:\\pharmacy\\pharmacy_backend\\database\\medicine3.xlsx";
 
             try (FileInputStream file = new FileInputStream(new File(path))) {
 
@@ -169,7 +169,8 @@ public class BulkInsertProducts {
                         product.setSideEffects(sideEffect != null ? sideEffect.getStringCellValue() : "");
                         product.setProductType(getProductType(productTypes.get(rand.nextInt(11))));
                         product.setSuppliers(getSuppliers(row.getCell(4).getStringCellValue()));
-                        double priceDouble = row.getCell(3).getNumericCellValue();
+                        Cell price = row.getCell(3);
+                        double priceDouble = price != null ? price.getNumericCellValue() : 100.0;
                         Stock stock1 = getStock1(rand, shelves, booleans, dosage, priceDouble, tax);
                         stock1.setProduct(product);
                         Stock stock2 = getStock2(rand, shelves, booleans, dosage, priceDouble, tax);
