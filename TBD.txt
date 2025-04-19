@@ -315,11 +315,18 @@ During returns
 bill is important or order id is important
 	add quantity back to stocked item
 	if item is out of stock, bring it back in stock
-	store the item in correct shelf
+	store the item in correct EShelf
 
 when order
 	subtract quantity from in stock qty for that expiry and batch number
 
+instock true and false should happen auto when qty goes to 0 or positive
+
+bulk insert/update - rows which cannot be inserted or updated should be stored in failed_13091988.xslx with exception comment column
+
+return order - search by order id, show all products of that order - return button with qty - add returned qty to stock table where batch and expiry date match
+
+check if lucene index is working
 
 ------------------------------------------------------------
 TODO
@@ -356,9 +363,9 @@ bulk delete supplier
 bulk insert manufacturer
 bulk update manufacturer
 bulk delete manufacturer
-bulk insert category
-bulk update category
-bulk delete category
+bulk insert ECategory
+bulk update ECategory
+bulk delete ECategory
 bulk insert coutier
 bulk update courier
 bulk delete courier
@@ -616,13 +623,13 @@ most sold medicines
 most sold meds revenue
 outofstock meds - 0 Red, 1 to 10 - orange. greater than 10 green
 product list
-product category list
+product ECategory list
 employee list
 supplier list
 manufacturer list
 product by supplier
 product by manufacturer
-product by category
+product by ECategory
 product by product type
 
 --------------------
@@ -752,7 +759,7 @@ Product
 	@JoinColumn(name = "photo_id", referencedColumnName = "id")	
 	Photo photo
 	String genericName
-	Shelf shelf
+	Shelf EShelf
 	@OneToMany(mappedBy = "product")
 	List<Stock> stocks;
 	String description

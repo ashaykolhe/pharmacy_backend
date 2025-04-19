@@ -18,8 +18,12 @@ public class Loyalty {
     @ManyToOne
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
+    @Column(nullable = false)
     private Integer loyaltyPoints;
+    @Column(nullable = false)
     private LocalDateTime loyaltyStartDate;
+    @Column(nullable = false)
     private LocalDateTime loyaltyEndDate;//validTill
+    @Column(nullable = false)
     private Boolean active;
 }

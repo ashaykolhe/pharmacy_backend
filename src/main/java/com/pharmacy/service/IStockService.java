@@ -5,7 +5,7 @@ import com.pharmacy.model.Stock;
 import java.util.List;
 
 public interface IStockService {
-    void saveStock(Stock stock);
+    Stock saveStock(Stock stock);
 
-    void saveStocks(List<Stock> stocks);
+    List<Stock> saveStocks(List<Stock> stocks);
 }

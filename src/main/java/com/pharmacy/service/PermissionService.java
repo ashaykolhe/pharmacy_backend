@@ -15,13 +15,13 @@ public class PermissionService implements IPermissionService {
     private final PermissionRepository permissionRepository;
 
     @Override
-    public void savePermission(Permission permission) {
+    public Permission savePermission(Permission permission) {
         log.debug("permission saved " + permission.getName());
-        permissionRepository.save(permission);
+        return permissionRepository.save(permission);
     }
 
     @Override
-    public void savePermissions(List<Permission> permissions) {
-        permissions.forEach(this::savePermission);
+    public List<Permission> savePermissions(List<Permission> permissions) {
+        return permissionRepository.saveAll(permissions);
     }
 }

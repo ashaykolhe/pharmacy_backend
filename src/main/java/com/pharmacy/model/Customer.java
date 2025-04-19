@@ -24,7 +24,7 @@ public class Customer {
             inverseJoinColumns = @JoinColumn(
                     name = "order_id", referencedColumnName = "id"))
     private List<Orders> orders;
-    @OneToMany(mappedBy = "customer")
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Loyalty> loyaltyDetails;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "contact_detail_id", referencedColumnName = "id", nullable = false)

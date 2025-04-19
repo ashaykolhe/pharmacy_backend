@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.util.List;
+import java.util.Objects;
 
 @Getter
 @Setter
@@ -20,9 +21,9 @@ public class Manufacturer {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
-    @Column(nullable = false, length = 30, unique = true)
+    @Column(nullable = false, length = 50, unique = true)
     private String licenseNumber;
-    @Column(nullable = false, length = 20, unique = true)
+    @Column(nullable = false, length = 50, unique = true)
     private String gstin;
     @OneToMany(mappedBy = "manufacturer")
     private List<Product> products;

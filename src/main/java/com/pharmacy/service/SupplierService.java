@@ -17,14 +17,14 @@ public class SupplierService implements ISupplierService {
     private final SupplierRepository supplierRepository;
 
     @Override
-    public void saveSupplier(Supplier supplier) {
+    public Supplier saveSupplier(Supplier supplier) {
         log.debug("supplier saved " + supplier.getName());
-        supplierRepository.save(supplier);
+        return supplierRepository.save(supplier);
     }
 
     @Override
-    public void saveSuppliers(List<Supplier> suppliers) {
-        suppliers.forEach(this::saveSupplier);
+    public List<Supplier> saveSuppliers(List<Supplier> suppliers) {
+        return supplierRepository.saveAll(suppliers);
     }
 
     @Override

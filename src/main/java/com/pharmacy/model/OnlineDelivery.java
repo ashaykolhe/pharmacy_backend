@@ -26,7 +26,7 @@ public class OnlineDelivery {
     @JoinColumn(name = "address_id", referencedColumnName = "id", nullable = false)
     private Address address;
     @Enumerated(EnumType.STRING)
-    private ShippingStatus shippingStatus;
+    private EShippingStatus shippingStatus;
     @OneToOne
     @JoinColumn(name = "order_id", referencedColumnName = "id", nullable = false)
     private Orders orders;

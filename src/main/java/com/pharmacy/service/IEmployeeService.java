@@ -20,6 +20,6 @@ public interface IEmployeeService {
 
     Employee findByUserName(String userName);
 
-    void save(Employee employee);
+    Employee save(Employee employee);
     void lockEmployee(Long employeeId, Boolean lock);
 }

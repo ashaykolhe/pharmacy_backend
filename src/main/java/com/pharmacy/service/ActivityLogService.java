@@ -13,8 +13,8 @@ public class ActivityLogService implements IActivityLogService {
     private final ActivityLogRepository activityLogRepository;
 
     @Override
-    public void save(ActivityLog activityLog) {
+    public ActivityLog save(ActivityLog activityLog) {
         log.debug("activity log " + activityLog.getEmployee().getUserName() + " " + activityLog.getPermission());
-        activityLogRepository.save(activityLog);
+        return activityLogRepository.save(activityLog);
     }
 }

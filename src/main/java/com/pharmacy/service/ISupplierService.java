@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ISupplierService {
-    void saveSupplier(Supplier supplier);
+    Supplier saveSupplier(Supplier supplier);
 
-    void saveSuppliers(List<Supplier> suppliers);
+    List<Supplier> saveSuppliers(List<Supplier> suppliers);
 
     Optional<Supplier> findByName(String name);
 }

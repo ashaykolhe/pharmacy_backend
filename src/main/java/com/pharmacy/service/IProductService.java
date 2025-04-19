@@ -5,7 +5,7 @@ import com.pharmacy.model.Product;
 import java.util.List;
 
 public interface IProductService {
-    void saveProduct(Product product);
+    Product saveProduct(Product product);
 
-    void saveProducts(List<Product> products);
+    List<Product> saveProducts(List<Product> products);
 }

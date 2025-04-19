@@ -37,7 +37,7 @@ public class Orders {//Receipt/Bill/Sale/Invoice
     @JoinColumn(name = "customer_id", referencedColumnName = "id", nullable = false)
     private Customer customer;
     @Enumerated(EnumType.STRING)
-    private PaymentMethod paymentMethod;
+    private EPaymentMethod paymentMethod;
     @OneToOne
     @JoinColumn(name = "offer_id", referencedColumnName = "id")
     private Offer offer;

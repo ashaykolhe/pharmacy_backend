@@ -5,7 +5,7 @@ import com.pharmacy.model.Permission;
 import java.util.List;
 
 public interface IPermissionService {
-    void savePermission(Permission permission);
+    Permission savePermission(Permission permission);
 
-    void savePermissions(List<Permission> permissions);
+    List<Permission> savePermissions(List<Permission> permissions);
 }

@@ -5,7 +5,7 @@ import com.pharmacy.model.ProductType;
 import java.util.List;
 
 public interface IProductTypeService {
-    void saveProductType(ProductType product);
+    ProductType saveProductType(ProductType product);
 
-    void saveProductTypes(List<ProductType> products);
+    List<ProductType> saveProductTypes(List<ProductType> products);
 }

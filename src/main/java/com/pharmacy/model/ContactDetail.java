@@ -17,7 +17,7 @@ public class ContactDetail {
     @Column(nullable = false, length = 50)
     private String name;
     @Column(nullable = false, length = 5)
-    private Integer mobileCountryCode;
+    private String mobileCountryCode;
     @Column(nullable = false, length = 10)
     private String mobile1;
     @Column(length = 10)

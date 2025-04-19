@@ -17,14 +17,14 @@ public class ManufacturerService implements IManufacturerService {
     private final ManufacturerRepository manufacturerRepository;
 
     @Override
-    public void saveManufacturer(Manufacturer manufacturer) {
+    public Manufacturer saveManufacturer(Manufacturer manufacturer) {
         log.debug("manufacturer saved " + manufacturer.getName());
-        manufacturerRepository.save(manufacturer);
+        return manufacturerRepository.save(manufacturer);
     }
 
     @Override
-    public void saveManufacturers(List<Manufacturer> manufacturers) {
-        manufacturers.forEach(this::saveManufacturer);
+    public List<Manufacturer> saveManufacturers(List<Manufacturer> manufacturers) {
+        return manufacturerRepository.saveAll(manufacturers);
     }
 
     @Override

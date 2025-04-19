@@ -61,7 +61,9 @@ public class Employee {//Users
                     name = "role_id", referencedColumnName = "id"))
     private List<Role> roles;
     private String pharmacyLicenceNumber;
+    @Column(nullable = false)
     private Boolean active;
+    @Column(nullable = false)
     private Boolean accountLocked;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "contact_detail_id", referencedColumnName = "id", nullable = false)

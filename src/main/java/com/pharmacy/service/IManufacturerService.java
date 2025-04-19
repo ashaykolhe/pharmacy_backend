@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IManufacturerService {
-    void saveManufacturer(Manufacturer manufacturer);
+    Manufacturer saveManufacturer(Manufacturer manufacturer);
 
-    void saveManufacturers(List<Manufacturer> manufacturers);
+    List<Manufacturer> saveManufacturers(List<Manufacturer> manufacturers);
     Optional<Manufacturer> findByName(String name);
 }

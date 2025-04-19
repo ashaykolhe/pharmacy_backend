@@ -15,13 +15,13 @@ public class ProductTypeService implements IProductTypeService {
     private final ProductTypeRepository productTypeRepository;
 
     @Override
-    public void saveProductType(ProductType productType) {
+    public ProductType saveProductType(ProductType productType) {
         log.debug("productType saved " + productType.getName());
-        productTypeRepository.save(productType);
+        return productTypeRepository.save(productType);
     }
 
     @Override
-    public void saveProductTypes(List<ProductType> productTypes) {
-        productTypes.forEach(this::saveProductType);
+    public List<ProductType> saveProductTypes(List<ProductType> productTypes) {
+        return productTypeRepository.saveAll(productTypes);
     }
 }

@@ -15,13 +15,13 @@ public class RoleService implements IRoleService {
     private final RoleRepository roleRepository;
 
     @Override
-    public void saveRole(Role role) {
+    public Role saveRole(Role role) {
         log.debug("role saved " + role.getName());
-        roleRepository.save(role);
+        return roleRepository.save(role);
     }
 
     @Override
-    public void saveRoles(List<Role> roles) {
-        roles.forEach(this::saveRole);
+    public List<Role> saveRoles(List<Role> roles) {
+        return roleRepository.saveAll(roles);
     }
 }

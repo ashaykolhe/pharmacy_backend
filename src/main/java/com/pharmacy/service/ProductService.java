@@ -17,14 +17,14 @@ public class ProductService implements IProductService {
     private final ProductRepository productRepository;
 
     @Override
-    public void saveProduct(Product product) {
+    public Product saveProduct(Product product) {
         log.debug("product saved " + product.getName());
-        productRepository.save(product);
+        return productRepository.save(product);
     }
 
     @Override
-    public void saveProducts(List<Product> products) {
-        products.forEach(this::saveProduct);
+    public List<Product> saveProducts(List<Product> products) {
+        return productRepository.saveAll(products);
     }
 
     @Transactional(readOnly = true)
