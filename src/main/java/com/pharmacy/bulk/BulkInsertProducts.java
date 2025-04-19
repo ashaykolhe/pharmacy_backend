@@ -15,9 +15,7 @@ import java.io.FileInputStream;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.*;
 
 @Service
 @AllArgsConstructor
@@ -34,26 +32,37 @@ public class BulkInsertProducts {
     private Map<String, ProductType> productTypeMap = new ConcurrentHashMap<>();
 
     public void insert() {
+        List<Product> products = new ArrayList<>();
         ExecutorService executorService = Executors.newFixedThreadPool(8);
         Tax tax12 = new Tax();
         tax12.setName(ETax.GST);
         tax12.setValue(12.0);
-        Thread medicine1 = new Thread(new Medicine1(iTaxService.saveTax(tax12)));
+//        Thread medicine1 = new Thread(new Medicine1(iTaxService.saveTax(tax12), products));
         Tax tax18 = new Tax();
         tax18.setName(ETax.GST);
         tax18.setValue(18.0);
-        Thread medicine2 = new Thread(new Medicine2(iTaxService.saveTax(tax18)));
-        executorService.submit(medicine1);
-        executorService.submit(medicine2);
+//        Thread medicine2 = new Thread(new Medicine2(iTaxService.saveTax(tax18), products));
+        Future<Boolean> submit = executorService.submit(new Medicine1(iTaxService.saveTax(tax12), products));
+        Future<Boolean> submit1 = executorService.submit(new Medicine2(iTaxService.saveTax(tax18), products));
+        try {
+            if (submit.get().booleanValue() && submit1.get().booleanValue()) {
+                System.out.println("both done. saving " + LocalDateTime.now());
+                iProductService.saveProducts(products);
+                System.out.println("both done. saved " + LocalDateTime.now() + " " + products.size());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         executorService.shutdown();
     }
 
     @AllArgsConstructor
-    class Medicine1 implements Runnable {
+    class Medicine1 implements Callable<Boolean> {
         private Tax tax;
+        List<Product> products;
 
         @Override
-        public void run() {
+        public Boolean call() throws Exception {
             System.out.println(LocalDateTime.now());
             Random rand = new Random();
             String path = "C:\\pharmacy\\pharmacy_backend\\database\\medicine1.xlsx";
@@ -72,7 +81,6 @@ public class BulkInsertProducts {
 
                 Workbook workbook = new XSSFWorkbook(file);
                 Sheet sheet = workbook.getSheetAt(0);
-                List<Product> products = new ArrayList<>();
                 for (Row row : sheet) {
                     if (row.getRowNum() != 0) {
                         Product product = new Product();
@@ -96,16 +104,16 @@ public class BulkInsertProducts {
                         stock1.setProduct(product);
                         Stock stock2 = getStock2(rand, shelves, booleans, dosage, priceDouble, tax);
                         stock2.setProduct(product);
+                        product.setStocks(List.of(stock1, stock2));
                         products.add(product);
                     }
                 }
-
-                iProductService.saveProducts(products);
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
-                System.out.println(LocalDateTime.now());
+                System.out.println(LocalDateTime.now() + " 1");
             }
+            return true;
         }
     }
 
@@ -132,11 +140,12 @@ public class BulkInsertProducts {
     }
 
     @AllArgsConstructor
-    class Medicine2 implements Runnable {
+    class Medicine2 implements Callable<Boolean> {
         private Tax tax;
+        List<Product> products;
 
         @Override
-        public void run() {
+        public Boolean call() throws Exception {
             System.out.println(LocalDateTime.now());
             Random rand = new Random();
             String path = "C:\\pharmacy\\pharmacy_backend\\database\\medicine3.xlsx";
@@ -155,7 +164,6 @@ public class BulkInsertProducts {
 
                 Workbook workbook = new XSSFWorkbook(file);
                 Sheet sheet = workbook.getSheetAt(0);
-                List<Product> products = new ArrayList<>();
                 for (Row row : sheet) {
                     if (row.getRowNum() != 0) {
                         Product product = new Product();
@@ -175,17 +183,18 @@ public class BulkInsertProducts {
                         stock1.setProduct(product);
                         Stock stock2 = getStock2(rand, shelves, booleans, dosage, priceDouble, tax);
                         stock2.setProduct(product);
+                        product.setStocks(List.of(stock1, stock2));
                         products.add(product);
                     }
                 }
-
-                iProductService.saveProducts(products);
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
-                System.out.println(LocalDateTime.now());
+                System.out.println(LocalDateTime.now() + " 2");
             }
+            return true;
         }
+
     }
 
     private Stock getStock2(Random rand, List<EShelf> shelves, List<Boolean> booleans, List<String> dosage, double priceDouble, Tax tax) {
@@ -224,7 +233,7 @@ public class BulkInsertProducts {
         return stock1;
     }
 
-    private List<Supplier> getSuppliers(String supplierName) {
+    private synchronized List<Supplier> getSuppliers(String supplierName) {
         Supplier supplier = null;
         if (supplierMap.containsKey(supplierName)) {
             supplier = supplierMap.get(supplierName);
@@ -258,7 +267,7 @@ public class BulkInsertProducts {
         return productType;
     }
 
-    private Manufacturer getManufacturer(String manufacturerName) {
+    private synchronized Manufacturer getManufacturer(String manufacturerName) {
         Manufacturer manufacturer = null;
 
         if (manufacturerMap.containsKey(manufacturerName)) {
