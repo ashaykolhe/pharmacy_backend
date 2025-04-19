@@ -5,5 +5,6 @@ public enum PaymentMethod {
     UPI,
     NETBANKING,
     DEBITCARD,
-    CREDITCARD
+    CREDITCARD,
+    CHEQUE
 }

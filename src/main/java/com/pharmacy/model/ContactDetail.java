@@ -14,6 +14,8 @@ public class ContactDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(nullable = false, length = 50)
+    private String name;
     @Column(nullable = false, length = 5)
     private Integer mobileCountryCode;
     @Column(nullable = false, length = 10)

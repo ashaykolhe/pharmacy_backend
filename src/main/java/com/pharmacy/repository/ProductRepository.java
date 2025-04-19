@@ -1,7 +1,8 @@
 package com.pharmacy.repository;
 
 import com.pharmacy.model.Product;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface ProductRepository extends JpaRepository<Product, Long> {
+@Repository
+public interface ProductRepository extends BaseRepository<Product, Long> {
 }

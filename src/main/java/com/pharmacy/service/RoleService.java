@@ -22,9 +22,6 @@ public class RoleService implements IRoleService {
 
     @Override
     public void saveRoles(List<Role> roles) {
-        for (Role role : roles) {
-            log.debug("role saved " + role.getName());
-            roleRepository.save(role);
-        }
+        roles.forEach(this::saveRole);
     }
 }

@@ -1,6 +1,5 @@
 package com.pharmacy.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,6 +24,9 @@ public class Manufacturer {
     private String licenseNumber;
     @Column(nullable = false, length = 20, unique = true)
     private String gstin;
-    @ManyToMany(mappedBy = "manufacturers")
+    @OneToMany(mappedBy = "manufacturer")
     private List<Product> products;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "contact_detail_id", referencedColumnName = "id", nullable = false)
+    private ContactDetail contactDetail;
 }

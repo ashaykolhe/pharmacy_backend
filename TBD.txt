@@ -83,6 +83,7 @@ https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-c
 https://drive.google.com/file/d/11Vhh3FBjttTdUsdtQhb7ZrkHbwaMoA1L/view
 
 
+
 @Query
 @NamedQuery
 
@@ -242,8 +243,28 @@ Product name, batchno and expiry composite key - if existing the give option to 
 Database index annotations
 MySQL full text search
 https://stackoverflow.com/questions/57683004/how-to-implement-full-text-search-in-spring-boot-with-jpa-mysql
+https://www.codejava.net/frameworks/spring-boot/full-text-search-with-mysql#google_vignette
 
 Product + generic name in full text search
+
+@Column(columnDefinition = "FULLTEXT KEY title_content_index (title, content)")
+        private String fulltextIndex;
+		
+@Query(value = "SELECT * FROM Station s WHERE MATCH(s.slogan, s.description) AGAINST(?1 IN BOOLEAN MODE) ORDER BY ?#{#pageable}",
+        countQuery = "SELECT * FROM Station s WHERE MATCH(s.slogan, s.description) AGAINST(?1 IN BOOLEAN MODE)",
+        nativeQuery = true)
+Page<Station> fullTextSearch(String searchText, Pageable pageable);
+
+https://medium.com/indonesian-developer/full-text-search-in-mysql-0cb66cf5e6da
+
+https://stackoverflow.com/questions/78023879/hibernate-search-with-spring-boot-3 - indexing older data
+https://howtodoinjava.com/hibernate/hibernate-search-with-lucene-and-spring-boot/
+https://www.baeldung.com/hibernate-search
+https://github.com/lokeshgupta1981/Hibernate/tree/master/spring-boot-hibernate-search-lucene
+
+https://stackoverflow.com/questions/1281952/what-is-the-easiest-way-to-ignore-a-jpa-field-during-persistence
+
+//TODO sortBy will be sortGenericName or sortName
 
 *Stock table with expiry and batch number and product id as FK
 

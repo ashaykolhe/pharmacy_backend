@@ -26,7 +26,7 @@ public class Address {
     @Column(nullable = false, length = 20)
     private String country;
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "contact_detail_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "contact_detail_id", referencedColumnName = "id")
     private ContactDetail contactDetail;
     private Boolean isDefault;
 }

@@ -18,6 +18,7 @@ public class ProductType {
     private Long id;
     @Column(nullable = false, length = 20, unique = true)
     private String name;
+    @ToString.Exclude
     @OneToMany(mappedBy = "productType")
     private List<Product> product;
 }
