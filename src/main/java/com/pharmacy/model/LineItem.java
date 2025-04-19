@@ -14,7 +14,7 @@ public class LineItem {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @ManyToOne
-    @JoinColumn(name = "stock_id", referencedColumnName = "id")
+    @JoinColumn(name = "stock_id", referencedColumnName = "id", nullable = false)
     private Stock stock;
     @ManyToOne
     @JoinColumn(name = "order_id", nullable = false)

@@ -34,7 +34,7 @@ public class Employee {//Users
     @Column(nullable = false, length = 100)
     private String password;
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "payroll_id", referencedColumnName = "id")
+    @JoinColumn(name = "payroll_id", referencedColumnName = "id", nullable = false)
     private Payroll payroll;
     @Column(nullable = false)
     private LocalDate dateOfBirth;

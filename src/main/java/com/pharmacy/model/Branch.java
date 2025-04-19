@@ -16,10 +16,14 @@ public class Branch { //Franchise
     @Column(nullable = false, length = 50)
     private String name;
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
     @Column(nullable = false, length = 20, unique = true)
     private String gstin;
     private Boolean isHeadQuarters;
     private String licenseNumber;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "contact_detail_id", referencedColumnName = "id")
+    private ContactDetail contactDetail;
+
 }

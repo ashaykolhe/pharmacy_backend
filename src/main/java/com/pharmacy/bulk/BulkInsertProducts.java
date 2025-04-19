@@ -96,7 +96,6 @@ public class BulkInsertProducts {
                         stock1.setProduct(product);
                         Stock stock2 = getStock2(rand, shelves, booleans, dosage, priceDouble, tax);
                         stock2.setProduct(product);
-                        product.setStocks(List.of(stock1, stock2));
                         products.add(product);
                     }
                 }
@@ -163,7 +162,6 @@ public class BulkInsertProducts {
                         product.setName(row.getCell(1).getStringCellValue());
                         product.setManufacturer(getManufacturer(row.getCell(4).getStringCellValue()));
                         Cell gen = row.getCell(2);
-                        String gen1Name = gen != null ? gen.getStringCellValue() : "";
                         product.setGenericName(gen != null ? gen.getStringCellValue() : "");
                         Cell desc = row.getCell(5);
                         product.setDescription(desc != null ? desc.getStringCellValue() : "");
@@ -176,9 +174,6 @@ public class BulkInsertProducts {
                         stock1.setProduct(product);
                         Stock stock2 = getStock2(rand, shelves, booleans, dosage, priceDouble, tax);
                         stock2.setProduct(product);
-                        product.setStocks(List.of(stock1, stock2));
-
-                        product.setStocks(List.of(stock1, stock2));
                         products.add(product);
                     }
                 }

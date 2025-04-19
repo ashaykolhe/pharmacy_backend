@@ -32,7 +32,7 @@ public class Stock {
     @Column(nullable = false, length = 200)
     private String dosage;
     @ManyToOne
-    @JoinColumn(name = "tax_id", referencedColumnName = "id")
+    @JoinColumn(name = "tax_id", referencedColumnName = "id", nullable = false)
     private Tax tax;
     @Column(nullable = false, length = 10)
     private Double purchaseRate;
