@@ -1,0 +1,1253 @@
+TECH STACK
+
+log4j - https://projectlombok.org/features/log, https://logging.apache.org/log4j/1.x/manual.html
+swagger
+spring cloud
+jwt
+spring security - roles and permissions in DB
+junit
+mockito
+springboot
+data jpa
+docker
+netlify
+aws or gcp
+jasper report - https://www.baeldung.com/spring-jasper
+spring aop
+sql, hql, criteria, jpql
+docker
+figma
+websocket
+
+
+https://stackoverflow.com/questions/27726066/jwt-refresh-token-flow
+https://www.baeldung.com/entity-to-and-from-dto-for-a-java-spring-application
+google guava
+Try.of
+
+https://github.com/john-smilga/react-course-v3/tree/main/05-axios-tutorial
+https://developer.okta.com/blog/2022/06/17/simple-crud-react-and-spring-boot
+https://www.taniarascia.com/crud-app-in-react-with-hooks/
+https://docs.emmet.io/cheat-sheet/
+https://www.geeksforgeeks.org/difference-between-put-and-patch-request/
+https://react-typescript-cheatsheet.netlify.app/docs/basic/getting-started/hooks/
+https://mui.com/material-ui/getting-started/supported-components/
+https://web.dev/learn/css/box-model
+https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#input_types
+https://react-redux.js.org/api/hooks
+https://master-spring-ter.medium.com/simplifying-file-uploads-in-spring-boot-with-multipartfile-eb8bbef68dfe
+https://www.geeksforgeeks.org/spring-security-role-based-and-permission-based-access-control/
+https://riteshpanigrahi.com/series/spring-security
+https://riteshpanigrahi.com/spring-security-role-based-authentication
+https://riteshpanigrahi.com/understanding-roles-and-authorities-and-how-to-create-them-using-enums
+https://riteshpanigrahi.com/what-is-basic-auth-and-how-to-secure-apis-using-it
+https://riteshpanigrahi.com/getting-started-with-spring-security
+https://www.baeldung.com/spring-data-derived-queries
+https://www.baeldung.com/spring-rest-openapi-documentation
+https://stackoverflow.com/questions/2109476/how-to-handle-dataintegrityviolationexception-in-spring
+https://medium.com/@jovannypcg/understanding-springs-controlleradvice-cd96a364033f
+https://medium.com/@tericcabrel/validate-request-body-and-parameter-in-spring-boot-53ca77f97fe9
+https://stackoverflow.com/questions/69105565/handling-the-javax-validation-constraintviolationexception-in-spring-boot 
+https://stackoverflow.com/questions/2751603/how-to-get-error-text-in-controller-from-bindingresult
+http://stackoverflow.com/questions/19261807/getting-bindingresults-to-show-me-the-field-associated-with-an-error
+https://stackoverflow.com/questions/34913675/how-to-iterate-keys-values-in-javascript
+https://stackoverflow.com/questions/7111134/how-to-get-the-constraint-name-in-a-org-springframework-dao-dataintegrityviolati
+https://developers.google.com/workspace/gmail/api/guides/sending
+https://stackoverflow.com/questions/55579240/spring-data-find-by-property-of-a-nested-object
+https://www.geeksforgeeks.org/spring-mvc-validation/
+https://www.highlight.io/blog/4-best-logging-libraries-for-java
+https://www.baeldung.com/hibernate-inheritance
+https://www.baeldung.com/sql-logging-spring-boot
+https://github.com/bezkoder/react-jwt-auth?tab=readme-ov-file
+https://docs.spring.io/spring-boot/reference/features/logging.html#features.logging.custom-log-configuration - log4j properties
+Hibernate
+https://www.baeldung.com/jpa-one-to-one
+https://www.baeldung.com/jpa-hibernate-associations
+https://www.baeldung.com/jpa-embedded-embeddable
+https://www.baeldung.com/jpa-persisting-enums-in-jpa
+https://www.baeldung.com/hibernate-one-to-many
+https://www.baeldung.com/jpa-many-to-many
+https://www.baeldung.com/hibernate-many-to-many
+
+https://docs.spring.io/spring-data/jpa/reference/jpa/query-methods.html
+https://www.baeldung.com/spring-data-derived-queries
+
+https://drive.google.com/drive/folders/1nct4ATqgDDpo8s_wTh-V4i3IsXBQ3MnM - authservice code
+https://drive.google.com/drive/folders/1pMrp6c6IXcupg3DNQYWau9F7tHUiEFNl - PubSub
+https://drive.google.com/drive/folders/1tKun6KN_4alQfu3Vp60cvdMPXPrqkU8X - landing page
+https://drive.google.com/file/d/13mUxuNwqGKTLm0orAia-94OdqUHMhmiq/view - kafka doc
+
+https://github.com/singhdevhub-lovepreet/authservice/tree/add/kafkaProducer
+https://github.com/singhdevhub-lovepreet/userservice
+https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-22-04
+https://drive.google.com/file/d/11Vhh3FBjttTdUsdtQhb7ZrkHbwaMoA1L/view
+
+
+
+@Query
+@NamedQuery
+
+https://ginger-uranium-8af.notion.site/EP01-Auth-Service-9ff640aee5cb435ebd22be61b5fb1aae - AUTH SERVICE
+https://www.baeldung.com/spring-security-block-brute-force-authentication-attempts
+https://stackoverflow.com/questions/3299800/spring-security-spring-doesnt-check-on-isaccountnonlocked-for-userdetails-on
+
+https://manishankarjaiswal.medium.com/installing-and-running-apache-kafka-on-windows-a-step-by-step-guide-part-1-7e957942e841
+https://hub.docker.com/r/apache/kafka
+
+
+---------------------------------------------------------------------------------------------------------------------------------
+TODO
+
+bulk CUD products
+bulk CUD suppliers
+pagination
+carousel
+reminder toasters/sms/email/whatsapp - product about to be expired, low quantity products - show supplier details, 
+reports - export as excel, pdf
+export all tables as excel - useful if want to modify some values in bulk
+reports - bar chart, pie chart, line chart - toggle for various charts
+shortcuts
+logo - create online
+*spring AOP for history tables
+upload images - date + order or purchase id - direct functionality on mobile app. on desktop, upload separately - size constraint
+purchase order status - ordered, delivered + delivery date
+override equals and hashcode with appropriate attributes
+upload documents - size constraint
+*validations - size, nonnull, min, max, range, etc
+payment gateway for online delivery
+notifications
+filtered tables
+database index
+*lock employee account if wrong password for 5 times
+csrf
+corsorigin
+*master data - insert script - or code with batch insert like itasveer enums and builders
+*mapstruct for model to dto - https://mapstruct.org/ - https://www.baeldung.com/mapstruct
+*spring security with roles and permission - https://www.youtube.com/watch?v=pPU9eumD4sY&list=PLQTYNpk8jwk2ig7m44RilAvDxJbjiqAmV&index=6
+employee password reset
+employee birthday reminder
+*data rest
+*hashcode and equals for all hash based models
+*casecadetype in mappings
+*nullable in mappings
+*@Column
+*enum variables - https://www.baeldung.com/a-guide-to-java-enums
+composite keys?
+caching master data - hashmap on start
+hikari pooling
+*GlobalExceptionHandler
+@JsonIgnore https://www.javaguides.net/2019/04/jackson-jsonignore-jsonignoreproperties-and-jsonignoretype.html
+@JsonIgnoreProperties
+@Transient
+*swagger - https://www.youtube.com/watch?v=7QlvGBJ9Tng
+*Constant strings
+@Column
+https://www.baeldung.com/spring-data-partial-update
+scheduler based notifications - or event based?
+*jwt
+pricing engine
+offer engine
+loyalty engine
+notification scheduler
+username cannot be changed
+mapper update - not updating if null values sent - CHECK LATER
+https://commons.apache.org/proper/commons-lang/apidocs/org/apache/commons/lang3/RandomStringUtils.html
+https://www.baeldung.com/java-pdf-creation
+order pdf file path in app properties as environment variable - delete pdf older than 10 days automatically
+log file path as environment variable
+order number generation - system.milliseconds or randomstringutils or date+incrementby1
+offer only on selected products which has more profit margin
+n+1 problem - findAll api - @EntityGraph(attributePaths = "addresses") or left join fetch
+caching - redis? @Cacheable - products
+archive older orders, line items
+
+purchase pdf
+order pdf
+
+*findall pageable
+*@Valid in requestbody
+*hide password while fetching employee
+password constraints
+fetchtype eager
+GenerationType.UUID
+
+*ROLE_PERMISSION - eg ADMIN_ADD_EMPLOYEE
+
+
+*@Aspect
+
+*@AfterThrowing(execution(login()))
+*if login failed 5 times, block account - maintain counter - try parallel login
+
+ADMIN
+
+unlock account
+change password
+add/remove roles
+archive
+clear cache/refresh cache
+
+/api/v1
+versioning apis - https://medium.com/@vivekkadiyanits/rest-api-versioning-in-spring-boot-application-7e47f0cbd8f4
+postman environment variables - https://learning.postman.com/docs/sending-requests/variables/variables/
+
+delete all option only for GOD role
+*findbyusername returning multiple employees
+handle 401 in react - show dialog for 1 min with extend session, if timer expires, redirect to login
+god can change anyone's password
+*@PreAuthorize
+
+*check aop - update and delete
+*delete employe - delete activity first
+*wrong password unauthorised - return wrong password message
+*master data - role and permission
+remove requestmatchers
+*contact detail - duplicate key if id sent while updating - contact id should match with that user
+exclude god from findall, findbyusername and update
+2nd level cache
+*account lock
+*account disabled
+
+2 diff excel and api for inserting and updating. Updating myst have PK - update must happpen on existing exporter excel. Chooose products to update then export and then update excel then upload.
+
+inserting and updating - upload to temp table then give option to verify and modify on ui then insert into actual table
+
+tmp table - userid - only that user can see his inserted products and can modify and verify later. Once verified, table will be cleared for that userid. This will 
+mean 2 diff users can insert and verify parallely.
+
+merge duplicate products - choose which one to keep and if that product has FK in another table then update that fk after merging. What should be merged?
+
+env variables
+
+reminder button
+pause reminder
+fav products
+frequently ordered products list
+react debounce
+SECRET key from app.props from env variable
+jwt expiration in app.props
+
+chat between users
+
+kaggle medicine database
+https://www.kaggle.com/datasets/mohneesh7/indian-medicine-data?select=medicine_data.csv
+https://www.kaggle.com/datasets/shudhanshusingh/az-medicine-dataset-of-india
+https://github.com/junioralive/Indian-Medicine-Dataset
+https://www.kaggle.com/datasets/shudhanshusingh/250k-medicines-usage-side-effects-and-substitutes - Another table with this....for FYI
+https://softwares.cmsstores.com/download-medical-store-items/
+https://help.inventoryplus.in/
+
+https://www.baeldung.com/spring-data-jpa-batch-inserts
+
+Product name, batchno and expiry composite key - if existing the give option to update qty
+Database index annotations
+MySQL full text search
+https://stackoverflow.com/questions/57683004/how-to-implement-full-text-search-in-spring-boot-with-jpa-mysql
+https://www.codejava.net/frameworks/spring-boot/full-text-search-with-mysql#google_vignette
+
+Product + generic name in full text search
+
+@Column(columnDefinition = "FULLTEXT KEY title_content_index (title, content)")
+        private String fulltextIndex;
+		
+@Query(value = "SELECT * FROM Station s WHERE MATCH(s.slogan, s.description) AGAINST(?1 IN BOOLEAN MODE) ORDER BY ?#{#pageable}",
+        countQuery = "SELECT * FROM Station s WHERE MATCH(s.slogan, s.description) AGAINST(?1 IN BOOLEAN MODE)",
+        nativeQuery = true)
+Page<Station> fullTextSearch(String searchText, Pageable pageable);
+
+https://medium.com/indonesian-developer/full-text-search-in-mysql-0cb66cf5e6da
+
+https://stackoverflow.com/questions/78023879/hibernate-search-with-spring-boot-3 - indexing older data
+https://howtodoinjava.com/hibernate/hibernate-search-with-lucene-and-spring-boot/
+https://www.baeldung.com/hibernate-search
+https://github.com/lokeshgupta1981/Hibernate/tree/master/spring-boot-hibernate-search-lucene
+
+https://stackoverflow.com/questions/1281952/what-is-the-easiest-way-to-ignore-a-jpa-field-during-persistence
+
+//TODO sortBy will be sortGenericName or sortName
+
+*Stock table with expiry and batch number and product id as FK
+
+How to manage same product but multiple stock with diff expiry - Use Stock entity with expiry and qty with product fk
+Prod type - medicine or non medicine?
+Reminders on low qty and nearing expiry for selected or Freq ordered prods - admin settings
+If 2 diff expiry are required to be sold then enter qty for both prod separately but it should appear on invoice only once.
+
+
+Download CSV
+Load to db - check tooling repo for reading, writing CSV and mail
+Practice tanstack forms table query state on prod api
+
+discount logic
+	on selected products
+	if even 1 of the products are in order then discount coupon applicable
+	discount only applicable with coupon
+	coupons available with loyalty rewards
+	buy more to get more coupons when loyalty rewards are active
+	
+	send coupons on whatsapp or sms or email
+
+loyalty - only 1 active loyalty at one time - always check if active loyalty present
+			renew loyalty - increase enddate
+
+//NOT APPLICABLE
+TABLET
+quantity - packet = default 1, strip - default 1, tablets default 1, nonmedicine
+	if 1 tablet is there - then packet and strip will be 1
+	if tablet becomes 0 then strip and packet becomes 0
+	when new stock comes, add as per physical qty
+NOT APPLICABLE	
+	
+
+TABLET
+SACHET
+LIQUID
+CAPSULE
+INHALER
+PATCHES
+INJECTION
+CREAM
+LOTION
+DROPS
+OTHER
+		
+During returns
+bill is important or order id is important
+	add quantity back to stocked item
+	if item is out of stock, bring it back in stock
+	store the item in correct EShelf
+
+when order
+	subtract quantity from in stock qty for that expiry and batch number
+
+instock true and false should happen auto when qty goes to 0 or positive
+
+bulk insert/update - rows which cannot be inserted or updated should be stored in failed_13091988.xslx with exception comment column
+
+return order - search by order id, show all products of that order - return button with qty - add returned qty to stock table where batch and expiry date match
+
+check if lucene index is working
+
+------------------------------------------------------------
+TODO
+
+*add employee
+*update employee
+*delete employee
+*delete all employees
+*find all employee - pageable and sortable
+find employee by firstname - invalid
+find employee by lastname - invalid
+find employee by first and last name - invalid
+find employee by phone number
+*find employee by username
+find employee by email
+find employee by pharmacylicensenumber
+find active employees
+find employees whose account is locked
+find employee by joining date range
+fine employee by resignation date range
+*activate employee
+*deactivate employee
+*lock employee
+*lock employee account on 5 password unsuccessful attempt
+update/change password
+
+bulk insert employees
+bulk update employees
+bulk delete employees
+export employees/products/suppliers/manufacturers as excel or pdf
+bulk insert supplier
+bulk update supplier
+bulk delete supplier
+bulk insert manufacturer
+bulk update manufacturer
+bulk delete manufacturer
+bulk insert ECategory
+bulk update ECategory
+bulk delete ECategory
+bulk insert coutier
+bulk update courier
+bulk delete courier
+bulk insert product
+bulk update product
+bulk delete product
+
+add product
+update product
+delete product
+delete all products
+find all products
+find product by name
+find product by expiredate range
+find product by batchnumber
+find product by product company
+find product by product type
+find product by suppliers
+find product by generic name
+
+add activity log
+delete activity log
+delete all activity log
+find activity log by employee
+find activity log by createdTimestamp range
+find activity log by permission
+find all
+
+add address
+update address
+delete address
+delete all addresses
+find address by phone number
+find address by email
+find all
+
+add branch
+update branch
+delete branch
+delete all branches
+find branch by name
+find branch by phone number
+find branch by email
+find all
+
+add contact detail
+update contact detail
+delete contact detail
+find contact detail by mobile1/mobile2
+find contact detail by email
+find all
+
+add coupon
+delete coupon
+delete all coupons
+find coupon by validtill range
+find coupon by isValid
+find coupon by numberOfUses
+find coupon by name
+find coupon by offer name
+find coupon by offer id
+find all
+
+add courier
+update courier
+delete courier
+delete all courier
+find courier by name
+find courier by mobile
+find all
+
+add customer
+update customer
+delete customer
+delete all customers
+find customer by order id
+find customer by loyalty
+find customer by mobile
+find customer by email
+find all
+
+add document
+update document
+delete document
+delete all documents
+find document by filename
+find document by displayName
+find document by type
+find all
+
+add homedelivery
+update homedelivery
+delete homedelivery
+find all homedelivery orders
+find homedelievery by payment status
+find homedelivery by address
+find all
+
+add lineitem
+update lineitem
+delete lineitem
+find lineitem by product
+find lineitem by orders
+find all
+
+add loyalty
+update loyalty
+delete loyalty
+find loyalty by customer
+find loyalty by loyaltypoints
+find loyalty between start and end date
+find active loyalty
+find all
+
+add manufacture
+update manufacture
+delete manufacture
+delete all manufacture
+find manufacture by contact number
+find manufacture by contact email
+find manufacture by license number
+find manufacture by product
+find all
+
+add offer
+update offer
+delete offer
+delete all offers
+find offer by offername
+find offer by product
+find offer by coupon
+find all
+
+add onlinedelivery
+update onlinedelivery
+delete onlinedelivery
+delete all onlinedelivery
+find onlinedelivery by courier
+find onlinedelivery by tracking id
+find onlinedelivery by contact number
+find onlinedelivery by contact email
+find onlinedelivery by shipping status
+find onlinedelivery by order
+find onlinedelivery by payment status
+find all
+
+add order
+update order
+delete order
+delete all orders
+find order by employee
+find orders between createdtimestamp
+find order by lineitem
+find order by paydatetime
+find order by customer
+find order by payment method
+find order by offer
+find order by payment status
+find all
+
+add payroll
+update payroll
+delete payroll
+delete all payroll
+find payroll by joining date
+find payroll by resignation date
+find payroll by employee
+find all
+
+add permission
+update permission
+delete permission
+delete all permission
+find permission by role
+find all
+
+add photo
+update photo
+delete photo
+delete all photo
+find photo by displayname
+find photo by filename
+find all
+
+add product company
+update product company
+delete product company
+delete all product company
+find product company by name
+find all
+
+add producttype
+update producttype
+delete producttype
+delete all producttype
+find producttype by name
+find producttype by product
+find all
+
+add purchase
+update purchase
+delete purchase
+delete all purchase
+find purchase by product
+find purchase by purchasedate range
+find purchase by supplier
+find all
+
+add quantityofproduct
+update quantityofproduct
+delete quantityofproduct
+delete all quantityofproduct
+find all
+
+add return
+update return
+delete return
+find returns by order
+find return by product
+find all
+
+add role
+update role
+delete role
+delete all role
+find role by permission
+find all
+
+add supplier
+update supplier
+delete supplier
+delete all supplier
+find supplier by firstName
+find supplier by mobile
+find supplier by email
+find active suppliers
+find supplier by product
+find all
+
+add notification
+delete notification
+delete all notification
+find notification by createdTimestamp
+find all
+
+
+reports
+
+sales - day, week, month, year, all - date range
+profit - day, week, month, year, all - date range
+expired products
+purchase orders
+loyal customers
+most sold medicines
+most sold meds revenue
+outofstock meds - 0 Red, 1 to 10 - orange. greater than 10 green
+product list
+product ECategory list
+employee list
+supplier list
+manufacturer list
+product by supplier
+product by manufacturer
+product by ECategory
+product by product type
+
+--------------------
+IN PROGRESS
+---------------------
+DONE
+----------------------
+TESTED
+--------------------
+----------------------------------------------------------------------------------------------------------------------------------
+MODELS
+
+Branch/Franchise
+
+	Long id
+	String name
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "address_id", referencedColumnName = "id")
+	Address address
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "primary_contact_detail_id", referencedColumnName = "id")
+	ContactDetail primaryContactDetail
+	String gstin
+	Boolean isHeadQuarters
+
+
+Backup
+
+	Long id
+	LocalDateTime createdTimestamp
+	String name
+
+
+
+Employee/Users
+
+	Long id
+	String firstName
+	String middleName
+	String lastName
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "primary_contact_detail_id", referencedColumnName = "id")
+	ContactDetail primaryContactDetail
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "address_id", referencedColumnName = "id")
+	Address address
+	String password
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "payroll_id", referencedColumnName = "id")	
+	Payroll payroll
+	LocalDate dateOfBirth
+	LocalDateTime createdTimestamp
+	LocalDateTime modifiedTimestamp
+	String userName
+	@Enumerated(EnumType.STRING)
+	PersonalDocument document
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "photo_id", referencedColumnName = "id")	
+	Photo photo
+	@ManyToMany 
+    @JoinTable( 
+        name = "users_roles", 
+        joinColumns = @JoinColumn(
+          name = "user_id", referencedColumnName = "id"), 
+        inverseJoinColumns = @JoinColumn(
+          name = "role_id", referencedColumnName = "id")) 
+    List<Role> roles;
+	String PharmacyLicenceNumber
+	Boolean Active
+	Boolean isAccountLocked
+
+Photo
+
+	Long id
+	String fileName
+	String displayName
+	//path should come from properties
+	String dimension
+	String size
+
+
+
+Document
+
+	Long id
+	String fineName
+	String displayName
+	@Enumerated(EnumType.STRING)
+	Type type
+	String size
+
+
+Type - ENUM
+
+	Excel
+	Pdf
+	Csv
+	Text
+
+PersonalDocument - ENUM
+
+	PAN
+	AADHAR
+	DRIVING_LICENSE
+
+
+Product
+
+	Long id
+	String name
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "product_company_id", referencedColumnName = "id")	
+	ProductCompany productCompany
+	Double purchaseRate
+	Double saleRate/mrp/sellingPrice/cost
+	@ManyToOne
+    @JoinColumn(name="product_id", nullable=false)
+	ProductType productType
+	Boolean inStock
+	Double tax
+	Double profit
+	@ManyToMany	@JoinTable(name="products_suppliers",joinColumns=@JoinColumn(name="product_id",referencedColumnName="id"),inverseJoinColumns=@JoinColumn(name="supplier_id",referencedColumnName="id"))
+	List<Supplier> suppliers
+	@ManyToMany	@JoinTable(name="products_manufacturers",joinColumns=@JoinColumn(name="product_id",referencedColumnName="id",inverseJoinColumns=@JoinColumn(name="manufacturer_id",referencedColumnName="id")))
+	List<Manufacturer> manufacturers
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "photo_id", referencedColumnName = "id")	
+	Photo photo
+	String genericName
+	Shelf EShelf
+	@OneToMany(mappedBy = "product")
+	List<Stock> stocks;
+	String description
+	
+
+Stock
+
+	Long id
+	@ManyToOne
+	@JoinColumn(name = "product_id", referencedColumnName = "id")
+	Product product
+	LocalDate expiry
+	String batchNumber
+	String manufactureDate
+	//@OneToOne(cascade = CascadeType.ALL)
+	//@JoinColumn(name = "quantity_of_product_id", referencedColumnName = "id")
+	//QuantityOfProduct quantityOfProduct
+	private Integer quantityl
+
+ProductCompany
+
+	Long id
+	String name
+
+
+Manufacturer
+
+	Long id
+	String name
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "address_id", referencedColumnName = "id")	
+	Address address
+	String licenseNumber
+	@ManyToMany(mappedBy="manufacturers")
+	List<Product> products
+
+
+QuantityOfProduct - not in use
+
+	Long id
+	Double numberOfPackets
+	Double numberOfStrips
+	Double quantityPerStrip
+	Double quantityOfNonMedicine
+
+
+ProductType/Category
+
+	Long id
+	String name
+	@OneToMany(mappedBy="productType")
+	List<Product> product
+
+
+Category - ENUM
+
+	sachet, liquid, tablet, capsule, inhaler, patches, injection, cream, lotion, drops other
+
+
+Shelf - ENUM
+
+	String shelfName - A to Z, AA to ZZ, AAA to ZZZ
+
+
+Order/Receipt/Bill/Sale/Invoice
+
+	Long id
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "employee_id", referencedColumnName = "id")
+	Employee employee
+	LocalDateTime createdTimestamp
+	LocalDateTime modifiedTimestamp
+	Double total
+	@OneToMany(mappedBy="order")
+	List<LineItem> lineItems
+	double paidAmount
+	double remainingAmount
+	LocalDateTime payDateTime
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "customer_id", referencedColumnName = "id")		
+	Customer customer
+	@Enumerated(EnumType.STRING)
+	PaymentMethod paymentMethod
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "quantity_of_product_id", referencedColumnName = "id")		
+	QuantityOfProduct quantityOfProduct
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "offer_id", referencedColumnName = "id")		
+	Offer offer
+	String comment
+	@Enumerated(EnumType.STRING)
+	PaymentStatus paymentStatus
+
+
+LineItem
+
+	Long id
+	@OneToOne
+	@JoinColumn(name="product_id",referencedColumnName="id")
+	Product product
+	Double discount
+	@ManyToOne
+    @JoinColumn(name="order_id", nullable=false)
+	Order order
+
+
+
+Tax - ENUM
+
+	CGST
+	SGST
+	VAT
+	CESS
+	SURCHARGE
+	SALES
+
+
+PaymentStatus - ENUM
+
+	PAID
+	PENDING
+	PARTIALPAID
+
+
+Purchase
+
+	Long id
+	@ManyToMany 
+    @JoinTable( 
+        name = "purchase_products", 
+        joinColumns = @JoinColumn(
+          name = "purchase_id", referencedColumnName = "id"), 
+        inverseJoinColumns = @JoinColumn(
+          name = "product_id", referencedColumnName = "id"))
+	List<Product> products
+	LocalDateTime purchaseDate
+	@OneToOne(cascase)
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "supplier_id", referencedColumnName = "id")	
+	Supplier/Distributor/Vendor supplier
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "quantity_of_product_id", referencedColumnName = "id")	
+	QuantityOfProduct quantityOfProduct
+
+
+PaymentMethod - ENUM
+
+	Cash
+	Upi
+	NetBanking
+	DebitCard
+	CreditCard
+
+
+
+cashier - CRU
+manager - CRU
+admin - CRUD
+pharmacist - CRU
+helper - CRU
+god - clear cache, delete all
+
+Roles - https://www.baeldung.com/role-and-privilege-for-spring-security-registration
+https://www.baeldung.com/spring-security-method-security
+
+	Long id
+	String name	
+	@ManyToMany(mappedBy = "roles")
+    private List<Employee> employees;
+	@ManyToMany
+    @JoinTable(
+        name = "roles_permissions", 
+        joinColumns = @JoinColumn(
+          name = "role_id", referencedColumnName = "id"), 
+        inverseJoinColumns = @JoinColumn(
+          name = "permission_id", referencedColumnName = "id"))
+    private Collection<Permission> permissions;
+
+
+ADD_EMPLOYEE
+UPDATE_EMPLOYEE
+DELETE_EMPLOYEE
+ADD_SUPPLIER
+UPDATE_SUPPLIER
+DELETE_SUPPLIER
+ADD_PRODUCT
+UPDATE_PRODUCT
+DELETE_PRODUCT
+ADD_OFFER
+UPDATE_OFFER
+DELETE_OFFER
+CUD supplier
+CUD employee
+CUD product
+CUD offer
+
+Permission/Privilege
+
+	Long id
+	String name
+	@ManyToMany(mappedBy = "permissions")
+	List<Role> roles;
+
+
+Customer
+
+	Long id
+	@ManyToMany 
+    @JoinTable( 
+        name = "customers_orders", 
+        joinColumns = @JoinColumn(
+          name = "customer_id", referencedColumnName = "id"), 
+        inverseJoinColumns = @JoinColumn(
+          name = "order_id", referencedColumnName = "id"))
+	List<Order> orders
+	@OneToMany(mappedBy="customer")
+	List<Loyalty> loyaltyDetails
+	@OneToOne
+	@JoinColumn(name="contact_detail_id",referencedColumnName="id")
+	ContactDetail contactDetail
+	String patientName
+	String doctorName
+
+
+Loyalty
+
+	Long id
+	@ManyToOne
+    @JoinColumn(name="customer_id", nullable=false)
+	Customer customer
+	Integer loyaltyPoints
+	LocalDateTime loyaltyStartDate
+	LocalDateTime loyaltyEndDate/validTill
+	Boolean active
+
+
+Offer
+
+	Long id
+	String offerName
+	@ManyToMany 
+    @JoinTable( 
+        name = "offers_products", 
+        joinColumns = @JoinColumn(
+          name = "offer_id", referencedColumnName = "id"), 
+        inverseJoinColumns = @JoinColumn(
+          name = "product_id", referencedColumnName = "id"))	
+	List<Product> products
+	String discount
+	@OneToMany(mappedBy="offer")
+	List<Coupon> coupons
+
+
+Coupon
+
+	Long id
+	LocalDateTime validTill
+	Integer numberOfUses
+	Boolean isValid
+	@ManyToOne
+	@JoinColumn(name="offer_id")
+	Offer offer
+
+
+Supplier/Distributor/Vendor
+
+	Long id;
+	String firstName
+	String middleName
+	String lastName
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="primary_contact_detail_id", referencedColumnName="id")
+	ContactDetail primaryContactDetail
+	@OneToOne
+	@JoinColumn(name="address_id",referencedColumnName="id")
+	Address address
+	Boolean active
+	@ManyToMany(mappedBy="suppliers")
+	List<Product> products
+
+
+ContactDetail
+
+	Long id
+	String mobile1
+	String mobile2
+	String email
+	Boolean isMobile1Whatsapp
+	Boolean isMobile2Whatsapp
+	String telephone
+
+
+Address
+
+	Long id
+	String line1
+	String line2
+	String pincode
+	String city
+	String state
+	String country
+	@OneToOne
+	@JoinColumn(name="contact_detail_id",referencedColumnName="id")
+	ContactDetail contactDetail
+	Boolean isDefault
+
+
+Accounting
+
+Balances
+
+
+Audit
+
+various reports as per govt law
+
+
+Payroll
+
+	Long id
+	Double salary
+	LocalDate joiningDate
+	LocalDate resignationDate
+	@OneToOne(mappedBy="payroll")
+	Employee employee
+
+OnlineDelivery - dicounted rate, offers, loyalty points
+
+	Double packagingCost/deliveryCharges
+	@OneToOne
+	@JoinColumn(name="courier_id",referencedColumnName="id")
+	Courier courier
+	String trackingId
+	Double courierCost
+	Double totalCost
+	@OneToOne
+	@JoinColumn(name="address_id",referencedColumnName="id")
+	Address address
+	@Enumerated(EnumType.STRING)
+	ShippingStatus shippingStatus
+	@OneToOne
+	@JoinColumn(name="order_id",referencedColumnName="id")
+	Order order
+	String prescription - upload photo
+	@Enumerated(EnumType.STRING)
+	PaymentStatus paymentStatus - no cod
+
+
+ShippingStatus - ENUM
+
+	Ordered
+	Packed
+	Intransit
+	Delievered
+	Cancelled
+
+
+Courier
+
+	Long id
+	String name
+	String mobile
+
+
+HomeDelivery
+
+	Charges as per porter
+	@OneToOne
+	@JoinColumn(name="order_id",referencedColumnName="id")
+	Order order
+	@Enumerated(EnumType.STRING)
+	PaymentStatus paymentStatus - no COD
+	@OneToOne
+	@JoinColumn(name="address_id",referencedColumnName="id")
+	Address address
+
+
+Returns - logic to update inventory - physical or online cancelled return
+
+	Long id
+	@OneToOne
+	@JoinColumn(name="order_id",referencedColumnName="id")
+	Order order	@ManyToMany(name="returns_products",joinColumns=@JoinColumn(name="return_id",referencedColumnName="id",inverseJoinColumns(name="product_id",referencedColumnName=""id")))
+	List<Product> products
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "quantity_of_product_id", referencedColumnName = "id")
+	QuantityOfProduct quantityOfProduct
+
+History/ActivityLog //AOP
+
+	Long id
+	@OneToOne
+	@JoinColumn(name="employee_id",referencedColumnName="id")
+	Employee employee
+	LocalDateTime createdTimestamp
+	@OneToOne
+	@JoinColumn(name="permission_id",referencedColumnName="id")
+	Permission permission
+
+
+Cart - for online delivery
+
+
+Notification
+
+	Long id
+	String title
+	LocalDateTime createdTimestamp
+
+-------------------------------------------------------------------------------------------------------------------------------
+BUSINESS LOGIC
+
+
+
+
+
+
+
+
+
+
+
+UI
+
+https://www.youtube.com/watch?v=6biMWgD6_JY - tailwindcss
+https://www.creative-tim.com/
+https://drive.google.com/file/d/1NqPmjZ1LHsJEQOo0e-o2GFWiRgK16l4w/view - tailwind css guide
+https://www.youtube.com/watch?v=aSlK3GhRuXA - tailwind tips
+https://jsmastery.pro/learning-paths/7002ef0d-2762-4c02-afc6-f299cbc20fbd/5681afb9-afab-471b-82ab-eed5f99ef6a1
+https://drive.google.com/file/d/1GT-WAMY-VsOhW7kVBgZ-_XU5qwEvEGi9/view - nextjs guide
+
+
+react
+nextjs
+react router - nextjs
+react form - tanstack form
+reduxtoolkit - tanstack store probably
+html5
+css3
+javascript
+typescript
+tailwind
+daisyui - shadcn
+axios
+heroicons svg
+google font
+shadcnui
+material-tailwind ui - no
+react native
+framer motion
+react scan - for performance issue
+tanstack
+	table
+	form
+	query
+	store
+
+dark mode toggle or themes - store themes in localstorage
+useDebounce hook - react-use package
+
+tailwindcss animate and typography
+localfont
+
+@layer utilities {
+@apply uppercase
+}
+
+zod for form validation - https://zod.dev/
+react hook form - not using. using tanstack form
+npm install -D @hookform/devtools
+react table - tanstack - https://blog.logrocket.com/tanstack-table-formerly-react-table/
+
+npm i @tanstack/react-form
+npm i @tanstack/zod-form-adapter zod
+npm install zod
+npm install -D tailwindcss
+npx tailwindcss init
+npx shadcn-ui@latest init
+npx shadcn-ui@latest add button
+npx shadcn-ui@latest add card
+npx shadcn-ui@latest add input
+npx shadcn-ui@latest add textarea
+npm i country-state-city
+npm install react-phone-input-2
+
+@tailwind base
+@tailwind components
+@tailwind utilities
+
+fieldset
+legend
