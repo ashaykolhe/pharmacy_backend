@@ -13,10 +13,17 @@ public class Branch { //Franchise
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(nullable = false, length = 50)
     private String name;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
+    @Column(nullable = false, length = 20, unique = true)
     private String gstin;
     private Boolean isHeadQuarters;
+    private String licenseNumber;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "contact_detail_id", referencedColumnName = "id")
+    private ContactDetail contactDetail;
+
 }

@@ -1,9 +1,9 @@
 package com.pharmacy.model;
 
-public enum ShippingStatus {
+public enum EShippingStatus {
     ORDERED,
     PACKED,
-    INTRANSIT,
-    DELIEVERED,
+    IN_TRANSIT,
+    DELIVERED,
     CANCELLED
 }

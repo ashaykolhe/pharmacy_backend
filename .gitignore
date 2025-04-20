@@ -61,3 +61,5 @@ mvnw.cmd
 mvnw
 maven-wrapper.properties
 .gitattributes
+
+*.gz

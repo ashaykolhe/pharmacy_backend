@@ -19,12 +19,13 @@ public class Orders {//Receipt/Bill/Sale/Invoice
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @OneToOne
-    @JoinColumn(name = "employee_id", referencedColumnName = "id")
+    @JoinColumn(name = "employee_id", referencedColumnName = "id", nullable = false)
     private Employee employee;
     @CreationTimestamp
     private LocalDateTime createdTimestamp;
     @UpdateTimestamp
     private LocalDateTime modifiedTimestamp;
+    @Column(nullable = false, length = 10)
     private Double total;
     @OneToMany(mappedBy = "orders", cascade = CascadeType.ALL)
     private List<LineItem> lineItems;
@@ -33,17 +34,16 @@ public class Orders {//Receipt/Bill/Sale/Invoice
     @CreationTimestamp
     private LocalDateTime payDateTime;
     @OneToOne
-    @JoinColumn(name = "customer_id", referencedColumnName = "id")
+    @JoinColumn(name = "customer_id", referencedColumnName = "id", nullable = false)
     private Customer customer;
     @Enumerated(EnumType.STRING)
-    private PaymentMethod paymentMethod;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "quantity_of_product_id", referencedColumnName = "id")
-    private QuantityOfProduct quantityOfProduct;
+    private EPaymentMethod paymentMethod;
     @OneToOne
     @JoinColumn(name = "offer_id", referencedColumnName = "id")
     private Offer offer;
-    private String comment;
+    private String comment;//notes
     @Enumerated(EnumType.STRING)
     private PaymentStatus paymentStatus;
+    @Column(nullable = false, unique = true, length = 10)
+    private String orderNumber;
 }

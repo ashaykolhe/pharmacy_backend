@@ -1,12 +1,12 @@
 package com.pharmacy.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 import java.util.List;
+import java.util.Objects;
 
 @Getter
 @Setter
@@ -16,13 +16,20 @@ public class Supplier {//Distributor/Vendor
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String firstName;
-    private String middleName;
-    private String lastName;
+    @Column(nullable = false, length = 50, unique = true)
+    private String name;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
+    @Column(nullable = false)
     private Boolean active;
     @ManyToMany(mappedBy = "suppliers")
     private List<Product> products;
+    @Column(nullable = false, length = 50, unique = true)
+    private String gstin;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "contact_detail_id", referencedColumnName = "id", nullable = false)
+    private ContactDetail contactDetail;
+    @Column(nullable = false, length = 50, unique = true)
+    private String licenseNumber;
 }

@@ -16,12 +16,10 @@ public class Returns {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @OneToOne
-    @JoinColumn(name = "order_id", referencedColumnName = "id")
+    @JoinColumn(name = "order_id", referencedColumnName = "id", nullable = false)
     private Orders orders;
     @ManyToMany
     @JoinTable(name = "returns_products", joinColumns = @JoinColumn(name = "return_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "product_id", referencedColumnName = "id"))
     private List<Product> products;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "quantity_of_product_id", referencedColumnName = "id")
-    private QuantityOfProduct quantityOfProduct;
+    private Integer quantity;
 }

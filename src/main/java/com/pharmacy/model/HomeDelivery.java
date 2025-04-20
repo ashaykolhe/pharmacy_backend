@@ -15,11 +15,11 @@ public class HomeDelivery {
     private Long id;
 //    Charges as per porter
     @OneToOne
-    @JoinColumn(name = "order_id", referencedColumnName = "id")
+    @JoinColumn(name = "order_id", referencedColumnName = "id", nullable = false)
     private Orders orders;
     @Enumerated(EnumType.STRING)
     private PaymentStatus paymentStatus;// - no COD
     @OneToOne
-    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    @JoinColumn(name = "address_id", referencedColumnName = "id", nullable = false)
     private Address address;
 }
