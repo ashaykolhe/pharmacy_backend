@@ -328,6 +328,11 @@ return order - search by order id, show all products of that order - return butt
 
 check if lucene index is working
 
+https://spring.io/guides/gs/uploading-files
+
+test jwt expiration on ui - if 401, delete jwt token from local storage and redirect to login
+
+
 ------------------------------------------------------------
 TODO
 
@@ -1251,3 +1256,5 @@ npm install react-phone-input-2
 
 fieldset
 legend
+
+how to hide link on UI?

@@ -16,7 +16,6 @@ import org.aspectj.lang.annotation.Aspect;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -40,10 +39,12 @@ public class ActivityLogAop {
             String username = jwtService.extractUsername(token);
             try {
                 Employee employee = iEmployeeService.findByUserName(username);
-                ActivityLog activityLog = new ActivityLog();
-                activityLog.setEmployee(employee);
-                activityLog.setPermission(((ResponseEntity<?>) returnValue).getBody().toString());
-                iActivityLogService.save(activityLog);
+                if (employee != null) {
+                    ActivityLog activityLog = new ActivityLog();
+                    activityLog.setEmployee(employee);
+                    activityLog.setPermission(((ResponseEntity<?>) returnValue).getBody().toString());
+                    iActivityLogService.save(activityLog);
+                }
             } catch (Exception exception) {
                 log.error("Cannot insert activity log. " + exception.getMessage());
             }
@@ -53,23 +54,25 @@ public class ActivityLogAop {
 
     @AfterThrowing(pointcut = "execution(* com.pharmacy.controller.AuthController.login(..))")
     public void lockEmployee(JoinPoint joinPoint) {
-        String username = ((AuthRequestDTO)joinPoint.getArgs()[0]).getUsername();
+        String username = ((AuthRequestDTO) joinPoint.getArgs()[0]).getUsername();
         Integer integer = countOfFailedLogin.get(username);
         Employee employee = iEmployeeService.findByUserName(username);
-        if (integer == null) {
-            countOfFailedLogin.put(username, 1);
-        } else {
-            countOfFailedLogin.put(username, integer + 1);
-        }
-        if(integer != null && integer >= 4) {
-            iEmployeeService.lockEmployee(employee.getId(), true);
-            countOfFailedLogin.remove(username);
+        if (employee != null) {
+            if (integer == null) {
+                countOfFailedLogin.put(username, 1);
+            } else {
+                countOfFailedLogin.put(username, integer + 1);
+            }
+            if (integer != null && integer >= 4) {
+                iEmployeeService.lockEmployee(employee.getId(), true);
+                countOfFailedLogin.remove(username);
+            }
         }
     }
 
     @AfterReturning(pointcut = "execution(* com.pharmacy.controller.AuthController.login(..))", returning = "retValue")
     public void clearLockEmployee(JoinPoint joinPoint, Object retValue) {
-        String username = ((AuthRequestDTO)joinPoint.getArgs()[0]).getUsername();
+        String username = ((AuthRequestDTO) joinPoint.getArgs()[0]).getUsername();
         countOfFailedLogin.remove(username);
     }
 }

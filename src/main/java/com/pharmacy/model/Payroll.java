@@ -2,9 +2,7 @@ package com.pharmacy.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.time.LocalDate;
 
@@ -12,6 +10,9 @@ import java.time.LocalDate;
 @Setter
 @ToString
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Payroll {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,6 +22,7 @@ public class Payroll {
     @Column(nullable = false)
     private LocalDate joiningDate;
     private LocalDate resignationDate;
+    @JsonIgnore
     @OneToOne(mappedBy = "payroll")
     private Employee employee;
 }

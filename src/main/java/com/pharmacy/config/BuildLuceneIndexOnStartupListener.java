@@ -28,12 +28,12 @@ public class BuildLuceneIndexOnStartupListener implements ApplicationListener<Ap
                 .batchSizeToLoadObjects(25)
                 .threadsToLoadObjects(4);
 
-        try {
-            massIndexer.startAndWait();
-        } catch (InterruptedException e) {
-            log.warn("Failed to load data from database");
-            Thread.currentThread().interrupt();
-        }
+//        try {
+//            massIndexer.startAndWait();
+//        } catch (InterruptedException e) {
+//            log.warn("Failed to load data from database");
+//            Thread.currentThread().interrupt();
+//        }
 
         log.info("Completed Indexing");
     }

@@ -4,6 +4,7 @@ import com.pharmacy.aop.NoActivityLog;
 import com.pharmacy.constants.Constants;
 import com.pharmacy.dto.EmployeeDto;
 import com.pharmacy.dto.UpdateEmployeeDto;
+import com.pharmacy.exception.EmployeeNotFoundException;
 import com.pharmacy.model.Employee;
 import com.pharmacy.service.IEmployeeService;
 import com.pharmacy.utils.Utils;
@@ -65,7 +66,11 @@ public class EmployeeController {
     @NoActivityLog
     @GetMapping("/v1/findByUserName/{userName}")
     public ResponseEntity<Employee> findByUserName(@PathVariable String userName) {
-        return ResponseEntity.ok(iEmployeeService.findByUserName(userName));
+        Employee employee = iEmployeeService.findByUserName(userName);
+        if (employee == null) {
+            throw new EmployeeNotFoundException(Constants.EMPLOYEE.EMPLOYEE_NOT_FOUND);
+        }
+        return ResponseEntity.ok(employee);
     }
 
     @PutMapping("/v1/lock/{employeeId}")

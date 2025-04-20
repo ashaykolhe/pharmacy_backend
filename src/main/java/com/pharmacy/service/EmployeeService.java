@@ -7,7 +7,6 @@ import com.pharmacy.exception.*;
 import com.pharmacy.mapper.EmployeeMapper;
 import com.pharmacy.model.Employee;
 import com.pharmacy.repository.EmployeeRepository;
-import jakarta.annotation.security.RolesAllowed;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
@@ -21,7 +20,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -100,18 +98,20 @@ public class EmployeeService implements IEmployeeService, UserDetailsService {
     @Override
     public Employee findByUserName(String userName) {
         log.debug("finding user name " + userName);
-        return employeeRepository.findByUserName(userName).orElseThrow(() -> {
-            throw new EmployeeNotFoundException(Constants.EMPLOYEE.EMPLOYEE_NOT_FOUND);
-        });
+        Optional<Employee> employee = employeeRepository.findByUserName(userName);
+        return employee.orElse(null);
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Employee employee = findByUserName(username);
-        return new CustomEmployeeDetails(employee);
+        if (employee != null) {
+            return new CustomEmployeeDetails(employee);
+        }
+        throw new BadCredentialsException(Constants.GENERAL.BAD_CREDENTIALS);
     }
 
-//    @PreAuthorize("hasAuthority('" + Constants.ROLE.GOD + "_" + Constants.PERMISSION.EMPLOYEE.ADD_EMPLOYEE + "') OR hasAuthority('" + Constants.ROLE.ADMIN + "_" + Constants.PERMISSION.EMPLOYEE.ADD_EMPLOYEE + "') OR hasAuthority('" + Constants.ROLE.MANAGER + "_" + Constants.PERMISSION.EMPLOYEE.ADD_EMPLOYEE + "')")
+    //    @PreAuthorize("hasAuthority('" + Constants.ROLE.GOD + "_" + Constants.PERMISSION.EMPLOYEE.ADD_EMPLOYEE + "') OR hasAuthority('" + Constants.ROLE.ADMIN + "_" + Constants.PERMISSION.EMPLOYEE.ADD_EMPLOYEE + "') OR hasAuthority('" + Constants.ROLE.MANAGER + "_" + Constants.PERMISSION.EMPLOYEE.ADD_EMPLOYEE + "')")
     @Override
     public Employee save(Employee employee) {
         return employeeRepository.save(employee);
