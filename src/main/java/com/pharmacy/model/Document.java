@@ -13,7 +13,9 @@ public class Document {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(nullable = false, length = 100, unique = true)
     private String fileName;
+    @Column(nullable = false, length = 100)
     private String displayName;
     @Enumerated(EnumType.STRING)
     private Type type;

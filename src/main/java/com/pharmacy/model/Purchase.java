@@ -24,11 +24,11 @@ public class Purchase {
             inverseJoinColumns = @JoinColumn(
                     name = "product_id", referencedColumnName = "id"))
     private List<Product> products;
+    @Column(nullable = false)
     private LocalDateTime purchaseDate;
     @OneToOne
-    @JoinColumn(name = "supplier_id", referencedColumnName = "id")
+    @JoinColumn(name = "supplier_id", referencedColumnName = "id", nullable = false)
     private Supplier supplier; //Distributor/Vendor
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "quantity_of_product_id", referencedColumnName = "id")
-    private QuantityOfProduct quantityOfProduct;
+    @Column(nullable = false)
+    private Integer orderedQuantity;
 }

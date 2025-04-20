@@ -7,6 +7,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.util.List;
+import java.util.Objects;
 
 @Getter
 @Setter
@@ -16,7 +17,9 @@ public class ProductType {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(nullable = false, length = 20, unique = true)
     private String name;
+    @ToString.Exclude
     @OneToMany(mappedBy = "productType")
     private List<Product> product;
 }

@@ -2,45 +2,135 @@ package com.pharmacy.service;
 
 import com.pharmacy.constants.Constants;
 import com.pharmacy.dto.EmployeeDto;
-import com.pharmacy.exception.EmployeeNotFoundException;
+import com.pharmacy.dto.UpdateEmployeeDto;
+import com.pharmacy.exception.*;
 import com.pharmacy.mapper.EmployeeMapper;
 import com.pharmacy.model.Employee;
 import com.pharmacy.repository.EmployeeRepository;
-import lombok.extern.slf4j.Slf4j;
+import jakarta.annotation.security.RolesAllowed;
+import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j2;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
-@Slf4j
-public class EmployeeService implements IEmployeeService {
+@Log4j2
+@AllArgsConstructor
+public class EmployeeService implements IEmployeeService, UserDetailsService {
     private final EmployeeRepository employeeRepository;
     private final EmployeeMapper employeeMapper;
-
-    public EmployeeService(EmployeeRepository employeeRepository, EmployeeMapper employeeMapper) {
-        this.employeeRepository = employeeRepository;
-        this.employeeMapper = employeeMapper;
-    }
+    private final PasswordEncoder passwordEncoder;
 
     @Override
-    public List<Employee> findAll() {
-        return employeeRepository.findAll();
+    public Page<Employee> findAll(Integer pageNumber, Integer numberOfElements, String sortDir, String sortBy) {
+        Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ?
+                Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
+        PageRequest pageRequest = PageRequest.of(pageNumber, numberOfElements, sort);
+        return employeeRepository.findAll(pageRequest);
     }
 
+    @PreAuthorize("hasAuthority('" + Constants.ROLE.GOD + "_" + Constants.PERMISSION.EMPLOYEE.ADD_EMPLOYEE + "') OR hasAuthority('" + Constants.ROLE.ADMIN + "_" + Constants.PERMISSION.EMPLOYEE.ADD_EMPLOYEE + "') OR hasAuthority('" + Constants.ROLE.MANAGER + "_" + Constants.PERMISSION.EMPLOYEE.ADD_EMPLOYEE + "')")
     @Override
     public void addEmployee(EmployeeDto employeeDto) {
-        Employee employee = employeeMapper.dtoToModel(employeeDto);
         log.debug("employee dto " + employeeDto);
-        log.debug("employee " + employee);
+        employeeRepository.findByUserName(employeeDto.getUserName()).ifPresent(user -> {
+            throw new UserNameAlreadyExistsException(user.getUserName() + " " + Constants.EMPLOYEE.USERNAME_ALREADY_EXISTS);
+        });
+        Employee employee = employeeMapper.dtoToModel(employeeDto);
+        employee.setPassword(passwordEncoder.encode(employeeDto.getPassword()));
         employeeRepository.save(employee);
     }
 
+    @PreAuthorize("hasAuthority('" + Constants.ROLE.GOD + "_" + Constants.PERMISSION.EMPLOYEE.UPDATE_EMPLOYEE + "') OR hasAuthority('" + Constants.ROLE.ADMIN + "_" + Constants.PERMISSION.EMPLOYEE.UPDATE_EMPLOYEE + "') OR hasAuthority('" + Constants.ROLE.MANAGER + "_" + Constants.PERMISSION.EMPLOYEE.UPDATE_EMPLOYEE + "')")
+    @Override
+    public void updateEmployee(UpdateEmployeeDto updateEmployeeDto) {
+        log.debug("update employeeDto " + updateEmployeeDto);
+//        employeeRepository.existsById(employeeDto.getId())
+        employeeRepository.findById(updateEmployeeDto.getId()).ifPresentOrElse(employee -> {
+            employeeMapper.updateEmployee(updateEmployeeDto, employee);
+            employeeRepository.save(employee);
+        }, () -> {
+            throw new EmployeeNotFoundException(Constants.EMPLOYEE.EMPLOYEE_NOT_FOUND);
+        });
+    }
+
+    @PreAuthorize("hasAuthority('" + Constants.ROLE.GOD + "_" + Constants.PERMISSION.EMPLOYEE.DELETE_EMPLOYEE + "') OR hasAuthority('" + Constants.ROLE.ADMIN + "_" + Constants.PERMISSION.EMPLOYEE.DELETE_EMPLOYEE + "') OR hasAuthority('" + Constants.ROLE.MANAGER + "_" + Constants.PERMISSION.EMPLOYEE.DELETE_EMPLOYEE + "')")
+    @Override
+    public void deleteEmployee(Long id) {
+        log.debug("delete " + id);
+        Optional<Employee> byId = employeeRepository.findById(id);
+        employeeRepository.delete(byId.orElseThrow(() -> new EmployeeNotFoundException(Constants.EMPLOYEE.EMPLOYEE_NOT_FOUND)));
+    }
+
+    @PreAuthorize("hasAuthority('" + Constants.ROLE.GOD + "_" + Constants.PERMISSION.EMPLOYEE.DELETE_EMPLOYEE + "')")
+    @Override
+    public void deleteAllEmployees() {
+        employeeRepository.deleteAll();
+    }
+
+    @PreAuthorize("hasAuthority('" + Constants.ROLE.GOD + "_" + Constants.PERMISSION.EMPLOYEE.ACTIVATE_DEACTIVATE_EMPLOYEE + "') OR hasAuthority('" + Constants.ROLE.ADMIN + "_" + Constants.PERMISSION.EMPLOYEE.ACTIVATE_DEACTIVATE_EMPLOYEE + "')")
     @Override
     public void setActiveEmployee(Long employeeId, Boolean active) {
         log.debug("employee id " + employeeId + " active " + active);
-        Optional<Employee> byId = employeeRepository.findById(employeeId);
-        byId.orElseThrow(() -> new EmployeeNotFoundException(Constants.EMPLOYEE_NOT_FOUND)).setActive(active);
-        employeeRepository.save(byId.get());
+        employeeRepository.findById(employeeId).ifPresentOrElse(employee -> {
+            if (active.equals(employee.getActive())) {
+                if (active)
+                    throw new EmployeeAlreadyActiveException(Constants.EMPLOYEE.EMPLOYEE_ALREADY_ACTIVE);
+                else
+                    throw new EmployeeAlreadyDeactiveException(Constants.EMPLOYEE.EMPLOYEE_ALREADY_DEACTIVE);
+            }
+            employee.setActive(active);
+            employeeRepository.save(employee);
+        }, () -> {
+            throw new EmployeeNotFoundException(Constants.EMPLOYEE.EMPLOYEE_NOT_FOUND);
+        });
+    }
+
+    @Override
+    public Employee findByUserName(String userName) {
+        log.debug("finding user name " + userName);
+        return employeeRepository.findByUserName(userName).orElseThrow(() -> {
+            throw new EmployeeNotFoundException(Constants.EMPLOYEE.EMPLOYEE_NOT_FOUND);
+        });
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Employee employee = findByUserName(username);
+        return new CustomEmployeeDetails(employee);
+    }
+
+//    @PreAuthorize("hasAuthority('" + Constants.ROLE.GOD + "_" + Constants.PERMISSION.EMPLOYEE.ADD_EMPLOYEE + "') OR hasAuthority('" + Constants.ROLE.ADMIN + "_" + Constants.PERMISSION.EMPLOYEE.ADD_EMPLOYEE + "') OR hasAuthority('" + Constants.ROLE.MANAGER + "_" + Constants.PERMISSION.EMPLOYEE.ADD_EMPLOYEE + "')")
+    @Override
+    public Employee save(Employee employee) {
+        return employeeRepository.save(employee);
+    }
+
+    @Override
+    public void lockEmployee(Long employeeId, Boolean lock) {
+        log.debug("employee id " + employeeId + " lock " + lock);
+        employeeRepository.findById(employeeId).ifPresentOrElse(employee -> {
+            if (lock.equals(employee.getAccountLocked())) {
+                if (lock)
+                    throw new EmployeeAlreadyLockedException(Constants.EMPLOYEE.EMPLOYEE_ALREADY_LOCKED);
+                else
+                    throw new EmployeeAlreadyNotLockedException(Constants.EMPLOYEE.EMPLOYEE_ALREADY_NOT_LOCKED);
+            }
+            employee.setAccountLocked(lock);
+            employeeRepository.save(employee);
+        }, () -> {
+            throw new EmployeeNotFoundException(Constants.EMPLOYEE.EMPLOYEE_NOT_FOUND);
+        });
     }
 }

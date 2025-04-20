@@ -1,9 +1,10 @@
 package com.pharmacy.model;
 
-public enum PaymentMethod {
+public enum EPaymentMethod {
     CASH,
     UPI,
     NETBANKING,
     DEBITCARD,
-    CREDITCARD
+    CREDITCARD,
+    CHEQUE
 }

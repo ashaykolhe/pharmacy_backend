@@ -3,16 +3,12 @@ package com.pharmacy.dto;
 import com.pharmacy.model.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
 
 import java.time.LocalDate;
 import java.util.List;
 
-@Getter
-@Setter
-@ToString
+@Data
 public class EmployeeDto {
     @NotEmpty
     private String firstName;
@@ -34,8 +30,8 @@ public class EmployeeDto {
     @NotNull
     private List<Role> roles;
     private String pharmacyLicenseNumber;
-    private Boolean active;
-    private Boolean accountLocked;
+    private Boolean active = true;
+    private Boolean accountLocked = false;
     @NotEmpty
-    private String email;
+    private String personalDocumentNumber;
 }

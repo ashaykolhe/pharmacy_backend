@@ -2,9 +2,7 @@ package com.pharmacy.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.List;
 
@@ -12,14 +10,21 @@ import java.util.List;
 @Setter
 @ToString
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(nullable = false, length = 20, unique = true)
     private String name;
+    @ToString.Exclude
+    @JsonIgnore
     @ManyToMany(mappedBy = "roles")
     private List<Employee> employees;
-    @ManyToMany
+    @ToString.Exclude
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "roles_permissions",
             joinColumns = @JoinColumn(

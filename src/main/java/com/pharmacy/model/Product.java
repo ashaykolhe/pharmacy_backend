@@ -1,50 +1,52 @@
 package com.pharmacy.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+import org.hibernate.search.engine.backend.types.Sortable;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.DocumentId;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.KeywordField;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Getter
 @Setter
 @ToString
 @Entity
+@Indexed
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @DocumentId
     private Long id;
+    @Column(nullable = false, length = 500)
+    @FullTextField
+    @KeywordField(name = "sortName", sortable = Sortable.YES)
     private String name;
-    private LocalDate manufactureDate;
-    private LocalDate expiryDate;
-    private String batchNumber;
-    @OneToOne
-    @JoinColumn(name = "product_company_id", referencedColumnName = "id")
-    private ProductCompany productCompany;
-    private Double purchaseRate;
-    private Double saleRate;//private mrp/sellingPrice/cost
     @ManyToOne
     @JoinColumn(name = "product_id", nullable = false)
     private ProductType productType;
-    private Boolean inStock;
-    private Double tax;
-    private Double profit;
+    @ToString.Exclude
     @ManyToMany
     @JoinTable(name = "products_suppliers", joinColumns = @JoinColumn(name = "product_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "supplier_id", referencedColumnName = "id"))
     private List<Supplier> suppliers;
-    @ManyToMany
-    @JoinTable(name = "products_manufacturers",
-            joinColumns = @JoinColumn(name = "product_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "manufacturer_id", referencedColumnName = "id"))
-    private List<Manufacturer> manufacturers;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "photo_id", referencedColumnName = "id")
-    private Photo photo;
+    @ToString.Exclude
+    @ManyToOne
+    @JoinColumn(name = "manufacturer_id", referencedColumnName = "id", nullable = false)
+    private Manufacturer manufacturer;
+    @Column(nullable = false, length = 500)
+    @FullTextField
+    @KeywordField(name = "sortGenericName", sortable = Sortable.YES)
     private String genericName;
-    private Shelf shelf;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "quantity_of_product_id", referencedColumnName = "id")
-    private QuantityOfProduct quantityOfProduct;
+    @Column(length = 5000, columnDefinition = "TEXT")
+    private String description;
+    @ToString.Exclude
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private List<Stock> stocks;
+    @Column(length = 2000, columnDefinition = "TEXT")
+    private String sideEffects;
 }
