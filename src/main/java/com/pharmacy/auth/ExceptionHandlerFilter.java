@@ -3,6 +3,7 @@ package com.pharmacy.auth;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pharmacy.exception.ErrorDetails;
 import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.MalformedJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -21,13 +22,18 @@ public class ExceptionHandlerFilter extends OncePerRequestFilter {
 
     @Override
     public void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
         try {
             filterChain.doFilter(request, response);
-        } catch (ExpiredJwtException expiredJwtException) {
-            ObjectMapper objectMapper = new ObjectMapper();
-            ErrorDetails errorDetails = new ErrorDetails(null, "jwt token expired", null);
+        } catch (ExpiredJwtException | MalformedJwtException expiredJwtException) {
+            ErrorDetails errorDetails = new ErrorDetails(null, "invalid or expired jwt", null);
             response.setContentType(MediaType.APPLICATION_JSON_VALUE);
             response.setStatus(HttpStatus.UNAUTHORIZED.value());
+            objectMapper.writeValue(response.getWriter(), errorDetails);
+        } catch (Exception exception) {
+            ErrorDetails errorDetails = new ErrorDetails(null, exception.getMessage(), null);
+            response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+            response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
             objectMapper.writeValue(response.getWriter(), errorDetails);
         }
     }

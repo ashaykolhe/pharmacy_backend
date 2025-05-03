@@ -1,7 +1,7 @@
 package com.pharmacy.controller;
 
+import com.pharmacy.constants.Constants;
 import com.pharmacy.exception.ErrorDetails;
-import com.pharmacy.model.Employee;
 import com.pharmacy.request.AuthRequestDTO;
 import com.pharmacy.response.JwtResponseDTO;
 import com.pharmacy.service.EmployeeService;
@@ -13,12 +13,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 @AllArgsConstructor
 @RestController
@@ -41,7 +38,7 @@ public class AuthController {
                     .build(), HttpStatus.OK);
 
         }
-        return new ResponseEntity<>(new ErrorDetails(LocalDateTime.now(), "Username or password is wrong.", null), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(new ErrorDetails(LocalDateTime.now(), Constants.GENERAL.BAD_CREDENTIALS, null), HttpStatus.BAD_REQUEST);
     }
 
 //    @PostMapping("auth/v1/signup")

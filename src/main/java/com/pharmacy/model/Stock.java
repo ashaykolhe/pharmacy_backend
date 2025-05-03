@@ -1,5 +1,6 @@
 package com.pharmacy.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,6 +22,7 @@ public class Stock {
     private LocalDate expiryDate;
     @Column(nullable = false, length = 50)
     private String batchNumber;
+    @JsonBackReference
     @ToString.Exclude
     @ManyToOne
     @JoinColumn(name = "product_id", referencedColumnName = "id", nullable = false)

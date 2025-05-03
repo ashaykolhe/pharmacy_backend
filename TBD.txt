@@ -203,7 +203,7 @@ god can change anyone's password
 *master data - role and permission
 remove requestmatchers
 *contact detail - duplicate key if id sent while updating - contact id should match with that user
-exclude god from findall, findbyusername and update
+exclude god from findall, findbyusername and update - only god can update himself.
 2nd level cache
 *account lock
 *account disabled
@@ -332,7 +332,34 @@ https://spring.io/guides/gs/uploading-files
 
 test jwt expiration on ui - if 401, delete jwt token from local storage and redirect to login
 
+Tanstack table + query
+Shortcuts for adding and deleting 
+Single json for tracking CUD
+Only update if value has changed - deep compare
 
+Save draft into local storage in case of page reload or net down or logout...if that page is visited again and data exists in local storage for that page like product then ask to restore data and continue editing ap that there's no data loss.if not continud or On success save, delete local storage
+
+Highlight rows which are added green deleted red and updated blue with updated column turquoise
+
+On orders page, show product table
+Search products - up down arrow to choose row...enter to select, open popup to show stock...enter qty and enter again to select product - add it to order json and Show order table below product table. Order table can be modified or delete. Once product is selected, focus should directly go to product search bar and ready to type
+
+Show only instock and qty greater than 0 products
+
+OR
+
+Show left join fetch product + stock on orders page instead of selecting and showing stock selection popup...enter to focus on qty and enter again to order json. If qty not added and focus is on that row then validation. Otherwise no validation and up and down arrow to move up and down the table
+
+Keyboard navigation github - https://github.com/TanStack/table/discussions/2752
+
+https://muhimasri.com/blogs/react-editable-table/
+https://tanstack.com/table/v8/docs/guide/column-visibility
+https://dev.to/jacksonkasi/building-a-google-sheets-like-table-component-with-tanstack-table-zod-and-shadcnui-1ped
+https://bensmithgall.com/blog/react-tanstack-new-row-autofocus
+https://tanstack.com/table/v8/docs/guide/row-selection
+
+https://docs.vavr.io/
+https://www.baeldung.com/jackson-bidirectional-relationships-and-infinite-recursion
 ------------------------------------------------------------
 TODO
 
@@ -1258,3 +1285,38 @@ fieldset
 legend
 
 how to hide link on UI?
+
+
+suspense on dashboard for all charts and all tanstack tables - cache all dashboard
+useeffect?
+useState
+parallel intercepting routes
+httponly cookies
+middleware - for adding jwt token to each request
+if 401 received, how to handle in tanstack queryclient
+virtualizer with and without performance for 5L rows
+row selection up and down arrow key
+shortcut for add and remove row
+autofocus on first column on add new row
+hide PK column
+404 not found page
+error page
+new type
+
+{
+"new":[{}],
+"updated":[{}],
+"deleted""[{}]
+}
+
+generic component for table + query + state
+
+UI for return order, purchase order and order stock
+
+server-only library
+import "server-only"
+
+client-only library
+import "client-only"
+
+https://nextjs.org/docs/app/api-reference/functions/cookies

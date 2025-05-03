@@ -5,8 +5,12 @@ import com.pharmacy.dto.UpdateEmployeeDto;
 import com.pharmacy.model.Employee;
 import org.springframework.data.domain.Page;
 
+import java.util.List;
+
 public interface IEmployeeService {
     Page<Employee> findAll(Integer pageNumber, Integer numberOfElements, String sortDir, String sortBy);
+
+    List<Employee> findAll();
 
     void addEmployee(EmployeeDto employeeDto);
 

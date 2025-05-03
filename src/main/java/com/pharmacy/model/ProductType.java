@@ -1,6 +1,8 @@
 package com.pharmacy.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,6 +21,7 @@ public class ProductType {
     private Long id;
     @Column(nullable = false, length = 20, unique = true)
     private String name;
+    @JsonBackReference
     @ToString.Exclude
     @OneToMany(mappedBy = "productType")
     private List<Product> product;

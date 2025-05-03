@@ -20,6 +20,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -36,6 +37,11 @@ public class EmployeeService implements IEmployeeService, UserDetailsService {
                 Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
         PageRequest pageRequest = PageRequest.of(pageNumber, numberOfElements, sort);
         return employeeRepository.findAll(pageRequest);
+    }
+
+    @Override
+    public List<Employee> findAll() {
+        return employeeRepository.findAll();
     }
 
     @PreAuthorize("hasAuthority('" + Constants.ROLE.GOD + "_" + Constants.PERMISSION.EMPLOYEE.ADD_EMPLOYEE + "') OR hasAuthority('" + Constants.ROLE.ADMIN + "_" + Constants.PERMISSION.EMPLOYEE.ADD_EMPLOYEE + "') OR hasAuthority('" + Constants.ROLE.MANAGER + "_" + Constants.PERMISSION.EMPLOYEE.ADD_EMPLOYEE + "')")

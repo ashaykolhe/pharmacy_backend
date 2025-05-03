@@ -15,6 +15,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/employee")
 @AllArgsConstructor
@@ -22,9 +24,15 @@ public class EmployeeController {
     private final IEmployeeService iEmployeeService;
 
     @NoActivityLog
-    @GetMapping("/v1/findAll")
-    public ResponseEntity<Page<Employee>> findAll(@RequestParam Integer pageNumber, @RequestParam Integer numberOfElements, @RequestParam String sortDir, @RequestParam String sortBy) {
+    @GetMapping("/v1/findAllPage")
+    public ResponseEntity<Page<Employee>> findAllPageable(@RequestParam Integer pageNumber, @RequestParam Integer numberOfElements, @RequestParam String sortDir, @RequestParam String sortBy) {
         return ResponseEntity.ok(iEmployeeService.findAll(pageNumber, numberOfElements, sortDir, sortBy));
+    }
+
+    @NoActivityLog
+    @GetMapping("/v1/findAll")
+    public ResponseEntity<List<Employee>> findAll() {
+        return ResponseEntity.ok(iEmployeeService.findAll());
     }
 
     @PostMapping("/v1/add")

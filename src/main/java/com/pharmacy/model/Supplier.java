@@ -1,5 +1,6 @@
 package com.pharmacy.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,6 +24,7 @@ public class Supplier {//Distributor/Vendor
     private Address address;
     @Column(nullable = false)
     private Boolean active;
+    @JsonBackReference
     @ManyToMany(mappedBy = "suppliers")
     private List<Product> products;
     @Column(nullable = false, length = 50, unique = true)

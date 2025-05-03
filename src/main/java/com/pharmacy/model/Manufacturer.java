@@ -1,5 +1,6 @@
 package com.pharmacy.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,6 +26,7 @@ public class Manufacturer {
     private String licenseNumber;
     @Column(nullable = false, length = 50, unique = true)
     private String gstin;
+    @JsonBackReference
     @OneToMany(mappedBy = "manufacturer")
     private List<Product> products;
     @OneToOne(cascade = CascadeType.ALL)
