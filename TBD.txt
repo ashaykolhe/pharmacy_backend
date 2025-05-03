@@ -360,6 +360,8 @@ https://tanstack.com/table/v8/docs/guide/row-selection
 
 https://docs.vavr.io/
 https://www.baeldung.com/jackson-bidirectional-relationships-and-infinite-recursion
+https://stackoverflow.com/questions/13032948/how-to-create-and-handle-composite-primary-key-in-jpa
+https://github.com/TanStack/table/discussions/5426
 ------------------------------------------------------------
 TODO
 
@@ -1320,3 +1322,12 @@ client-only library
 import "client-only"
 
 https://nextjs.org/docs/app/api-reference/functions/cookies
+
+
+form - maybe
+query - maybe
+store - yes
+debounce - yes
+table - no
+state??
+rebuild lucene index from admin panel

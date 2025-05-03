@@ -42,7 +42,7 @@ public class ProductService implements IProductService {
 
     @Override
     public List<Product> fullTextSearch(String text, int offset, int limit) {
-        return productRepository.fullTextSearch(text, offset, limit, Arrays.asList("name", "genericName"), "name", SortOrder.ASC);
+        return productRepository.fullTextSearch(text, offset, limit, Arrays.asList("name", "genericName"), "sortName", SortOrder.ASC);
     }
 
     @Override

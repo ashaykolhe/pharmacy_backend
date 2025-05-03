@@ -43,9 +43,10 @@ public class BulkInsertProducts {
         tax18.setValue(18.0);
 //        Thread medicine2 = new Thread(new Medicine2(iTaxService.saveTax(tax18), products));
         Future<Boolean> submit = executorService.submit(new Medicine1(iTaxService.saveTax(tax12), products));
-        Future<Boolean> submit1 = executorService.submit(new Medicine2(iTaxService.saveTax(tax18), products));
+//        Future<Boolean> submit1 = executorService.submit(new Medicine2(iTaxService.saveTax(tax18), products));
         try {
-            if (submit.get().booleanValue() && submit1.get().booleanValue()) {
+//            if (submit.get().booleanValue() && submit1.get().booleanValue()) {
+            if (submit.get().booleanValue()) {
                 System.out.println("both done. saving " + LocalDateTime.now());
                 iProductService.saveProducts(products);
                 System.out.println("both done. saved " + LocalDateTime.now() + " " + products.size());

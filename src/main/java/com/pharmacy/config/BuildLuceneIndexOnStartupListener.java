@@ -13,27 +13,26 @@ import org.springframework.transaction.annotation.Transactional;
 @Component
 @Transactional
 @Slf4j
-public class BuildLuceneIndexOnStartupListener implements ApplicationListener<ApplicationReadyEvent> {
+public class BuildLuceneIndexOnStartupListener {
 
     @PersistenceContext
     private EntityManager entityManager;
 
-    @Override
-    public void onApplicationEvent(ApplicationReadyEvent event) {
+    public void index() {
 
         log.info("Started Initializing Indexes");
         MassIndexer massIndexer = Search.session(entityManager).massIndexer();
 
-        massIndexer.idFetchSize(100)
-                .batchSizeToLoadObjects(25)
-                .threadsToLoadObjects(4);
+        massIndexer.idFetchSize(1000)
+                .batchSizeToLoadObjects(250)
+                .threadsToLoadObjects(8);
 
-//        try {
-//            massIndexer.startAndWait();
-//        } catch (InterruptedException e) {
-//            log.warn("Failed to load data from database");
-//            Thread.currentThread().interrupt();
-//        }
+        try {
+            massIndexer.startAndWait();
+        } catch (InterruptedException e) {
+            log.warn("Failed to load data from database");
+            Thread.currentThread().interrupt();
+        }
 
         log.info("Completed Indexing");
     }

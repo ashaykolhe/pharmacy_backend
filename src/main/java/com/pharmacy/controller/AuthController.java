@@ -6,6 +6,7 @@ import com.pharmacy.request.AuthRequestDTO;
 import com.pharmacy.response.JwtResponseDTO;
 import com.pharmacy.service.EmployeeService;
 import com.pharmacy.service.JwtService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
@@ -24,7 +25,6 @@ import java.time.LocalDateTime;
 public class AuthController {
 
     private final JwtService jwtService;
-    private final EmployeeService employeeService;
     private final AuthenticationManager authenticationManager;
 
 
@@ -39,6 +39,17 @@ public class AuthController {
 
         }
         return new ResponseEntity<>(new ErrorDetails(LocalDateTime.now(), Constants.GENERAL.BAD_CREDENTIALS, null), HttpStatus.BAD_REQUEST);
+    }
+
+    @PostMapping("/checkIfAlreadyLoggedIn")
+    public ResponseEntity<?> checkIfAlreadyLoggedIn(HttpServletRequest request) {
+        String authHeader = request.getHeader("Authorization");
+        String token = null;
+        if (authHeader != null && authHeader.startsWith("Bearer ")) {
+            token = authHeader.substring(7);
+        }
+        return ResponseEntity.ok(new JwtResponseDTO(token));
+
     }
 
 //    @PostMapping("auth/v1/signup")

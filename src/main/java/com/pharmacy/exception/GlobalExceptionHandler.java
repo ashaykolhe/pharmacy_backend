@@ -1,6 +1,8 @@
 package com.pharmacy.exception;
 
 import com.pharmacy.constants.Constants;
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.MalformedJwtException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -53,7 +55,11 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(AccessDeniedException.class)
     public ResponseEntity<?> accessDeniedException(Exception exception) {
-        exception.printStackTrace();
         return genericHandler(Constants.GENERAL.ACCESS_DENIED, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler({ExpiredJwtException.class, MalformedJwtException.class})
+    public ResponseEntity<?> expiredOrMalformedJwtException(Exception exception) {
+        return genericHandler(exception.getMessage(), HttpStatus.UNAUTHORIZED);
     }
 }

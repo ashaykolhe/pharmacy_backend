@@ -6,9 +6,7 @@ import com.pharmacy.model.Product;
 import com.pharmacy.service.IProductService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,5 +20,11 @@ public class ProductController {
     @GetMapping("/v1/findAll")
     public ResponseEntity<List<ProductDto>> findAll() {
         return ResponseEntity.ok(iProductService.fetchProducts());
+    }
+
+    @NoActivityLog
+    @GetMapping("/v1/fullTextSearch/{text}")
+    public ResponseEntity<List<Product>> fullTextSearch(@PathVariable String text) {
+        return ResponseEntity.ok(iProductService.fullTextSearch(text, 0,100));
     }
 }
