@@ -41,8 +41,8 @@ public class AuthController {
         return new ResponseEntity<>(new ErrorDetails(LocalDateTime.now(), Constants.GENERAL.BAD_CREDENTIALS, null), HttpStatus.BAD_REQUEST);
     }
 
-    @PostMapping("/checkIfAlreadyLoggedIn")
-    public ResponseEntity<?> checkIfAlreadyLoggedIn(HttpServletRequest request) {
+    @PostMapping("/checkIfJwtValid")
+    public ResponseEntity<?> checkIfJwtValid(HttpServletRequest request) {
         String authHeader = request.getHeader("Authorization");
         String token = null;
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
