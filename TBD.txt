@@ -1331,3 +1331,11 @@ debounce - yes
 table - no
 state??
 rebuild lucene index from admin panel
+
+alert when token expired and ask for extended session. show alert for 5 min
+error messages when wrong password and others
+
+
+page refresh - timer should not reset
+renew setinterval should restart
+clear interval on redirect
