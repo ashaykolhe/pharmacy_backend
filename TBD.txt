@@ -116,6 +116,7 @@ upload documents - size constraint
 *validations - size, nonnull, min, max, range, etc
 payment gateway for online delivery
 notifications
+realtime chat - group chat and individual chat and general chat and chat rooms
 filtered tables
 database index
 *lock employee account if wrong password for 5 times
@@ -160,7 +161,7 @@ offer only on selected products which has more profit margin
 n+1 problem - findAll api - @EntityGraph(attributePaths = "addresses") or left join fetch
 caching - redis? @Cacheable - products
 archive older orders, line items
-
+lucene index path as env variable
 purchase pdf
 order pdf
 
@@ -181,11 +182,17 @@ GenerationType.UUID
 
 ADMIN
 
-unlock account
+lock/unlock account
+enable/disable account
 change password
 add/remove roles
-archive
+
+
+
+god
 clear cache/refresh cache
+archive
+
 
 /api/v1
 versioning apis - https://medium.com/@vivekkadiyanits/rest-api-versioning-in-spring-boot-application-7e47f0cbd8f4
@@ -193,9 +200,9 @@ postman environment variables - https://learning.postman.com/docs/sending-reques
 
 delete all option only for GOD role
 *findbyusername returning multiple employees
-handle 401 in react - show dialog for 1 min with extend session, if timer expires, redirect to login
+*handle 401 in react - show dialog for 1 min with extend session, if timer expires, redirect to login
 god can change anyone's password
-*@PreAuthorize
+@PreAuthorize
 
 *check aop - update and delete
 *delete employe - delete activity first
@@ -226,8 +233,6 @@ frequently ordered products list
 react debounce
 SECRET key from app.props from env variable
 jwt expiration in app.props
-
-chat between users
 
 kaggle medicine database
 https://www.kaggle.com/datasets/mohneesh7/indian-medicine-data?select=medicine_data.csv
@@ -326,16 +331,16 @@ bulk insert/update - rows which cannot be inserted or updated should be stored i
 
 return order - search by order id, show all products of that order - return button with qty - add returned qty to stock table where batch and expiry date match
 
-check if lucene index is working
+*check if lucene index is working
 
 https://spring.io/guides/gs/uploading-files
 
-test jwt expiration on ui - if 401, delete jwt token from local storage and redirect to login
+*test jwt expiration on ui - if 401, delete jwt token from local storage and redirect to login
 
 Tanstack table + query
 Shortcuts for adding and deleting 
-Single json for tracking CUD
-Only update if value has changed - deep compare
+*Single json for tracking CUD - no, separate pages for CUD
+Only update if value has changed - deep compare - available in tanstack form?
 
 Save draft into local storage in case of page reload or net down or logout...if that page is visited again and data exists in local storage for that page like product then ask to restore data and continue editing ap that there's no data loss.if not continud or On success save, delete local storage
 
@@ -665,6 +670,7 @@ product by supplier
 product by manufacturer
 product by ECategory
 product by product type
+refunds
 
 --------------------
 IN PROGRESS
@@ -1336,6 +1342,82 @@ alert when token expired and ask for extended session. show alert for 5 min
 error messages when wrong password and others
 
 
-page refresh - timer should not reset
-renew setinterval should restart
+*page refresh - timer should not reset
+*renew setinterval should restart
 clear interval on redirect
+expiry dialog hangs if browser not in focus
+
+https://www.npmjs.com/package/easytimer.js?activeTab=readme
+https://www.npmjs.com/package/react-timer-hook
+https://albert-gonzalez.github.io/easytimer.js/
+
+
+
+Gsap js
+Fix N+1 - query optimization
+Debounce for all search
+User Admin god dashboard
+God can view all dashboard 
+Admin can view user and admin
+User can view only user
+
+God - insert master data, create lucene index and clear index
+
+Employee product crud - common table extract and reuse
+Permission - individual permission? - menu as per permissions
+Orders
+Notification 
+
+N+1 query
+
+Change password admin
+Admin cannot view anything of god
+God cannot be locked out or disabled 
+
+Exclude god user from all employee queries...keep separate query for god
+
+Check permission if user inserts directly in address bar for non permitted routes
+
+
+
+*Use template.js instead of layout for all routes
+
+*Check key validity on login page and template. Template pass nonlogin path. Login page will pass login path
+Absolute imports
+*Loading.tsx for group
+
+
+Nextjs env dev prod variables
+
+If changes on any page, ask if wants to leave the page without saving the changes 	
+Confirmation on logout
+
+on product page, fetch only those instock
+
+
+post employee - hide and authorize routes, god and admin can change password
+diff employee roles, diff dashboards
+
+https://www.creative-tim.com/twcomponents/cheatsheet
+https://tailwindcss.com/blog/automatic-class-sorting-with-prettier
+http://motion-primitives.com/docs/glow-effect
+
+iam roles is for services/apps
+policies/groups is for users
+
+activity(add,update,delete) notification popup -
+
+employee birthday anniversary - visible on user dashboards
+employee joining day anniversary - visible on user dashboards
+
+decide how menu will be shown
+
+happy birthday
+happy anniversary via sms, whatsapp, email, notification popup
+
+https://originui.com/
+
+login input - originui
+
+multi - add update delete
+for suppliers, manufacturer - search by name - index on name - infinite scroll and search dropdown

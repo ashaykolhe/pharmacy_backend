@@ -26,4 +26,5 @@ public interface IEmployeeService {
 
     Employee save(Employee employee);
     void lockEmployee(Long employeeId, Boolean lock);
+    List<Employee> saveAll(List<Employee> employees);
 }

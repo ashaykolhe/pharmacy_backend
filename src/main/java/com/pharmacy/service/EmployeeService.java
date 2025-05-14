@@ -139,4 +139,9 @@ public class EmployeeService implements IEmployeeService, UserDetailsService {
             throw new EmployeeNotFoundException(Constants.EMPLOYEE.EMPLOYEE_NOT_FOUND);
         });
     }
+
+    @Override
+    public List<Employee> saveAll(List<Employee> employees) {
+        return employeeRepository.saveAll(employees);
+    }
 }
